@@ -39,13 +39,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Connect Database
+      - name: Execute tests (Unit and Feature tests) via Pest PHP
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-      - name: Migrate and Seed
         run: |
           php artisan migrate
           php artisan db:seed
-      - name: Execute tests (Unit and Feature tests) via Pest PHP
-        run: vendor/bin/pest
+          vendor/bin/pest
