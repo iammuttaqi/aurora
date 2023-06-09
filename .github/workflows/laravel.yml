@@ -29,10 +29,6 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-      - name: Migrate and Seed
-        run: |
-          php artisan migrate
-          php artisan db:seed
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -43,8 +39,13 @@ jobs:
           npm install
           npm run build
 
-      - name: Execute tests (Unit and Feature tests) via Pest PHP
+      - name: Connect Database
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+      - name: Migrate and Seed
+        run: |
+          php artisan migrate
+          php artisan db:seed
+      - name: Execute tests (Unit and Feature tests) via Pest PHP
         run: vendor/bin/pest
