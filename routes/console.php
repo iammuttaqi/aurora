@@ -19,17 +19,3 @@ use Illuminate\Support\Facades\Process;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
-
-Artisan::command('wip', function () {
-    $pool = Process::pool(function (Pool $pool) {
-        $pool->as('first')->command('git add .');
-        $pool->as('second')->command('git commit -m "wip"');
-        $pool->as('third')->command('git push');
-    })->start(function (string $type, string $output, string $key) {
-        // ...
-    });
-
-    $results = $pool->wait();
-
-    echo $results['third']->output();
-})->purpose('Run wip git command');

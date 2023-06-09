@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;

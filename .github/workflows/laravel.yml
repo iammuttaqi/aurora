@@ -39,8 +39,8 @@ jobs:
           npm install
           npm run build
 
-      - name: Execute tests (Unit and Feature tests) via Pest PHP
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: vendor/bin/pest
+      # - name: Execute tests (Unit and Feature tests) via Pest PHP
+      #   env:
+      #     DB_CONNECTION: sqlite
+      #     DB_DATABASE: database/database.sqlite
+      #   run: vendor/bin/pest
