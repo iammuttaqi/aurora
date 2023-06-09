@@ -2,3 +2,6 @@
 - new login page
 - homepage (abu sayed)
 - logo (abu sayed)
+
+- user email verification - DONE
+- user registration mail to admin and user
