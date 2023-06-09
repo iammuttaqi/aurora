@@ -20,10 +20,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('pint', function () {
-    Process::run('vendor/bin/pint');
-})->purpose('run pint');
-
 Artisan::command('wip', function () {
     $pool = Process::pool(function (Pool $pool) {
         $pool->as('first')->command('git add .');
