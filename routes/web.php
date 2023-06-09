@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('go', function () {
+    return abort(404);
+});
 
 Route::get('/', function () {
     return view('welcome');
