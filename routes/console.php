@@ -31,5 +31,5 @@ Artisan::command('wip', function () {
 
     $results = $pool->wait();
 
-    dd($results['third']->output());
+    echo $results['third']->output();
 })->purpose('Run wip git command');
