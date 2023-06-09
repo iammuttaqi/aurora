@@ -31,7 +31,8 @@ jobs:
           touch database/database.sqlite
       - name: Migrate and Seed
         run: |
-          php artisan migrate:fresh --seed
+          php artisan migrate
+          php artisan db:seed
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
