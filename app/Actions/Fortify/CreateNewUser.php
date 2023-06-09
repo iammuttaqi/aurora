@@ -21,7 +21,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        $input['role_id'] = $input['role_id'] ?? 2;
+        $input['role_id'] = Role::where('slug', 'owner')->value('id');
         $user_roles       = Role::where('type', 'user')->pluck('id')->toArray();
 
         Validator::make($input, [
