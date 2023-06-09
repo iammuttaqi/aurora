@@ -1,0 +1,4 @@
+- new register page
+- new login page
+- homepage (abu sayed)
+- logo (abu sayed)

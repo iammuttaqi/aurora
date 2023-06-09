@@ -6,48 +6,75 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form class="grid gap-5" method="POST" action="{{ route('register') }}"
+            x-data="{ password: true, password_confirmation: true }">
             @csrf
 
             <div>
                 <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                    autofocus />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <div class="relative">
+                    <x-input id="password" class="block mt-1 w-full" x-bind:type="password ? 'password' : 'text'"
+                        name="password" required />
+                    <div class="absolute inset-y-0 right-0 flex items-center z-20 pr-4">
+                        <button type="button" x-on:click="password = !password">
+                            <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
+                            <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <div class="relative">
+                    <x-input id="password_confirmation" class="block mt-1 w-full"
+                        x-bind:type="password_confirmation ? 'password' : 'text'" name="password_confirmation"
+                        required />
+                    <div class="absolute inset-y-0 right-0 flex items-center z-20 pr-4">
+                        <button type="button" x-on:click="password_confirmation = !password_confirmation">
+                            <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password_confirmation"></i>
+                            <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password_confirmation"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+            <div>
+                <x-label for="terms">
+                    <div class="flex items-center">
+                        <x-checkbox name="terms" id="terms" required />
 
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
+                        <div class="ml-2">
+                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'"
+                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms
+                                of Service').'</a>',
+                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'"
+                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy
+                                Policy').'</a>',
+                            ]) !!}
                         </div>
-                    </x-label>
-                </div>
+                    </div>
+                </x-label>
+            </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+            <div class="flex items-center justify-end">
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
