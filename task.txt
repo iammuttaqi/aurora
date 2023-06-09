@@ -1,7 +1,8 @@
 - new register page
 - new login page
 - homepage (abu sayed)
-- logo (abu sayed)
+    - logo (abu sayed)
+    - three steps to get started should be mentioned. ie: Create Account -> Verify Email -> Approved By Aurora
 
 - user email verification - DONE
-- user registration mail to admin and user
+- user registration mail to admin and user - DONE
