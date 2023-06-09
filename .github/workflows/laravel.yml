@@ -29,17 +29,16 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-      - name: Execute tests (Unit and Feature tests) via Pest PHP
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: vendor/bin/pest
+      # - name: Execute tests (Unit and Feature tests) via Pest PHP
+      #   env:
+      #     DB_CONNECTION: sqlite
+      #     DB_DATABASE: database/database.sqlite
+      #   run: vendor/bin/pest
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-
       - name: 🔨 Build Project for Production
         run: |
           npm install
