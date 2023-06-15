@@ -7,7 +7,8 @@
         <x-validation-errors class="mb-4" />
 
         <form class="grid gap-5" method="POST" action="{{ route('register') }}"
-            x-data="{ password: true, password_confirmation: true }">
+            x-data="{ password: true, password_confirmation: true, processing: false }"
+            x-on:submit.prevent="processing = true; $el.submit();">
             @csrf
 
             <div>
@@ -78,7 +79,13 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">{{ __('Register') }}</x-button>
+                <x-button class="ml-4" x-bind:disabled="processing"
+                    x-bind:class="processing ? 'dark:bg-gray-400 dark:hover:bg-gray-400' : ''" x-cloak>
+                    <span
+                        class="animate-spin inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full dark:text-inherit mr-2"
+                        role="status" aria-label="loading" x-show="processing"></span>
+                    {{ __('Register') }}
+                </x-button>
             </div>
         </form>
     </x-authentication-card>

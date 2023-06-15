@@ -9,7 +9,13 @@
 
 - user email verification - DONE
 - user registration mail to admin and user - DONE
+
+- user registration database notification to admin and user
+- admin notifications page
 - user profile
     - profile page
     - admin will be notified through notification panel
     - admin will get reminder though email about notifications per day
+- redirect user to profile page after completing registration
+- redirect user to profile page after login
+- dark mode / light mode switcher

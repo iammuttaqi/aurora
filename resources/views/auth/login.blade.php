@@ -12,7 +12,8 @@
         </div>
         @endif
 
-        <form class="grid gap-5" method="POST" action="{{ route('login') }}" x-data="{ password: true }">
+        <form class="grid gap-5" method="POST" action="{{ route('login') }}"
+            x-data="{ password: true, processing: false, }" x-on:submit.prevent="processing = true; $el.submit();">
             @csrf
 
             <div>
@@ -50,7 +51,11 @@
                 </a>
                 @endif
 
-                <x-button class="ml-4">
+                <x-button class="ml-4" x-bind:disabled="processing"
+                    x-bind:class="processing ? 'dark:bg-gray-400 dark:hover:bg-gray-400' : ''" x-cloak>
+                    <span
+                        class="animate-spin inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full dark:text-inherit mr-2"
+                        role="status" aria-label="loading" x-show="processing"></span>
                     {{ __('Log in') }}
                 </x-button>
             </div>
