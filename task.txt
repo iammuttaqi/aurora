@@ -1,8 +1,15 @@
+(Abu Sayed)
 - new register page
 - new login page
-- homepage (abu sayed)
-    - logo (abu sayed)
-    - three steps to get started should be mentioned. ie: Create Account -> Verify Email -> Approved By Aurora
+- logo 
+- homepage
+- Guide page:
+    - steps to get started should be mentioned in this page.
+    ie: Create Account -> Verify Email -> Upload Your Profile -> Approved By Aurora
 
 - user email verification - DONE
 - user registration mail to admin and user - DONE
+- user profile
+    - profile page
+    - admin will be notified through notification panel
+    - admin will get reminder though email about notifications per day
