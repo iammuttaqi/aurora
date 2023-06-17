@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -20,7 +21,7 @@ class UserSeeder extends Seeder
             if ($range == 1) {
                 $role_id = 1;
                 $name    = 'Admin';
-                $email   = 'admin@aurora.com';
+                $email   = config('mail.from.address');
             } elseif ($range > 1 && $range <= 10) {
                 $role_id = 3;
             } else {
@@ -46,5 +47,10 @@ class UserSeeder extends Seeder
         collect($users)->chunk(5000)->each(function ($user) {
             User::insert($user->toArray());
         });
+
+        // foreach ($users as $key => $user_data) {
+        //     $user = User::create($user_data);
+        //     event(new Registered($user));
+        // }
     }
 }
