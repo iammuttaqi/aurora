@@ -86,7 +86,7 @@
                                     </table>
                                 </div>
 
-                                <div class="py-1 px-4 grid place-items-center">
+                                <div class="grid place-items-center">
                                     {{ $notifications->links('components.pagination') }}
                                 </div>
                             </div>
