@@ -14,16 +14,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (range(1, 100) as $key => $range) {
+        foreach (range(1, 200) as $key => $range) {
             $name  = fake()->name();
             $email = uniqid() . fake()->unique()->safeEmail();
 
             if ($range == 1) {
-                $role_id = 1;
+                $role_id = fake()->randomElement(Role::where('slug', 'admin')->pluck('id')->toArray());
                 $name    = 'Admin';
                 $email   = config('mail.from.address');
             } elseif ($range > 1 && $range <= 10) {
-                $role_id = 3;
+                $role_id = fake()->randomElement(Role::where('type', 'admin')->where('slug', '!=', 'admin')->pluck('id')->toArray());
             } else {
                 $role_id = fake()->randomElement(Role::where('type', 'user')->pluck('id')->toArray());
             }

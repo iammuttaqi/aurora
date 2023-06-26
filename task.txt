@@ -9,9 +9,12 @@
 
 - user email verification - DONE
 - user registration mail to admin and user - DONE
+- user registration database notification to admin and user - DONE
+- admin notifications page - DONE
+- role (admin, manufacturer, shop) - DONE
 
-- user registration database notification to admin and user
-- admin notifications page
+- user registration by selecting their roles (manufacturer, shop)
+- customers table to add customers by shop
 - user profile
     - profile page
     - admin will be notified through notification panel
