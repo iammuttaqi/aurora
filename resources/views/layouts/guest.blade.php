@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="dark" lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-bind:class="{ 'dark': dark }" x-cloak x-data="{
+    dark: $persist(false),
+}">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="{{ csrf_token() }}" name="csrf-token">
 
     <title>@stack('title', config('app.name', 'Laravel'))</title>
 
     {{-- Favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/site.webmanifest') }}">
+    <link href="{{ asset('assets/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
+    <link href="{{ asset('assets/favicon-32x32.png') }}" rel="icon" sizes="32x32" type="image/png">
+    <link href="{{ asset('assets/favicon-16x16.png') }}" rel="icon" sizes="16x16" type="image/png">
+    <link href="{{ asset('assets/site.webmanifest') }}" rel="manifest">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net" rel="preconnect">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -23,7 +25,7 @@
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+    <div class="font-sans text-gray-900 antialiased dark:text-gray-100">
         {{ $slot }}
     </div>
 </body>
