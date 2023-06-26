@@ -7,18 +7,39 @@
     - steps to get started should be mentioned in this page.
     ie: Create Account -> Verify Email -> Upload Your Profile -> Approved By Aurora
 
-- user email verification - DONE
-- user registration mail to admin and user - DONE
-- user registration database notification to admin and user - DONE
-- admin notifications page - DONE
 - role (admin, manufacturer, shop) - DONE
+- user email verification - DONE
+- admin notifications page - DONE
+- user registration database notification to admin and user - DONE
+- user registration by selecting their roles (manufacturer, shop) - DONE
 
-- user registration by selecting their roles (manufacturer, shop)
-- customers table to add customers by shop
 - user profile
+    - different different fields for manufacturers and shops. most of the fields can be nullable.
     - profile page
-    - admin will be notified through notification panel
-    - admin will get reminder though email about notifications per day
-- redirect user to profile page after completing registration
-- redirect user to profile page after login
+    - admin will be notified through notification panel about the profile update
+    - admin will get reminder though email about notifications per day about profile update
+- notification show page, where each notification will be shown extensively
+- user registration mail to admin and user
+- different email notification for manufacturer and shop
+- products table to add products by shop
+    - auto generate serial number
+    - a product can be duplicatable, auto generate serial number with qr code
+- customers table to add customers by shop
+- shop can sell a product to customer, they can select customer, or they can instantly add one customer (unique check by phone)
+- prove of manufacturer that using our platform. by qr code
+- prove of shop that using our platform. by qr code
+- ownership history table
+- people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
 - dark mode / light mode switcher
+
+
+
+
+
+
+
+
+questions to mam:
+- do we need to go formal in the defense board?
+- when can our defense be?
+- 

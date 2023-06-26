@@ -7,27 +7,24 @@
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ session('status') }}
-        </div>
+            <div class="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
+                {{ session('status') }}
+            </div>
         @endif
 
-        <form class="grid gap-5" method="POST" action="{{ route('login') }}"
-            x-data="{ password: true, processing: false, }" x-on:submit.prevent="processing = true; $el.submit();">
+        <form action="{{ route('login') }}" class="grid gap-5" method="POST" x-data="{ password: true, processing: false, }" x-on:submit.prevent="processing = true; $el.submit();">
             @csrf
 
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                    autofocus />
+                <x-input :value="old('email')" autofocus class="mt-1 block w-full" id="email" name="email" required type="email" />
             </div>
 
             <div>
                 <x-label for="password" value="{{ __('Password') }}" />
                 <div class="relative">
-                    <x-input id="password" class="block mt-1 w-full" x-bind:type="password ? 'password' : 'text'"
-                        name="password" required />
-                    <div class="absolute inset-y-0 right-0 flex items-center z-20 pr-4">
+                    <x-input class="mt-1 block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
+                    <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password = !password">
                             <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
                             <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password"></i>
@@ -37,7 +34,7 @@
             </div>
 
             <div class="block">
-                <label for="remember_me" class="flex items-center">
+                <label class="flex items-center" for="remember_me">
                     <x-checkbox id="remember_me" name="remember" />
                     <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
                 </label>
@@ -45,17 +42,13 @@
 
             <div class="flex items-center justify-end">
                 @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
                 @endif
 
-                <x-button class="ml-4" x-bind:disabled="processing"
-                    x-bind:class="processing ? 'dark:bg-gray-400 dark:hover:bg-gray-400' : ''" x-cloak>
-                    <span
-                        class="animate-spin inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full dark:text-inherit mr-2"
-                        role="status" aria-label="loading" x-show="processing"></span>
+                <x-button class="ml-4" x-bind:disabled="processing" x-bind:class="processing ? 'dark:bg-gray-400 dark:hover:bg-gray-400' : ''" x-cloak>
+                    <span aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-inherit" role="status" x-show="processing"></span>
                     {{ __('Log in') }}
                 </x-button>
             </div>

@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
-use Illuminate\Process\Pool;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Process;
 
 /*
 |--------------------------------------------------------------------------

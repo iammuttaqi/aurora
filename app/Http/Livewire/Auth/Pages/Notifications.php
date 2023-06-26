@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Auth\Pages;
 
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Notifications extends Component
 {
     public $search = '';
 
     public $check_all = false;
-    public $checks    = [];
+
+    public $checks = [];
 
     public function render()
     {
@@ -19,8 +19,8 @@ class Notifications extends Component
         foreach ($notifications as $key => $notification) {
             $notification->message = match ($notification->type) {
                 'App\Notifications\Admin\RegisterUserNotication' => 'New User: ' . $notification->data['name'],
-                'App\Notifications\User\RegisterUserNotication' => 'Welcome to ' . config('app.name') . ': ' . $notification->data['name'],
-                default => null,
+                'App\Notifications\User\RegisterUserNotication'  => 'Welcome to ' . config('app.name') . ': ' . $notification->data['name'],
+                default                                          => null,
             };
         }
 

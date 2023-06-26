@@ -14,4 +14,24 @@ class Role extends Model
         'slug',
         'type',
     ];
+
+    public static function idsInArray($type)
+    {
+        return self::where('type', $type)->select('id')->pluck('id')->toArray();
+    }
+
+    public static function idsInCommaSeparated($type)
+    {
+        return self::where('type', $type)->select('id')->implode('id', ',');
+    }
+
+    public static function slugsInArray($type)
+    {
+        return self::where('type', $type)->select('slug')->pluck('slug')->toArray();
+    }
+
+    public static function slugsInCommaSeparated($type)
+    {
+        return self::where('type', $type)->select('slug')->implode('slug', ',');
+    }
 }

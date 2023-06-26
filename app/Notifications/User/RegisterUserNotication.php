@@ -3,7 +3,6 @@
 namespace App\Notifications\User;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -42,9 +41,10 @@ class RegisterUserNotication extends Notification
 
                 'Thank you for registering with ' . config('app.name') . '! We are excited to have you as a new member of our community. Your registration details are as follows:',
 
-                '- ***Name***: ' . $notifiable->name,
-                '- ***Email Address***: ' . $notifiable->email,
-                '- ***Date of Registration***: ' . $notifiable->created_at->format('d F, Y - h:i A'),
+                '- **Name**: ' . $notifiable->name,
+                '- **Email Address**: ' . $notifiable->email,
+                '- **Date of Registration**: ' . $notifiable->created_at->format('d F, Y - h:i A'),
+                '- **Role**: ' . $notifiable->role->title,
 
                 'With your registration, you now have access to a wide range of features and benefits. Here\'s what you can expect:',
 

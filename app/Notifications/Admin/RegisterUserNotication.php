@@ -3,7 +3,6 @@
 namespace App\Notifications\Admin;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -42,10 +41,13 @@ class RegisterUserNotication extends Notification
             ->lines([
                 'Dear Admin,',
                 'We are excited to inform you that a new user has registered on our platform, and we wanted to provide you with the details for your records. Please review the information below and take any necessary actions.',
+
                 'User Details:',
-                '- ***Name***: ' . $this->user->name,
-                '- ***Email Address***: ' . $this->user->email,
-                '- ***Date of Registration***: ' . $this->user->created_at->format('d F, Y - h:i A'),
+                '- **Name**: ' . $this->user->name,
+                '- **Email Address**: ' . $this->user->email,
+                '- **Date of Registration**: ' . $this->user->created_at->format('d F, Y - h:i A'),
+                '- **Role**: ' . $notifiable->role->title,
+
                 'To ensure a seamless user experience and maintain the security of our platform, we kindly request your attention to the following:',
                 '- Review the user\'s registration details for accuracy and completeness.',
                 '- If any additional verification or approval processes are required, please follow your standard procedures.',
