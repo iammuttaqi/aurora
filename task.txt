@@ -6,8 +6,13 @@
 - Guide page:
     - steps to get started should be mentioned in this page.
     ie: Create Account -> Verify Email -> Upload Your Profile -> Approved By Aurora
-- suggest QR code scanner
+- suggest QR code scanner app
 
+
+
+(Mahfuz):
+- Categories CRUD for admin
+- Cities CRUD for admin
 
 
 

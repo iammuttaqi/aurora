@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,7 @@ class Profile extends Model
         'user_id',
 
         'name',
+        'username',
         'contact_person',
         'address',
         'city_id',
@@ -55,4 +57,47 @@ class Profile extends Model
     protected $casts = [
         'category_ids' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function employeeRange()
+    {
+        return $this->belongsTo(EmployeeRange::class);
+    }
+
+    protected function username(): Attribute
+    {
+        return Attribute::make(
+            set: fn () => $this->generateUniqueUsername(),
+        );
+    }
+
+    protected function generateUniqueUsername()
+    {
+        if (!$this->username) {
+            $username = str()->slug($this->name);
+            $count    = 2;
+
+            while ($this->where('username', $username)->exists()) {
+                $username = str()->slug($this->name) . '-' . $count++;
+            }
+
+            return $username;
+        }
+
+        return $this->username;
+    }
 }

@@ -26,10 +26,12 @@ class ProfileFactory extends Factory
                     ->whereHas('role', function ($query) {
                         $query->where('type', 'user');
                     })
+                    ->whereDoesntHave('profile')
                     ->pluck('id')
                     ->toArray()
             ),
             'name'                       => fake()->company,
+            'username'                   => null,
             'contact_person'             => fake()->name,
             'address'                    => fake()->address,
             'city_id'                    => fake()->randomElement(City::pluck('id')->toArray()),

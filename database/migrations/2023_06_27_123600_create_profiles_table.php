@@ -26,6 +26,7 @@ return new class extends Migration
 
             // Primary data for both Manufacturers and Shops
             $table->string('name')->nullable();
+            $table->string('username')->unique()->nullable();
             $table->string('contact_person')->nullable();
             $table->string('address')->nullable();
             $table->foreignIdFor(City::class, 'city_id')->nullable();
