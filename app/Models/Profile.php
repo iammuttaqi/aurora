@@ -100,4 +100,13 @@ class Profile extends Model
 
         return $this->username;
     }
+
+    public $default_logo = 'assets/default.png';
+
+    protected function logo(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string|null $value) => $value && file_exists($value) ? $value : $this->default_logo,
+        );
+    }
 }

@@ -20,11 +20,15 @@
     <link href="https://fonts.bunny.net" rel="preconnect">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    @stack('cdn')
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
+
+    @stack('styles')
 </head>
 
 <body class="font-sans antialiased">
@@ -51,6 +55,8 @@
     @stack('modals')
 
     @livewireScripts
+
+    @stack('scripts')
 </body>
 
 </html>

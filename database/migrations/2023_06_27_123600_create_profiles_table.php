@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('username')->unique()->nullable();
             $table->string('contact_person')->nullable();
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
             $table->foreignIdFor(City::class, 'city_id')->nullable();
             $table->string('contact_number_1')->nullable();
             $table->string('contact_number_2')->nullable();
