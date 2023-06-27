@@ -6,12 +6,17 @@
 - Guide page:
     - steps to get started should be mentioned in this page.
     ie: Create Account -> Verify Email -> Upload Your Profile -> Approved By Aurora
+- suggest QR code scanner
+
+
+
 
 - role (admin, manufacturer, shop) - DONE
 - user email verification - DONE
 - admin notifications page - DONE
 - user registration database notification to admin and user - DONE
 - user registration by selecting their roles (manufacturer, shop) - DONE
+- dark mode / light mode switcher - DONE
 
 - user profile
     - different different fields for manufacturers and shops. most of the fields can be nullable.
@@ -30,7 +35,6 @@
 - prove of shop that using our platform. by qr code
 - ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
-- dark mode / light mode switcher
 
 
 
@@ -42,4 +46,3 @@
 questions to mam:
 - do we need to go formal in the defense board?
 - when can our defense be?
-- 
