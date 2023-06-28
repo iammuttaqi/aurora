@@ -315,7 +315,7 @@
 
                     <div class="col-span-full block">
                         <x-button wire:loading.attr="disabled" wire:target="update">
-                            <div aria-label="loading" class="mr-1 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-gray-800" role="status" wire:loading wire:target="update">
+                            <div aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-gray-800" role="status" wire:loading wire:target="update">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             {{ __('Submit') }}
