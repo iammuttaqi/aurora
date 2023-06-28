@@ -113,7 +113,7 @@ class Profile extends Model
         return $this->username;
     }
 
-    private function qrCode(): Attribute
+    protected function qrCode(): Attribute
     {
         return Attribute::make(
             set: fn () => $this->generateQrCode(),
@@ -130,6 +130,7 @@ class Profile extends Model
             }
         } catch (\Throwable $th) {
             logger(__METHOD__, [$th]);
+
             return null;
             throw $th;
         }

@@ -15,12 +15,14 @@
                     <x-nav-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
-                        {{ __('Profile') }}
-                    </x-nav-link>
-                    <x-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
-                        {{ __('QR Code') }}
-                    </x-nav-link>
+                    @can('viewAny', \App\Models\Profile::class)
+                        <x-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
+                            {{ __('Profile') }}
+                        </x-nav-link>
+                        <x-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
+                            {{ __('QR Code') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -177,9 +179,16 @@
             <x-responsive-nav-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
-                {{ __('Profile') }}
-            </x-responsive-nav-link>
+
+            @can('viewAny', \App\Models\Profile::class)
+                <x-responsive-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
+                    {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
+                    {{ __('QR Code') }}
+                </x-responsive-nav-link>
+            @endcan
+
             <x-responsive-nav-link :active="request()->routeIs('notifications')" href="{{ route('notifications') }}">
                 {{ __('Notifications') }}
             </x-responsive-nav-link>

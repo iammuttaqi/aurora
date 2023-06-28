@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Auth\Pages;
 
 use App\Models\Profile;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
@@ -10,10 +11,14 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
 
 class QrCode extends Component
 {
+    use AuthorizesRequests;
+
     public $qr_code = null;
 
     public function mount()
     {
+        $this->authorize('viewAny', Profile::class);
+
         $this->qr_code = Profile::where('user_id', auth()->user()->id)
             ->whereNotNull('username')
             ->whereNotNull('qr_code')

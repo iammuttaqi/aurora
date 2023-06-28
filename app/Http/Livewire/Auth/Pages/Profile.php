@@ -6,26 +6,22 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\EmployeeRange;
 use App\Models\Profile as ModelsProfile;
-use App\Rules\FacebookLinkRule;
-use App\Rules\InstagramLinkRule;
-use App\Rules\LinkedinLinkRule;
+use App\Models\Role;
 use App\Rules\SocialLinksRule;
-use App\Rules\TwitterLinkRule;
 use App\Traits\SocialLinksTrait;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Profile extends Component
 {
-    use WithFileUploads, SocialLinksTrait;
+    use WithFileUploads, SocialLinksTrait, AuthorizesRequests;
 
     public $form = [
         'name'                       => null,
         'username'                   => null,
-        'qr_code'                   => null,
+        'qr_code'                    => null,
         'contact_person'             => null,
         'address'                    => null,
         'city_id'                    => null,
@@ -67,6 +63,8 @@ class Profile extends Component
 
     public function mount($username = null)
     {
+        $this->authorize('viewAny', ModelsProfile::class);
+
         $profile = ModelsProfile::query()
             ->when($username, function ($query) use ($username) {
                 $query->where('username', $username);
@@ -75,6 +73,7 @@ class Profile extends Component
             })
             ->select(array_keys($this->form))
             ->first();
+
         if ($profile) {
             $this->form = $profile->toArray();
         }
@@ -196,7 +195,7 @@ class Profile extends Component
             $profile = ModelsProfile::query()
                 ->has('user')
                 ->with('user')
-                ->when(auth()->user()->role->type == 'admin', function ($query) {
+                ->when(in_array(auth()->user()->role->slug, Role::slugsInArray('admin')), function ($query) {
                     $query->where('username', $this->form['username']);
                 }, function ($query) {
                     $query->where('user_id', auth()->user()->id);

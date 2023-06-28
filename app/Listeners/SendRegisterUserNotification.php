@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Notifications\Admin\RegisterUserNotication as AdminRegisterUserNotication;
 use App\Notifications\User\RegisterUserNotication as UserRegisterUserNotication;
@@ -25,7 +26,7 @@ class SendRegisterUserNotification
         $admins = User::with('role')
             ->has('role')
             ->whereHas('role', function ($query) {
-                return $query->where('slug', 'admin');
+                return $query->whereIn('slug', Role::slugsInArray('admin'));
             })
             ->get();
 

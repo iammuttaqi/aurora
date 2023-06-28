@@ -47,6 +47,7 @@ class CreateNewUser implements CreatesNewUsers
             ]);
 
             DB::commit();
+
             return $user;
         } catch (\Throwable $th) {
             DB::rollBack();

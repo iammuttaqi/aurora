@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Profile;
+use App\Models\Role;
 use App\Models\User;
 
 class ProfilePolicy
@@ -12,7 +13,7 @@ class ProfilePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return in_array($user->role->slug, Role::slugsInArray('user'));
     }
 
     /**
