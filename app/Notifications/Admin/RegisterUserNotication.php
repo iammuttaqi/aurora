@@ -46,7 +46,7 @@ class RegisterUserNotication extends Notification
                 '- **Name**: ' . $this->user->name,
                 '- **Email Address**: ' . $this->user->email,
                 '- **Date of Registration**: ' . $this->user->created_at->format('d F, Y - h:i A'),
-                '- **Role**: ' . $notifiable->role->title,
+                '- **Role**: ' . $this->user->role->title,
 
                 'To ensure a seamless user experience and maintain the security of our platform, we kindly request your attention to the following:',
                 '- Review the user\'s registration details for accuracy and completeness.',

@@ -22,14 +22,15 @@
 - user registration database notification to admin and user - DONE
 - user registration by selecting their roles (manufacturer, shop) - DONE
 - dark mode / light mode switcher - DONE
+- user registration mail to admin and user - DONE
 
 - user profile
     - different different fields for manufacturers and shops. most of the fields can be nullable. - DONE
-    - profile page
+    - profile page - DONE
     - admin will be notified through notification panel about the profile update
     - admin will get reminder though email about notifications per day about profile update
+- use of policy
 - notification show page, where each notification will be shown extensively
-- user registration mail to admin and user
 - different email notification for manufacturer and shop
 - products table to add products by shop
     - auto generate serial number
