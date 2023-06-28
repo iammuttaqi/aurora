@@ -155,13 +155,19 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.website')" for="website" />
-                        <x-input :required="$this->required('form.website')" :placeholder="$this->label('form.website')" class="block w-full" id="website" name="website" type="url" wire:model.defer="form.website" x-model="form.website" />
+                        <div class="relative">
+                            <i class="bi bi-globe2 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 dark:text-white"></i>
+                            <x-input :required="$this->required('form.website')" :placeholder="$this->label('form.website')" class="block w-full pl-10" id="website" name="website" type="url" wire:model.defer="form.website" x-model="form.website" />
+                        </div>
                         <x-input-error for="form.website" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.map_link')" for="map_link" />
-                        <x-input :required="$this->required('form.map_link')" :placeholder="$this->label('form.map_link')" class="block w-full" id="map_link" name="map_link" type="url" wire:model.defer="form.map_link" x-model="form.map_link" />
+                        <div class="relative">
+                            <i class="bi bi-geo-alt-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 dark:text-white"></i>
+                            <x-input :required="$this->required('form.map_link')" :placeholder="$this->label('form.map_link')" class="block w-full pl-10" id="map_link" name="map_link" type="url" wire:model.defer="form.map_link" x-model="form.map_link" />
+                        </div>
                         <x-input-error for="form.map_link" />
                     </div>
 
