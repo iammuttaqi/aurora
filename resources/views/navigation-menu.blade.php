@@ -18,6 +18,9 @@
                     <x-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
                         {{ __('Profile') }}
                     </x-nav-link>
+                    <x-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
+                        {{ __('QR Code') }}
+                    </x-nav-link>
                 </div>
             </div>
 

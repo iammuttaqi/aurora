@@ -13,8 +13,10 @@ use App\Rules\SocialLinksRule;
 use App\Rules\TwitterLinkRule;
 use App\Traits\SocialLinksTrait;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Profile extends Component
 {
@@ -23,6 +25,7 @@ class Profile extends Component
     public $form = [
         'name'                       => null,
         'username'                   => null,
+        'qr_code'                   => null,
         'contact_person'             => null,
         'address'                    => null,
         'city_id'                    => null,
@@ -200,24 +203,7 @@ class Profile extends Component
                 })
                 ->first();
 
-            // if ($profile) {
-            //     $this->authorize('update', $profile);
-            // } else {
-            //     $this->authorize('create', ModelsProfile::class);
-            // }
-
-            if ($this->logo) {
-                if ($profile && $profile && $profile->logo && $profile->logo != $profile->default_logo && file_exists($profile->logo)) {
-                    unlink($profile->logo);
-                }
-                $filename = 'logo/logo-' . time() . rand() . '.png';
-                if (app()->isProduction()) {
-                    $this->logo->storeAs('storage', $filename, 'public_html');
-                } else {
-                    $this->logo->storeAs('public', $filename);
-                }
-                $this->form['logo'] = 'storage/' . $filename;
-            }
+            $this->form['logo'] = $this->uploadImage($profile);
 
             ModelsProfile::updateOrCreate(
                 ['user_id' => $profile && $profile->user ? $profile->user->id : auth()->user()->id],
@@ -231,12 +217,29 @@ class Profile extends Component
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            logger('App\Http\Livewire\Auth\Pages\Profile, update(): ', [$th]);
+            logger(__METHOD__, [$th]);
             $this->dispatchBrowserEvent('banner-message', [
                 'style'   => 'danger',
                 'message' => 'Failed.',
             ]);
             throw $th;
+        }
+    }
+
+    private function uploadImage($profile)
+    {
+        if ($this->logo) {
+            if ($profile && $profile && $profile->logo && $profile->logo != $profile->default_logo && file_exists($profile->logo)) {
+                unlink($profile->logo);
+            }
+            $filename = 'logo/logo-' . time() . rand() . '.png';
+            if (app()->isProduction()) {
+                $this->logo->storeAs('storage', $filename, 'public_html');
+            } else {
+                $this->logo->storeAs('public', $filename);
+            }
+
+            return 'storage/' . $filename;
         }
     }
 }

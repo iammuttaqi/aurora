@@ -27,8 +27,11 @@
 - user profile
     - different different fields for manufacturers and shops. most of the fields can be nullable. - DONE
     - profile page - DONE
+    - qr code assign on update - DONE
+    - qr code need to be assigned by admin on approving the company
     - admin will be notified through notification panel about the profile update
     - admin will get reminder though email about notifications per day about profile update
+- different qr code page to regenerate qr code for companies
 - use of policy
 - notification show page, where each notification will be shown extensively
 - different email notification for manufacturer and shop

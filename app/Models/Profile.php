@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Profile extends Model
 {
@@ -12,9 +14,10 @@ class Profile extends Model
 
     protected $fillable = [
         'user_id',
-
+        'approved',
         'name',
         'username',
+        'qr_code',
         'contact_person',
         'address',
         'city_id',
@@ -78,6 +81,15 @@ class Profile extends Model
         return $this->belongsTo(EmployeeRange::class);
     }
 
+    public $default_logo = 'assets/default.png';
+
+    protected function logo(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string|null $value) => $value && file_exists($value) ? $value : $this->default_logo,
+        );
+    }
+
     protected function username(): Attribute
     {
         return Attribute::make(
@@ -85,7 +97,7 @@ class Profile extends Model
         );
     }
 
-    protected function generateUniqueUsername()
+    private function generateUniqueUsername()
     {
         if (!$this->username) {
             $username = str()->slug($this->name);
@@ -101,12 +113,25 @@ class Profile extends Model
         return $this->username;
     }
 
-    public $default_logo = 'assets/default.png';
-
-    protected function logo(): Attribute
+    private function qrCode(): Attribute
     {
         return Attribute::make(
-            get: fn (string|null $value) => $value && file_exists($value) ? $value : $this->default_logo,
+            set: fn () => $this->generateQrCode(),
         );
+    }
+
+    private function generateQrCode()
+    {
+        try {
+            if ($this->username) {
+                $url = URL::signedRoute('verify_company', $this->username);
+
+                return QrCode::size(500)->generate($url);
+            }
+        } catch (\Throwable $th) {
+            logger(__METHOD__, [$th]);
+            return null;
+            throw $th;
+        }
     }
 }

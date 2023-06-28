@@ -96,7 +96,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.contact_number_1')" for="contact_number_1" />
                         <div class="relative">
-                            <i class="bi bi-telephone pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-telephone-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.contact_number_1')" :placeholder="$this->label('form.contact_number_1')" class="block w-full pl-10" id="contact_number_1" name="contact_number_1" type="text" wire:model.defer="form.contact_number_1" />
                         </div>
                         <x-input-error for="form.contact_number_1" />
@@ -105,7 +105,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.contact_number_2')" for="contact_number_2" />
                         <div class="relative">
-                            <i class="bi bi-telephone pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-telephone-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.contact_number_2')" :placeholder="$this->label('form.contact_number_2')" class="block w-full pl-10" id="contact_number_2" name="contact_number_2" type="text" wire:model.defer="form.contact_number_2" />
                         </div>
                         <x-input-error for="form.contact_number_2" />
@@ -114,7 +114,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.contact_number_3')" for="contact_number_3" />
                         <div class="relative">
-                            <i class="bi bi-telephone pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-telephone-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.contact_number_3')" :placeholder="$this->label('form.contact_number_3')" class="block w-full pl-10" id="contact_number_3" name="contact_number_3" type="text" wire:model.defer="form.contact_number_3" />
                         </div>
                         <x-input-error for="form.contact_number_3" />
@@ -123,7 +123,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.email_1')" for="email_1" />
                         <div class="relative">
-                            <i class="bi bi-envelope pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-envelope-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.email_1')" :placeholder="$this->label('form.email_1')" class="block w-full pl-10" id="email_1" name="email_1" type="email" wire:model.defer="form.email_1" x-model="form.email_1" />
                         </div>
                         <x-input-error for="form.email_1" />
@@ -132,7 +132,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.email_2')" for="email_2" />
                         <div class="relative">
-                            <i class="bi bi-envelope pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-envelope-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.email_2')" :placeholder="$this->label('form.email_2')" class="block w-full pl-10" id="email_2" name="email_2" type="email" wire:model.defer="form.email_2" x-model="form.email_2" />
                         </div>
                         <x-input-error for="form.email_2" />
@@ -141,7 +141,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4">
                         <x-label :value="$this->label('form.email_3')" for="email_3" />
                         <div class="relative">
-                            <i class="bi bi-envelope pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400"></i>
+                            <i class="bi bi-envelope-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.email_3')" :placeholder="$this->label('form.email_3')" class="block w-full pl-10" id="email_3" name="email_3" type="email" wire:model.defer="form.email_3" x-model="form.email_3" />
                         </div>
                         <x-input-error for="form.email_3" />
@@ -156,7 +156,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.website')" for="website" />
                         <div class="relative">
-                            <i class="bi bi-globe2 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 dark:text-white"></i>
+                            <i class="bi bi-globe2 pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.website')" :placeholder="$this->label('form.website')" class="block w-full pl-10" id="website" name="website" type="url" wire:model.defer="form.website" x-model="form.website" />
                         </div>
                         <x-input-error for="form.website" />
@@ -165,7 +165,7 @@
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.map_link')" for="map_link" />
                         <div class="relative">
-                            <i class="bi bi-geo-alt-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 dark:text-white"></i>
+                            <i class="bi bi-geo-alt-fill pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500 dark:text-white"></i>
                             <x-input :required="$this->required('form.map_link')" :placeholder="$this->label('form.map_link')" class="block w-full pl-10" id="map_link" name="map_link" type="url" wire:model.defer="form.map_link" x-model="form.map_link" />
                         </div>
                         <x-input-error for="form.map_link" />

@@ -24,8 +24,11 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('logo')->nullable();
+            $table->boolean('approved')->default(0);
             $table->string('username')->unique()->nullable();
+            $table->binary('qr_code')->unique()->nullable();
+
+            $table->string('logo')->nullable();
             $table->string('name')->nullable();
             $table->string('contact_person')->nullable();
             $table->text('address')->nullable();
