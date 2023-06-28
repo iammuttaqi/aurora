@@ -24,7 +24,7 @@
 - dark mode / light mode switcher - DONE
 
 - user profile
-    - different different fields for manufacturers and shops. most of the fields can be nullable.
+    - different different fields for manufacturers and shops. most of the fields can be nullable. - DONE
     - profile page
     - admin will be notified through notification panel about the profile update
     - admin will get reminder though email about notifications per day about profile update
@@ -40,6 +40,7 @@
 - prove of shop that using our platform. by qr code
 - ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
+- reminder every 7 day to fill profile, even after registration
 
 
 

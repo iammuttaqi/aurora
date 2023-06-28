@@ -9,25 +9,28 @@
         <form action="{{ route('register') }}" class="grid gap-5" method="POST" x-data="{ password: true, password_confirmation: true, processing: false }" x-on:submit.prevent="processing = true; $el.submit();">
             @csrf
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="role_id" value="{{ __('Role') }}" />
-                <x-select :value="old('role_id')" :options="$roles" class="mt-1 block w-full" default="Select Role..." id="role_id" name="role_id" required></x-select>
+                <x-select :value="old('role_id')" :options="$roles" class="block w-full" default="Select Role..." id="role_id" name="role_id" required></x-select>
+                <x-input-error for="role_id" />
             </div>
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="name" value="{{ __('Name') }}" />
-                <x-input :value="old('name')" class="mt-1 block w-full" id="name" name="name" required type="text" />
+                <x-input :value="old('name')" class="block w-full" id="name" name="name" required type="text" />
+                <x-input-error for="name" />
             </div>
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input :value="old('email')" class="mt-1 block w-full" id="email" name="email" required type="email" />
+                <x-input :value="old('email')" class="block w-full" id="email" name="email" required type="email" />
+                <x-input-error for="email" />
             </div>
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <div class="relative">
-                    <x-input class="mt-1 block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
+                    <x-input class="block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password = !password">
                             <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
@@ -35,12 +38,13 @@
                         </button>
                     </div>
                 </div>
+                <x-input-error for="password" />
             </div>
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <div class="relative">
-                    <x-input class="mt-1 block w-full" id="password_confirmation" name="password_confirmation" required x-bind:type="password_confirmation ? 'password' : 'text'" />
+                    <x-input class="block w-full" id="password_confirmation" name="password_confirmation" required x-bind:type="password_confirmation ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password_confirmation = !password_confirmation">
                             <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password_confirmation"></i>
@@ -48,6 +52,7 @@
                         </button>
                     </div>
                 </div>
+                <x-input-error for="password_confirmation" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -62,17 +67,17 @@
                                         '<a target="_blank" href="' .
                                         route('terms.show') .
                                         '"
-                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
                                         __('Terms
-                                                                                                                                                                                                                                                                                                                                                                                                of Service') .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                of Service') .
                                         '</a>',
                                     'privacy_policy' =>
                                         '<a target="_blank" href="' .
                                         route('policy.show') .
                                         '"
-                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
                                         __('Privacy
-                                                                                                                                                                                                                                                                                                                                                                                                Policy') .
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Policy') .
                                         '</a>',
                                 ]) !!}
                             </div>

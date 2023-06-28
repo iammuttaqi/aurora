@@ -24,9 +24,9 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            // Primary data for both Manufacturers and Shops
-            $table->string('name')->nullable();
+            $table->string('logo')->nullable();
             $table->string('username')->unique()->nullable();
+            $table->string('name')->nullable();
             $table->string('contact_person')->nullable();
             $table->text('address')->nullable();
             $table->foreignIdFor(City::class, 'city_id')->nullable();
@@ -36,21 +36,18 @@ return new class extends Migration
             $table->string('email_1')->nullable();
             $table->string('email_2')->nullable();
             $table->string('email_3')->nullable();
-            $table->string('website')->nullable();
             $table->longText('about')->nullable();
-            $table->string('logo')->nullable();
+            $table->string('website')->nullable();
             $table->string('map_link')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
-
-            // Additional fields
             $table->text('category_ids')->nullable();
-            $table->foreignIdFor(EmployeeRange::class, 'employee_range_id')->nullable();
             $table->string('tax_number')->nullable();
-            $table->string('business_license')->nullable();
             $table->string('vat_number')->nullable();
+            $table->foreignIdFor(EmployeeRange::class, 'employee_range_id')->nullable();
+            $table->string('business_license')->nullable();
             $table->string('payment_terms')->nullable();
             $table->string('shipping_options')->nullable();
             $table->longText('additional_information')->nullable();

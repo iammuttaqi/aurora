@@ -15,15 +15,16 @@
         <form action="{{ route('login') }}" class="grid gap-5" method="POST" x-data="{ password: true, processing: false, }" x-on:submit.prevent="processing = true; $el.submit();">
             @csrf
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input :value="old('email')" autofocus class="mt-1 block w-full" id="email" name="email" required type="email" />
+                <x-input :value="old('email')" autofocus class="block w-full" id="email" name="email" required type="email" />
+                <x-input-error for="email" />
             </div>
 
-            <div>
+            <div class="flex flex-col gap-1">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <div class="relative">
-                    <x-input class="mt-1 block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
+                    <x-input class="block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password = !password">
                             <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
@@ -31,6 +32,7 @@
                         </button>
                     </div>
                 </div>
+                <x-input-error for="password" />
             </div>
 
             <div class="block">

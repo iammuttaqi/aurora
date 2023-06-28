@@ -30,33 +30,56 @@ class ProfileFactory extends Factory
                     ->pluck('id')
                     ->toArray()
             ),
-            'name'                       => fake()->company,
-            'username'                   => null,
-            'contact_person'             => fake()->name,
-            'address'                    => fake()->address,
-            'city_id'                    => fake()->randomElement(City::pluck('id')->toArray()),
-            'contact_number_1'           => fake()->phoneNumber,
-            'contact_number_2'           => fake()->phoneNumber,
-            'contact_number_3'           => fake()->phoneNumber,
-            'email_1'                    => fake()->email,
-            'email_2'                    => fake()->email,
-            'email_3'                    => fake()->email,
-            'website'                    => fake()->url,
-            'about'                      => fake()->paragraph,
-            'logo'                       => null,
-            'map_link'                   => fake()->url,
-            'facebook'                   => fake()->url,
-            'instagram'                  => fake()->url,
-            'twitter'                    => fake()->url,
-            'linkedin'                   => fake()->url,
-            'category_ids'               => array_map('strval', fake()->randomElements(Category::pluck('id')->toArray(), 3)),
-            'employee_range_id'          => fake()->randomElement(EmployeeRange::pluck('id')->toArray()),
-            'tax_number'                 => $this->ean13(),
-            'business_license'           => null,
-            'vat_number'                 => $this->ean13(),
-            'payment_terms'              => fake()->word,
-            'shipping_options'           => null,
-            'additional_information'     => fake()->paragraph,
+            'name'              => fake()->company,
+            'username'          => null,
+            'contact_person'    => fake()->name,
+            'address'           => fake()->address,
+            'city_id'           => fake()->randomElement(City::pluck('id')->toArray()),
+            'contact_number_1'  => fake()->phoneNumber,
+            'contact_number_2'  => fake()->phoneNumber,
+            'contact_number_3'  => fake()->phoneNumber,
+            'email_1'           => fake()->email,
+            'email_2'           => fake()->email,
+            'email_3'           => fake()->email,
+            'website'           => fake()->url,
+            'about'             => fake()->paragraph,
+            'logo'              => fake()->imageUrl(),
+            'map_link'          => fake()->regexify('https://goo\.gl/maps/[a-z]{10}[0-9]{5}'),
+            'facebook'          => fake()->regexify('https://www\.facebook\.com/[a-z]{6}[0-9]{4}'),
+            'instagram'         => fake()->regexify('https://www\.instagram\.com/[a-z]{6}[0-9]{4}'),
+            'twitter'           => fake()->regexify('https://www\.twitter\.com/[a-z]{6}[0-9]{4}'),
+            'linkedin'          => fake()->regexify('https://www\.linkedin\.com/in/[a-z]{6}[0-9]{4}'),
+            'category_ids'      => array_map('strval', fake()->randomElements(Category::pluck('id')->toArray(), 3)),
+            'employee_range_id' => fake()->randomElement(EmployeeRange::pluck('id')->toArray()),
+            'tax_number'        => fake()->regexify('[A-Z]{2}[0-9]{8}'),
+            'business_license'  => fake()->regexify('[A-Z]{3}[0-9]{6}'),
+            'vat_number'        => fake()->regexify('[A-Z]{2}[0-9]{9}'),
+            'payment_terms'     => implode(
+                ', ',
+                fake()->randomElements([
+                    'Net 30 Days',
+                    'Net 60 Days',
+                    'Net 90 Days',
+                    'Pay Upon Receipt',
+                    'Cash On Delivery',
+                ])
+            ),
+            'shipping_options' => implode(
+                ', ',
+                fake()->randomElements([
+                    'Standard Delivery',
+                    'Express Shipping',
+                    'Next-Day Delivery',
+                    'Free Shipping',
+                    'International Shipping',
+                    'Local Pickup Only',
+                    'Curbside Delivery',
+                    'Two-Day Shipping',
+                    'Priority Shipping',
+                    'Same-Day Delivery',
+                ])
+            ),
+            'additional_information'     => fake()->paragraph(10),
             'general_manager_name'       => fake()->name,
             'general_manager_email'      => fake()->email,
             'sales_manager_name'         => fake()->name,
@@ -65,26 +88,8 @@ class ProfileFactory extends Factory
             'hr_manager_email'           => fake()->email,
             'it_manager_name'            => fake()->name,
             'it_manager_email'           => fake()->email,
-            'manufacturing_capabilities' => fake()->paragraph,
-            'certifications'             => fake()->paragraph,
+            'manufacturing_capabilities' => fake()->sentence,
+            'certifications'             => fake()->words(3, true),
         ];
-    }
-
-    protected function ean13()
-    {
-        $code = '200'; // Replace with your desired code prefix
-        for ($i = 0; $i < 9; $i++) {
-            $code .= mt_rand(0, 9);
-        }
-        $sum = 0;
-        for ($i = 0; $i < 12; $i += 2) {
-            $sum += $code[$i];
-        }
-        for ($i = 1; $i < 12; $i += 2) {
-            $sum += $code[$i] * 3;
-        }
-        $code .= (10 - ($sum % 10)) % 10;
-
-        return $code;
     }
 }
