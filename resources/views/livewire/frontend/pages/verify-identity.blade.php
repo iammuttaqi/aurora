@@ -9,12 +9,12 @@
         <div class="prose dark:prose-invert mt-6 w-full overflow-hidden bg-white p-6 text-center shadow-md dark:bg-gray-800 sm:max-w-2xl sm:rounded-lg">
             @if ($profile)
                 <i class="bi bi-shield-fill-check text-[10rem] text-green-500"></i>
-                <h1 class="m-0">{{ $profile->name }}</h1>
-                <h3 class="mt-2">is a verified company</h3>
+                <h1 class="m-0 text-5xl">{{ $profile->name }}</h1>
+                <h3 class="mt-2">verified the existance</h3>
             @else
                 <i class="bi bi-exclamation-circle-fill text-[10rem] text-red-500"></i>
-                <h1 class="m-0">Sorry!</h1>
-                <h3 class="mt-2">The Company you are looking for doesn't exist.<br>or the QR code is invalid.</h3>
+                <h1 class="m-0 text-5xl">Sorry!</h1>
+                <h3 class="mt-2">The Company/Shop you are looking for doesn't exist.<br>or the QR code is invalid.</h3>
             @endif
         </div>
     </div>

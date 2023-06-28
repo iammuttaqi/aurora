@@ -5,7 +5,9 @@ use App\Http\Livewire\Auth\Pages\Profile;
 use App\Http\Livewire\Auth\Pages\QrCode;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyCompany;
+use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
+use App\Models\Profile as ModelsProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('go', function () {
-    // return redirect()->signedRoute('verify_company', 'bahringer-watsica-and-monahan');
+    // $username = ModelsProfile::value('username');
+    // return redirect()->signedRoute('verify_identity', $username);
     return abort(404);
 });
 
@@ -36,7 +39,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::get('/', Index::class)->name('index');
 
     Route::middleware('signed')->group(function () {
-        Route::get('verify-company/{username}', VerifyCompany::class)->name('verify_company');
+        Route::get('verify-identity/{username}', VerifyIdentity::class)->name('verify_identity');
         // verify product url
     });
 });

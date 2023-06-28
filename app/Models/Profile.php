@@ -124,7 +124,7 @@ class Profile extends Model
     {
         try {
             if ($this->username) {
-                $url = URL::signedRoute('verify_company', $this->username);
+                $url = URL::signedRoute('verify_identity', $this->username);
 
                 return QrCode::size(500)->generate($url);
             }

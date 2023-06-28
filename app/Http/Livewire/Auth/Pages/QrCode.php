@@ -33,7 +33,7 @@ class QrCode extends Component
             $profile = Profile::where('user_id', auth()->user()->id)->firstOrFail();
 
             if ($profile && $profile->username) {
-                $profile->qr_code = FacadesQrCode::size(500)->generate(URL::signedRoute('verify_company', $profile->username));
+                $profile->qr_code = FacadesQrCode::size(500)->generate(URL::signedRoute('verify_identity', $profile->username));
                 $profile->save();
 
                 DB::commit();

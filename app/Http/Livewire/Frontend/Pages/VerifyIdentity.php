@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Frontend\Pages;
 use App\Models\Profile;
 use Livewire\Component;
 
-class VerifyCompany extends Component
+class VerifyIdentity extends Component
 {
     public $username = null;
 
@@ -18,6 +18,6 @@ class VerifyCompany extends Component
     {
         $profile = Profile::where('username', $this->username)->where('approved', true)->first();
 
-        return view('livewire.frontend.pages.verify-company', compact('profile'));
+        return view('livewire.frontend.pages.verify-identity', compact('profile'));
     }
 }
