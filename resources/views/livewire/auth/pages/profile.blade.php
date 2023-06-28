@@ -169,7 +169,7 @@
                         <x-label :value="$this->label('form.facebook')" for="facebook" />
                         <div class="relative">
                             <i class="bi bi-facebook pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-blue-500"></i>
-                            <x-input :required="$this->required('form.facebook')" :placeholder="$this->label('form.facebook')" class="block w-full pl-10" id="facebook" name="facebook" type="text" wire:model.defer="form.facebook" x-model="form.facebook" />
+                            <x-input :required="$this->required('form.facebook')" :placeholder="$this->label('form.facebook')" class="block w-full pl-10" name="facebook" pattern="{{ $social_links_patterns['facebook'] }}" type="url" wire:model.defer="form.facebook" x-model="form.facebook" />
                         </div>
                         <x-input-error for="form.facebook" />
                     </div>
@@ -178,7 +178,7 @@
                         <x-label :value="$this->label('form.instagram')" for="instagram" />
                         <div class="relative">
                             <i class="bi bi-instagram pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-pink-500"></i>
-                            <x-input :required="$this->required('form.instagram')" :placeholder="$this->label('form.instagram')" class="block w-full pl-10" id="instagram" name="instagram" type="text" wire:model.defer="form.instagram" x-model="form.instagram" />
+                            <x-input :required="$this->required('form.instagram')" :placeholder="$this->label('form.instagram')" class="block w-full pl-10" id="instagram" name="instagram" pattern="{{ $social_links_patterns['instagram'] }}" type="url" wire:model.defer="form.instagram" x-model="form.instagram" />
                         </div>
                         <x-input-error for="form.instagram" />
                     </div>
@@ -187,7 +187,7 @@
                         <x-label :value="$this->label('form.twitter')" for="twitter" />
                         <div class="relative">
                             <i class="bi bi-twitter pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-blue-500"></i>
-                            <x-input :required="$this->required('form.twitter')" :placeholder="$this->label('form.twitter')" class="block w-full pl-10" id="twitter" name="twitter" type="text" wire:model.defer="form.twitter" x-model="form.twitter" />
+                            <x-input :required="$this->required('form.twitter')" :placeholder="$this->label('form.twitter')" class="block w-full pl-10" id="twitter" name="twitter" pattern="{{ $social_links_patterns['twitter'] }}" type="url" wire:model.defer="form.twitter" x-model="form.twitter" />
                         </div>
                         <x-input-error for="form.twitter" />
                     </div>
@@ -196,7 +196,7 @@
                         <x-label :value="$this->label('form.linkedin')" for="linkedin" />
                         <div class="relative">
                             <i class="bi bi-linkedin pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-sky-600"></i>
-                            <x-input :required="$this->required('form.linkedin')" :placeholder="$this->label('form.linkedin')" class="block w-full pl-10" id="linkedin" name="linkedin" type="text" wire:model.defer="form.linkedin" x-model="form.linkedin" />
+                            <x-input :required="$this->required('form.linkedin')" :placeholder="$this->label('form.linkedin')" class="block w-full pl-10" id="linkedin" name="linkedin" pattern="{{ $social_links_patterns['linkedin'] }}" type="url" wire:model.defer="form.linkedin" x-model="form.linkedin" />
                         </div>
                         <x-input-error for="form.linkedin" />
                     </div>

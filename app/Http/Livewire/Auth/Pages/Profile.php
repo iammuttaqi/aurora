@@ -9,14 +9,16 @@ use App\Models\Profile as ModelsProfile;
 use App\Rules\FacebookLinkRule;
 use App\Rules\InstagramLinkRule;
 use App\Rules\LinkedinLinkRule;
+use App\Rules\SocialLinksRule;
 use App\Rules\TwitterLinkRule;
+use App\Traits\SocialLinksTrait;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Profile extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, SocialLinksTrait;
 
     public $form = [
         'name'                       => null,
@@ -146,10 +148,10 @@ class Profile extends Component
             'form.about'                      => ['required', 'string'],
             'form.logo'                       => ['nullable', 'string', 'max:255'],
             'form.map_link'                   => ['nullable', 'string', 'url', 'max:255'],
-            'form.facebook'                   => ['nullable', 'string', new FacebookLinkRule, 'max:255'],
-            'form.instagram'                  => ['nullable', 'string', new InstagramLinkRule, 'max:255'],
-            'form.twitter'                    => ['nullable', 'string', new TwitterLinkRule, 'max:255'],
-            'form.linkedin'                   => ['nullable', 'string', new LinkedinLinkRule, 'max:255'],
+            'form.facebook'                   => ['nullable', 'string', new SocialLinksRule('facebook'), 'max:255'],
+            'form.instagram'                  => ['nullable', 'string', new SocialLinksRule('instagram'), 'max:255'],
+            'form.twitter'                    => ['nullable', 'string', new SocialLinksRule('twitter'), 'max:255'],
+            'form.linkedin'                   => ['nullable', 'string', new SocialLinksRule('linkedin'), 'max:255'],
             'form.category_ids'               => ['required', 'array', 'min:1'],
             'form.category_ids.*'             => ['required', 'integer', 'exists:App\Models\Category,id'],
             'form.tax_number'                 => ['nullable', 'string', 'max:255'],
