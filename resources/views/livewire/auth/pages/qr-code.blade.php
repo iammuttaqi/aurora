@@ -13,10 +13,6 @@
 
                 <div class="grid grid-cols-2 place-items-center py-5">
                     <div>{!! $qr_code !!}</div>
-
-                    <form wire:submit.prevent="update">
-                        <button class="rounded bg-green-500 px-5 py-3 text-white transition-all hover:bg-green-600" type="submit">Get A New QR Code</button>
-                    </form>
                 </div>
 
             </div>

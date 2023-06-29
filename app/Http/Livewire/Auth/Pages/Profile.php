@@ -21,7 +21,6 @@ class Profile extends Component
     public $form = [
         'name'                       => null,
         'username'                   => null,
-        'qr_code'                    => null,
         'contact_person'             => null,
         'address'                    => null,
         'city_id'                    => null,

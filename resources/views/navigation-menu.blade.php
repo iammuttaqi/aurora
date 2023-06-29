@@ -19,6 +19,8 @@
                         <x-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
                             {{ __('Profile') }}
                         </x-nav-link>
+                    @endcan
+                    @can('qrCode', auth()->user()->profile)
                         <x-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
                             {{ __('QR Code') }}
                         </x-nav-link>
@@ -184,6 +186,8 @@
                 <x-responsive-nav-link :active="request()->routeIs('profile')" href="{{ route('profile') }}">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+            @endcan
+            @can('qrCode', auth()->user()->profile)
                 <x-responsive-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
                     {{ __('QR Code') }}
                 </x-responsive-nav-link>

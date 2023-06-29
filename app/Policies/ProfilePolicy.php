@@ -63,4 +63,9 @@ class ProfilePolicy
     {
         //
     }
+
+    public function qrCode(User $user, Profile $profile): bool
+    {
+        return $profile->approved && $profile->qr_code;
+    }
 }

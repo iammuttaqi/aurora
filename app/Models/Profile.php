@@ -17,7 +17,6 @@ class Profile extends Model
         'approved',
         'name',
         'username',
-        'qr_code',
         'contact_person',
         'address',
         'city_id',
@@ -113,12 +112,12 @@ class Profile extends Model
         return $this->username;
     }
 
-    protected function qrCode(): Attribute
-    {
-        return Attribute::make(
-            set: fn () => $this->generateQrCode(),
-        );
-    }
+    // protected function qrCode(): Attribute
+    // {
+    //     return Attribute::make(
+    //         set: fn () => $this->generateQrCode(),
+    //     );
+    // }
 
     private function generateQrCode()
     {

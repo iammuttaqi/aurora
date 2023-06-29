@@ -6,6 +6,7 @@ use App\Http\Livewire\Auth\Pages\QrCode;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
+use App\Models\Profile as ModelsProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,8 +50,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('profile', Profile::class)->name('profile')->middleware('can:viewAny,App\Models\Profile');
-    Route::get('qr-code', QrCode::class)->name('qr_code')->middleware('can:viewAny,App\Models\Profile');
+    Route::get('profile', Profile::class)->name('profile')->can('viewAny', ModelsProfile::class);
+    Route::get('qr-code', QrCode::class)->name('qr_code');
     // products route for shop
     // customers route for shop
     Route::get('notifications', Notifications::class)->name('notifications');
