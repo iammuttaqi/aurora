@@ -53,5 +53,7 @@ class Notifications extends Component
                 'message' => 'Marked As Unread.',
             ]);
         }
+
+        $this->emit('notificationsUpdated');
     }
 }

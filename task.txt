@@ -29,18 +29,18 @@
     - profile page - DONE
     - qr code assign on update - DONE
     - admin will be notified through notification panel about the profile update - DONE
-    - admin will get reminder though email about notifications per day about profile update
-- qr code need to be assigned by admin on approving the company
+    - admin will get reminder though email about notifications per day about notifications - DONE
+- use of policy - DONe
+
+- qr code needs to be assigned by admin on approving the company
     - It should only be geneareted once (while approving by admin)
     - It will never be changeable
-    - even remove from fillable, and try other approach to update it
-- different qr code page to regenerate qr code for companies
-- use of policy
+    - even remove from fillable, and try other approach to update it (only for admin)
 - notification show page, where each notification will be shown extensively
 - different email notification for manufacturer and shop
 - products table to add products by shop
     - auto generate serial number
-    - a product can be duplicatable, auto generate serial number with qr code
+    - a product can be duplicatable, auto generate serial number and qr code url
 - customers table to add customers by shop
 - shop can sell a product to customer, they can select customer, or they can instantly add one customer (unique check by phone)
 - prove of manufacturer that using our platform. by qr code
