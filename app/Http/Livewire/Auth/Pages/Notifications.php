@@ -18,9 +18,10 @@ class Notifications extends Component
 
         foreach ($notifications as $key => $notification) {
             $notification->message = match ($notification->type) {
-                'App\Notifications\Admin\RegisterUserNotication' => 'New User: ' . $notification->data['name'],
-                'App\Notifications\User\RegisterUserNotication'  => 'Welcome to ' . config('app.name') . ': ' . $notification->data['name'],
-                default                                          => null,
+                'App\Notifications\Admin\RegisterUserNotication'    => 'New User: ' . $notification->data['name'],
+                'App\Notifications\User\RegisterUserNotication'     => 'Welcome to ' . config('app.name') . ': ' . $notification->data['name'],
+                'App\Notifications\Admin\ProfileUpdateNotification' => 'Profile Update: ' . $notification->data['name'],
+                default                                             => $notification->type,
             };
         }
 

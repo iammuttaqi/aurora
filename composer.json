@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.2.5",
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^2.12.3",
+        "opcodesio/log-viewer": "^2.4",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {

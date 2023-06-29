@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Listeners\SendRegisterUserNotification;
+use App\Models\Profile;
+use App\Observers\ProfileObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             SendRegisterUserNotification::class,
         ],
+    ];
+
+    protected $observers = [
+        Profile::class => [ProfileObserver::class],
     ];
 
     /**
