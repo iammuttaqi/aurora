@@ -23,22 +23,21 @@
 - user registration by selecting their roles (manufacturer, shop) - DONE
 - dark mode / light mode switcher - DONE
 - user registration mail to admin and user - DONE
-
-- user profile
+- user profile - DONE
     - different different fields for manufacturers and shops. most of the fields can be nullable. - DONE
     - profile page - DONE
     - qr code assign on update - DONE
     - admin will be notified through notification panel about the profile update - DONE
     - admin will get reminder though email about notifications per day about notifications - DONE
-- use of policy - DONe
-
+- use of policy - DONE
 - admin partners - DONE
-- qr code needs to be assigned by admin on approving the company
+- qr code needs to be assigned by admin on approving the company - DONE
     - It should only be geneareted once (while approving by admin) - DONE
     - It will never be changeable - DONE
     - even remove from fillable, and try other approach to update it (only for admin) - DONE
-- notification show page, where each notification will be shown extensively
-- different email notification for manufacturer and shop
+- notification show page, where each notification will be shown extensively - DONE partially
+- admin partner edit - DONE
+
 - products table to add products by shop
     - auto generate serial number
     - a product can be duplicatable, auto generate serial number and qr code url
@@ -49,7 +48,9 @@
 - ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
 - reminder every 7 day to fill profile, even after registration
+- different email notification for manufacturer and shop
 - admin editors page
+- for verify urls sake, look for permanent solution by assigning a unique key instead of username (using the same username field)
 
 
 

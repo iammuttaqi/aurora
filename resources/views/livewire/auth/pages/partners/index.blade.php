@@ -55,16 +55,19 @@
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->user->role->title }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->address }}</td>
                                                     <td class="flex justify-end gap-2 whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
+                                                        @can('qrCode', $partner)
+                                                            <a href="{{ route('partners.qr_code', $partner->username) }}" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-blue-600"></i></a>
+                                                        @endcan
+
                                                         @can('approvable', $partner)
                                                             <button title="Approve and Assign QR" type="button" wire:loading.attr="disabled" wire:target="approve(@js($partner->id))" x-data x-on:click="confirm('Are you sure?') == true ? $wire.approve(@js($partner->id)) : null">
                                                                 <i class="bi bi-check-circle-fill rounded bg-green-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-green-600" wire:loading.class.remove="bg-green-500 hover:bg-green-600" wire:loading.class="bg-green-900" wire:target="approve(@js($partner->id))"></i>
                                                             </button>
                                                         @endcan
 
-                                                        @can('qrCode', $partner)
-                                                            <a href="{{ route('partners.qr_code', $partner->username) }}" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-blue-600"></i></a>
+                                                        @can('viewPartners', auth()->user())
+                                                            <a href="{{ route('partners.show', $partner->username) }}" title=""><i class="bi bi-pen-fill rounded bg-yellow-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-yellow-600"></i></a>
                                                         @endcan
-                                                        <a href="#" title=""><i class="bi bi-pen-fill rounded bg-yellow-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-yellow-600"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

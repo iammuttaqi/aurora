@@ -62,7 +62,7 @@ class Profile extends Component
 
     public function mount($username = null)
     {
-        $this->authorize('viewAny', ModelsProfile::class);
+        // $this->authorize('viewAny', ModelsProfile::class);
 
         $profile = ModelsProfile::query()
             ->when($username, function ($query) use ($username) {
@@ -203,7 +203,7 @@ class Profile extends Component
                 })
                 ->first();
 
-            $this->form['logo'] = $this->uploadImage($profile);
+            $this->uploadImage($profile);
 
             ModelsProfile::updateOrCreate(
                 ['user_id' => $profile && $profile->user ? $profile->user->id : auth()->user()->id],
@@ -239,7 +239,7 @@ class Profile extends Component
                 $this->logo->storeAs('public', $filename);
             }
 
-            return 'storage/' . $filename;
+            $this->form['logo'] = 'storage/' . $filename;
         }
     }
 }

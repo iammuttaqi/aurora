@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\Auth\Pages\Notifications;
 use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
@@ -53,6 +52,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
         Route::get('/', PartnersIndex::class)->name('index');
+        Route::get('{username}', Profile::class)->name('show');
         Route::get('qr-code/{username}', QrCode::class)->name('qr_code');
     });
 

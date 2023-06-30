@@ -195,6 +195,12 @@
                 </x-responsive-nav-link>
             @endcan
 
+            @can('viewPartners', auth()->user())
+                <x-responsive-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
+                    {{ __('Partners') }}
+                </x-responsive-nav-link>
+            @endcan
+
             <x-responsive-nav-link :active="request()->routeIs('notifications')" href="{{ route('notifications.index') }}">
                 {{ __('Notifications') }}
             </x-responsive-nav-link>
