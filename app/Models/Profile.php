@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\URL;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Profile extends Model
 {
@@ -110,28 +108,5 @@ class Profile extends Model
         }
 
         return $this->username;
-    }
-
-    // protected function qrCode(): Attribute
-    // {
-    //     return Attribute::make(
-    //         set: fn () => $this->generateQrCode(),
-    //     );
-    // }
-
-    private function generateQrCode()
-    {
-        try {
-            if ($this->username) {
-                $url = URL::signedRoute('verify_identity', $this->username);
-
-                return QrCode::size(500)->generate($url);
-            }
-        } catch (\Throwable $th) {
-            logger(__METHOD__, [$th]);
-
-            return null;
-            throw $th;
-        }
     }
 }

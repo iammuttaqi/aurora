@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Http\Livewire\Auth\Pages\Profile as PagesProfile;
 use App\Models\Profile;
 use App\Models\Role;
 use App\Models\User;
@@ -62,6 +63,22 @@ class ProfilePolicy
     public function forceDelete(User $user, Profile $profile): bool
     {
         //
+    }
+
+    public function approvable(User $user, Profile $profile): bool
+    {
+        $profile_component = new PagesProfile;
+        $has_empty_values  = collect($profile_component->form)
+            ->keys()
+            ->filter(function ($key) use ($profile_component) {
+                return $profile_component->required('form.' . $key);
+            })
+            ->filter(function ($field) use ($profile) {
+                return empty($profile->$field);
+            })
+            ->isNotEmpty();
+
+        return in_array($user->role->slug, Role::slugsInArray('admin')) && !$profile->approved && !$profile->qr_code && !$has_empty_values;
     }
 
     public function qrCode(User $user, Profile $profile): bool

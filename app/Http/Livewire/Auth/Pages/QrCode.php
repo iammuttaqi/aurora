@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Auth\Pages;
 
+use App\Models\Profile;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
@@ -11,9 +12,9 @@ class QrCode extends Component
 
     public $qr_code = null;
 
-    public function mount()
+    public function mount($username = null)
     {
-        $profile = auth()->user()->profile;
+        $profile = $username ? Profile::where('username', $username)->first() : auth()->user()->profile;
         $this->authorize('qrCode', $profile);
         $this->qr_code = $profile->whereNotNull('username')->whereNotNull('qr_code')->value('qr_code');
     }

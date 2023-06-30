@@ -13,9 +13,11 @@ class ProfileUpdateNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public $profile;
+
+    public function __construct($profile)
     {
-        //
+        $this->profile = $profile;
     }
 
     /**
@@ -46,6 +48,6 @@ class ProfileUpdateNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return request()->user()->toArray();
+        return $this->profile->toArray();
     }
 }

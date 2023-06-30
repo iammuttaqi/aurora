@@ -182,7 +182,9 @@ class Profile extends Component
 
     public function required($field)
     {
-        return $this->rules()[$field] && in_array('required', $this->rules()[$field]);
+        if (isset($this->rules()[$field])) {
+            return $this->rules()[$field] && in_array('required', $this->rules()[$field]);
+        }
     }
 
     public function update()

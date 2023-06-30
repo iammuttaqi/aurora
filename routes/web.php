@@ -8,6 +8,7 @@ use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
 use App\Models\Profile as ModelsProfile;
+use App\Notifications\User\ProfileApproveNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('go', function () {
-    // $username = ModelsProfile::value('username');
-    // return redirect()->signedRoute('verify_identity', $username);
+    // $profile = ModelsProfile::where('approved', 1)->first();
+
+    // return (new ProfileApproveNotification($profile))
+    //     ->toMail($profile);
+
     return abort(404);
 });
 
@@ -53,6 +57,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
         Route::get('/', PartnersIndex::class)->name('index');
+        Route::get('qr-code/{username}', QrCode::class)->name('qr_code');
     });
 
     Route::get('profile', Profile::class)->name('profile')->can('viewAny', ModelsProfile::class);

@@ -10,7 +10,7 @@
             @if ($profile)
                 <i class="bi bi-shield-fill-check text-[10rem] text-green-500"></i>
                 <h1 class="m-0 text-5xl">{{ $profile->name }}</h1>
-                <h3 class="mt-2">verified the existance</h3>
+                <h3 class="mt-2">verified the existence</h3>
             @else
                 <i class="bi bi-exclamation-circle-fill text-[10rem] text-red-500"></i>
                 <h1 class="m-0 text-5xl">Sorry!</h1>

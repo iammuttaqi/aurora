@@ -11,7 +11,7 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-                <div class="grid grid-cols-2 place-items-center py-5">
+                <div class="flex justify-center py-5">
                     <div>{!! $qr_code !!}</div>
                 </div>
 

@@ -25,11 +25,11 @@
                             {{ __('QR Code') }}
                         </x-nav-link>
                     @endcan
-                    {{-- @can('qrCode', auth()->user()->profile) --}}
-                    <x-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
-                        {{ __('Partners') }}
-                    </x-nav-link>
-                    {{-- @endcan --}}
+                    @can('viewPartners', auth()->user())
+                        <x-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
+                            {{ __('Partners') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

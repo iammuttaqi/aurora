@@ -15,7 +15,7 @@ class ProfileObserver
     /**
      * Handle the Profile "created" event.
      */
-    private function profileUpdateNotification()
+    private function profileUpdateNotification($profile)
     {
         $admins = User::with('role')
             ->has('role')
@@ -24,12 +24,12 @@ class ProfileObserver
             })
             ->get();
 
-        Notification::send($admins, new ProfileUpdateNotification());
+        Notification::send($admins, new ProfileUpdateNotification($profile));
     }
 
     public function created(Profile $profile): void
     {
-        $this->profileUpdateNotification();
+        $this->profileUpdateNotification($profile);
     }
 
     /**
@@ -37,7 +37,7 @@ class ProfileObserver
      */
     public function updated(Profile $profile): void
     {
-        $this->profileUpdateNotification();
+        $this->profileUpdateNotification($profile);
     }
 
     /**
