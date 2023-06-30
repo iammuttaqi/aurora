@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Pages;
+namespace App\Http\Livewire\Auth\Pages\Notifications;
 
+use App\Traits\NotificationsTrait;
 use Livewire\Component;
 
-class Notifications extends Component
+class Index extends Component
 {
+    use NotificationsTrait;
+
     public $search = '';
 
     public $check_all = false;
@@ -17,16 +20,10 @@ class Notifications extends Component
         $notifications = request()->user()->notifications()->latest()->paginate(50);
 
         foreach ($notifications as $key => $notification) {
-            $notification->message = match ($notification->type) {
-                'App\Notifications\Admin\RegisterUserNotication'    => 'New User: ' . $notification->data['name'],
-                'App\Notifications\User\RegisterUserNotication'     => 'Welcome to ' . config('app.name') . ': ' . $notification->data['name'],
-                'App\Notifications\Admin\ProfileUpdateNotification' => 'Profile Update: ' . $notification->data['name'],
-                'App\Notifications\User\ProfileApproveNotification' => 'Congratulations! Your Profile Has Been Approved: ' . $notification->data['name'],
-                default                                             => $notification->type,
-            };
+            $notification->message = $this->getMessage($notification);
         }
 
-        return view('livewire.auth.pages.notifications', compact('notifications'));
+        return view('livewire.auth.pages.notifications.index', compact('notifications'));
     }
 
     public function mark($type)

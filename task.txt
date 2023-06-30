@@ -32,11 +32,11 @@
     - admin will get reminder though email about notifications per day about notifications - DONE
 - use of policy - DONe
 
-- admin partners
+- admin partners - DONE
 - qr code needs to be assigned by admin on approving the company
-    - It should only be geneareted once (while approving by admin)
-    - It will never be changeable
-    - even remove from fillable, and try other approach to update it (only for admin)
+    - It should only be geneareted once (while approving by admin) - DONE
+    - It will never be changeable - DONE
+    - even remove from fillable, and try other approach to update it (only for admin) - DONE
 - notification show page, where each notification will be shown extensively
 - different email notification for manufacturer and shop
 - products table to add products by shop
@@ -49,6 +49,7 @@
 - ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
 - reminder every 7 day to fill profile, even after registration
+- admin editors page
 
 
 

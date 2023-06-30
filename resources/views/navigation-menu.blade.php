@@ -88,7 +88,7 @@
 
                 <!-- Settings Dropdown -->
                 <div class="flex items-center justify-between gap-3">
-                    <x-nav-link class="relative border-none" href="{{ route('notifications') }}">
+                    <x-nav-link class="relative border-none" href="{{ route('notifications.index') }}">
                         <svg class="h-6 w-6" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -195,7 +195,7 @@
                 </x-responsive-nav-link>
             @endcan
 
-            <x-responsive-nav-link :active="request()->routeIs('notifications')" href="{{ route('notifications') }}">
+            <x-responsive-nav-link :active="request()->routeIs('notifications')" href="{{ route('notifications.index') }}">
                 {{ __('Notifications') }}
             </x-responsive-nav-link>
         </div>

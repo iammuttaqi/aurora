@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Livewire\Auth\Pages\Notifications;
+use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
+use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
 use App\Http\Livewire\Auth\Pages\Profile;
 use App\Http\Livewire\Auth\Pages\QrCode;
@@ -8,7 +10,6 @@ use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
 use App\Models\Profile as ModelsProfile;
-use App\Notifications\User\ProfileApproveNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('go', function () {
-    $profile = ModelsProfile::where('approved', 1)->first();
-
-    return (new ProfileApproveNotification($profile))
-        ->toMail($profile);
-
     return abort(404);
 });
 
@@ -62,7 +58,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::get('profile', Profile::class)->name('profile')->can('viewAny', ModelsProfile::class);
     Route::get('qr-code', QrCode::class)->name('qr_code');
-    // products route for shop
+    // products route for shop and manufacturers
     // customers route for shop
-    Route::get('notifications', Notifications::class)->name('notifications');
+
+    Route::prefix('notifications')->name('notifications.')->group(function () {
+        Route::get('/', NotificationsIndex::class)->name('index');
+        Route::get('{notification_id}', NotificationsShow::class)->name('show');
+    });
 });
