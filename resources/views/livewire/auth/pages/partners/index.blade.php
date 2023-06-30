@@ -43,7 +43,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                            @foreach ($partners as $partner)
+                                            @forelse ($partners as $partner)
                                                 <tr>
                                                     <td class="py-3 pl-4">
                                                         <div class="flex h-5 items-center">
@@ -56,7 +56,7 @@
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->address }}</td>
                                                     <td class="flex justify-end gap-2 whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
                                                         @can('qrCode', $partner)
-                                                            <a href="{{ route('partners.qr_code', $partner->username) }}" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-blue-600"></i></a>
+                                                            <a href="{{ route('partners.qr_code', $partner->username) }}" target="_blank" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-blue-600"></i></a>
                                                         @endcan
 
                                                         @can('approvable', $partner)
@@ -70,7 +70,11 @@
                                                         @endcan
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td class="py-5 text-center text-red-500" colspan="10">Nothing found</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
