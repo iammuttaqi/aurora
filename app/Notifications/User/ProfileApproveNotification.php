@@ -5,6 +5,7 @@ namespace App\Notifications\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class ProfileApproveNotification extends Notification
 {
@@ -27,7 +28,7 @@ class ProfileApproveNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -45,7 +46,7 @@ class ProfileApproveNotification extends Notification
             ->line('**Please find below your assigned QR code:**')
             ->action('QR Code', route('qr_code'))
             ->line('Use this QR code to validate your presence and affiliation with our platform.')
-            ->line('***IMPORTANT: To access your QR code and other partner features, please make sure to log in to your account.***')
+            ->line(new HtmlString('<span class="text-red-500">***IMPORTANT: To access your QR code and other partner features, please make sure to log in to your account.***</span>'))
             ->line('If you have any questions or need assistance, feel free to reach out to our support team.')
             ->line('Thank you for partnering with us. We look forward to a successful collaboration.');
     }

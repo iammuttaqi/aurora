@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('go', function () {
-    // $profile = ModelsProfile::where('approved', 1)->first();
+    $profile = ModelsProfile::where('approved', 1)->first();
 
-    // return (new ProfileApproveNotification($profile))
-    //     ->toMail($profile);
+    return (new ProfileApproveNotification($profile))
+        ->toMail($profile);
 
     return abort(404);
 });

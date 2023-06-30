@@ -56,8 +56,8 @@
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->address }}</td>
                                                     <td class="flex justify-end gap-2 whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
                                                         @can('approvable', $partner)
-                                                            <button title="Approve and Assign QR" type="button" x-data x-on:click="confirm('Are you sure?') == true ? $wire.approve(@js($partner->id)) : null">
-                                                                <i class="bi bi-check-circle-fill rounded bg-green-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-green-600"></i>
+                                                            <button title="Approve and Assign QR" type="button" wire:loading.attr="disabled" wire:target="approve(@js($partner->id))" x-data x-on:click="confirm('Are you sure?') == true ? $wire.approve(@js($partner->id)) : null">
+                                                                <i class="bi bi-check-circle-fill rounded bg-green-500 py-2 px-2.5 text-lg text-white transition-all hover:bg-green-600" wire:loading.class.remove="bg-green-500 hover:bg-green-600" wire:loading.class="bg-green-900" wire:target="approve(@js($partner->id))"></i>
                                                             </button>
                                                         @endcan
 
