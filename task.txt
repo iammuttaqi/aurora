@@ -32,6 +32,7 @@
     - admin will get reminder though email about notifications per day about notifications - DONE
 - use of policy - DONe
 
+- admin partners
 - qr code needs to be assigned by admin on approving the company
     - It should only be geneareted once (while approving by admin)
     - It will never be changeable

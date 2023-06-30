@@ -5,7 +5,6 @@ use App\Models\User;
 use App\Notifications\Admin\ProfileUpdateCountNotification;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Auth\Pages\Notifications;
+use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
 use App\Http\Livewire\Auth\Pages\Profile;
 use App\Http\Livewire\Auth\Pages\QrCode;
 use App\Http\Livewire\Frontend\Pages\Index;
@@ -49,6 +50,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
+        Route::get('/', PartnersIndex::class)->name('index');
+    });
 
     Route::get('profile', Profile::class)->name('profile')->can('viewAny', ModelsProfile::class);
     Route::get('qr-code', QrCode::class)->name('qr_code');
