@@ -19,7 +19,6 @@
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
-        "driftingly/rector-laravel": "^0.21.0",
         "fakerphp/faker": "^1.23.0",
         "laravel/pint": "^1.10.3",
         "laravel/sail": "^1.23",
@@ -27,7 +26,6 @@
         "nunomaduro/collision": "^7.7.0",
         "pestphp/pest": "^2.8.2",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "rector/rector": "^0.17.2",
         "spatie/laravel-ignition": "^2.2.0"
     },
     "autoload": {
