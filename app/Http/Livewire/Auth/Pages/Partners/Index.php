@@ -25,6 +25,7 @@ class Index extends Component
     public function render(Request $request)
     {
         $partners = Profile::where('name', 'like', '%' . $request->search . '%')
+            ->has('user')
             ->with('user.role')
             ->paginate()
             ->withQueryString();

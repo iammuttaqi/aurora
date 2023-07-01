@@ -38,7 +38,8 @@
 - notification show page, where each notification will be shown extensively - DONE partially
 - admin partner edit - DONE
 
-- products table to add products by shop
+- tables: products, customers, product_customer, product_shop
+- products table to add products by manufacturers
     - auto generate serial number
     - a product can be duplicatable, auto generate serial number and qr code url
 - customers table to add customers by shop

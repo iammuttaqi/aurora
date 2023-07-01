@@ -33,8 +33,8 @@
                     <x-input class="block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password = !password">
-                            <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
-                            <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password"></i>
+                            <i class="bi bi-eye-fill text-lg text-gray-500" x-show="password"></i>
+                            <i class="bi bi-eye-slash-fill text-lg text-gray-500" x-show="!password"></i>
                         </button>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                     <x-input class="block w-full" id="password_confirmation" name="password_confirmation" required x-bind:type="password_confirmation ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password_confirmation = !password_confirmation">
-                            <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password_confirmation"></i>
-                            <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password_confirmation"></i>
+                            <i class="bi bi-eye-fill text-lg text-gray-500" x-show="password_confirmation"></i>
+                            <i class="bi bi-eye-slash-fill text-lg text-gray-500" x-show="!password_confirmation"></i>
                         </button>
                     </div>
                 </div>
@@ -63,22 +63,8 @@
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                    'terms_of_service' =>
-                                        '<a target="_blank" href="' .
-                                        route('terms.show') .
-                                        '"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
-                                        __('Terms
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                of Service') .
-                                        '</a>',
-                                    'privacy_policy' =>
-                                        '<a target="_blank" href="' .
-                                        route('policy.show') .
-                                        '"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' .
-                                        __('Privacy
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Policy') .
-                                        '</a>',
+                                    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' . __('Terms of Service') . '</a>',
+                                    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">' . __('Privacy Policy') . '</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -87,7 +73,7 @@
             @endif
 
             <div class="flex items-center justify-end">
-                <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 

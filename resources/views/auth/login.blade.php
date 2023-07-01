@@ -27,8 +27,8 @@
                     <x-input class="block w-full" id="password" name="password" required x-bind:type="password ? 'password' : 'text'" />
                     <div class="absolute inset-y-0 right-0 z-20 flex items-center pr-4">
                         <button type="button" x-on:click="password = !password">
-                            <i class="bi bi-eye h-4 w-4 text-gray-400" x-show="password"></i>
-                            <i class="bi bi-eye-slash h-4 w-4 text-gray-400" x-show="!password"></i>
+                            <i class="bi bi-eye-fill text-lg text-gray-500" x-show="password"></i>
+                            <i class="bi bi-eye-slash-fill text-lg text-gray-500" x-show="!password"></i>
                         </button>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
 
             <div class="flex items-center justify-end">
                 @if (Route::has('password.request'))
-                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
