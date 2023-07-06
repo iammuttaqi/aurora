@@ -13,12 +13,15 @@
         "laravel/framework": "^10.14.1",
         "laravel/jetstream": "^3.2.3",
         "laravel/sanctum": "^3.2.5",
+        "laravel/telescope": "^4.15",
         "laravel/tinker": "^2.8.1",
         "livewire/livewire": "^2.12.3",
+        "marvinlabs/laravel-discord-logger": "^1.4",
         "opcodesio/log-viewer": "^2.4.1",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.23.0",
         "laravel/pint": "^1.10.3",
         "laravel/sail": "^1.23",

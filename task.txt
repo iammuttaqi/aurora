@@ -37,6 +37,7 @@
     - even remove from fillable, and try other approach to update it (only for admin) - DONE
 - notification show page, where each notification will be shown extensively - DONE partially
 - admin partner edit - DONE
+- setup laravel debugbar, laravel telescope, laravel discord logger - DONE
 
 - tables: products, customers, product_customer, product_shop
 - products table to add products by manufacturers
