@@ -28,6 +28,7 @@ class SendRegisterUserNotification
             ->whereHas('role', function ($query) {
                 return $query->whereIn('slug', Role::slugsInArray('admin'));
             })
+            ->take(1)
             ->get();
 
         $event->user->notify(new UserRegisterUserNotication);

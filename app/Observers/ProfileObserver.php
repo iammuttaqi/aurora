@@ -22,6 +22,7 @@ class ProfileObserver
             ->whereHas('role', function ($query) {
                 return $query->whereIn('slug', Role::slugsInArray('admin'));
             })
+            ->take(1)
             ->get();
 
         Notification::send($admins, new ProfileUpdateNotification($profile));

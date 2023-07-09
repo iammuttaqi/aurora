@@ -25,7 +25,7 @@
 }
 
 .ts-control input {
-    @apply !text-white !py-0.5 !px-1 !text-base;
+    @apply text-black dark:text-white !py-0.5 !px-1 !text-base;
 }
 
 .ts-dropdown-content .option.active {
