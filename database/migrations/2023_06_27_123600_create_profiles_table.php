@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
 
             $table->foreignIdFor(User::class, 'user_id')
-                ->nullable()
                 ->unique()
                 ->constrained()
                 ->onUpdate('cascade')
@@ -26,13 +25,13 @@ return new class extends Migration
 
             $table->boolean('approved')->default(0);
             $table->string('username')->unique()->nullable();
-            $table->binary('qr_code')->unique()->nullable();
+            $table->binary('qr_code')->nullable();
 
             $table->string('logo')->nullable();
             $table->string('name')->nullable();
             $table->string('contact_person')->nullable();
             $table->text('address')->nullable();
-            $table->foreignIdFor(City::class, 'city_id')->nullable();
+            $table->foreignIdFor(City::class, 'city_id')->nullable()->constrained();
             $table->string('contact_number_1')->nullable();
             $table->string('contact_number_2')->nullable();
             $table->string('contact_number_3')->nullable();
@@ -49,7 +48,7 @@ return new class extends Migration
             $table->text('category_ids')->nullable();
             $table->string('tax_number')->nullable();
             $table->string('vat_number')->nullable();
-            $table->foreignIdFor(EmployeeRange::class, 'employee_range_id')->nullable();
+            $table->foreignIdFor(EmployeeRange::class, 'employee_range_id')->nullable()->constrained();
             $table->string('business_license')->nullable();
             $table->string('payment_terms')->nullable();
             $table->string('shipping_options')->nullable();

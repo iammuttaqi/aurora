@@ -8,8 +8,10 @@ use App\Http\Livewire\Auth\Pages\QrCode;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
+use App\Models\Product;
 use App\Models\Profile as ModelsProfile;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\HtmlString;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('go', function () {
+    // $product = Product::with('manufacturer', 'shops')->first();
+
+    // $shops = '';
+    // foreach ($product->shops as $key => $shop) {
+    //     $shops .= $shop->name . '-' . $shop->pivot->created_at . '<br>';
+    // }
+
+    // return new HtmlString('Manufacturer: ' . $product->manufacturer->name . '-' . $product->created_at . '<br><br> Shops: ' . $shops);
+
     return abort(404);
 });
 

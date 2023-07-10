@@ -89,6 +89,8 @@ class ProfileSeeder extends Seeder
                 'it_manager_email'           => fake()->email,
                 'manufacturing_capabilities' => fake()->sentence,
                 'certifications'             => fake()->words(3, true),
+                'created_at'                 => now(),
+                'updated_at'                 => now(),
             ];
         }
 
