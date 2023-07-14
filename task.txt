@@ -40,6 +40,7 @@
 - setup laravel debugbar, laravel telescope, laravel discord logger - DONE
 
 - tables: products, customers, product_customer, product_shop
+- TIN, Trade License Number in Profile
 - products table to add products by manufacturers
     - auto generate serial number
     - a product can be duplicatable, auto generate serial number and qr code url
@@ -53,6 +54,7 @@
 - different email notification for manufacturer and shop
 - admin editors page
 - for verify urls sake, look for permanent solution by assigning a unique key instead of username (using the same username field)
+- search product by serial number to verify
 
 
 

@@ -267,7 +267,7 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.general_manager_email')" for="general_manager_email" />
-                        <x-input :required="$this->required('form.general_manager_email')" :placeholder="$this->label('form.general_manager_email')" class="block w-full" id="general_manager_email" name="general_manager_email" type="text" wire:model.defer="form.general_manager_email" x-model="form.general_manager_email" />
+                        <x-input :required="$this->required('form.general_manager_email')" :placeholder="$this->label('form.general_manager_email')" class="block w-full" id="general_manager_email" name="general_manager_email" type="email" wire:model.defer="form.general_manager_email" x-model="form.general_manager_email" />
                         <x-input-error for="form.general_manager_email" />
                     </div>
 
@@ -279,7 +279,7 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.sales_manager_email')" for="sales_manager_email" />
-                        <x-input :required="$this->required('form.sales_manager_email')" :placeholder="$this->label('form.sales_manager_email')" class="block w-full" id="sales_manager_email" name="sales_manager_email" type="text" wire:model.defer="form.sales_manager_email" x-model="form.sales_manager_email" />
+                        <x-input :required="$this->required('form.sales_manager_email')" :placeholder="$this->label('form.sales_manager_email')" class="block w-full" id="sales_manager_email" name="sales_manager_email" type="email" wire:model.defer="form.sales_manager_email" x-model="form.sales_manager_email" />
                         <x-input-error for="form.sales_manager_email" />
                     </div>
 
@@ -291,7 +291,7 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.hr_manager_email')" for="hr_manager_email" />
-                        <x-input :required="$this->required('form.hr_manager_email')" :placeholder="$this->label('form.hr_manager_email')" class="block w-full" id="hr_manager_email" name="hr_manager_email" type="text" wire:model.defer="form.hr_manager_email" x-model="form.hr_manager_email" />
+                        <x-input :required="$this->required('form.hr_manager_email')" :placeholder="$this->label('form.hr_manager_email')" class="block w-full" id="hr_manager_email" name="hr_manager_email" type="email" wire:model.defer="form.hr_manager_email" x-model="form.hr_manager_email" />
                         <x-input-error for="form.hr_manager_email" />
                     </div>
 
@@ -303,7 +303,7 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.it_manager_email')" for="it_manager_email" />
-                        <x-input :required="$this->required('form.it_manager_email')" :placeholder="$this->label('form.it_manager_email')" class="block w-full" id="it_manager_email" name="it_manager_email" type="text" wire:model.defer="form.it_manager_email" x-model="form.it_manager_email" />
+                        <x-input :required="$this->required('form.it_manager_email')" :placeholder="$this->label('form.it_manager_email')" class="block w-full" id="it_manager_email" name="it_manager_email" type="email" wire:model.defer="form.it_manager_email" x-model="form.it_manager_email" />
                         <x-input-error for="form.it_manager_email" />
                     </div>
 
