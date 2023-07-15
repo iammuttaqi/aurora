@@ -1,4 +1,4 @@
-name: Laravel
+name: 🚀 Deploy website on push to https://aurora.faisalbhuiyan.com/
 
 on:
   push:
@@ -16,11 +16,11 @@ jobs:
           php-version: "8.2"
       - uses: actions/checkout@v3
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.production', '.env');"
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install -q --no-dev --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=php+
       - name: Update Dependencies
-        run: composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer update -q --no-dev --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=php+
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions
@@ -44,3 +44,11 @@ jobs:
       #     DB_CONNECTION: sqlite
       #     DB_DATABASE: database/database.sqlite
       #   run: vendor/bin/pest
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ftp.faisalbhuiyan.com
+          username: aurora@faisalbhuiyan.com
+          password: Pa$$w0rd!!!
+          port: 21
