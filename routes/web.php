@@ -3,12 +3,14 @@
 use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
-use App\Http\Livewire\Auth\Pages\Profile;
+use App\Http\Livewire\Auth\Pages\Products\Index as ProductsIndex;
+use App\Http\Livewire\Auth\Pages\Products\QrCode;
+use App\Http\Livewire\Auth\Pages\Products\Show;
 use App\Http\Livewire\Auth\Pages\Profile\Index as ProfileIndex;
-use App\Http\Livewire\Auth\Pages\QrCode;
 use App\Http\Livewire\Auth\Pages\QrCode\Index as QrCodeIndex;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
+use App\Http\Livewire\Frontend\Pages\VerifyIdentityProduct;
 use App\Http\Middleware\SetLayoutMiddleware;
 use App\Models\Product;
 use App\Models\Profile as ModelsProfile;
@@ -53,6 +55,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::middleware('signed')->group(function () {
         Route::get('verify-identity/{username}', VerifyIdentity::class)->name('verify_identity');
         // verify product url
+        Route::get('verify-product/{slug}', VerifyIdentityProduct::class)->name('verify_identity_product');
     });
 });
 
@@ -70,8 +73,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
 
     Route::get('profile', ProfileIndex::class)->name('profile')->can('viewAny', ModelsProfile::class);
-    Route::get('qr-code', QrCode::class)->name('qr_code');
+    Route::get('qr-code', QrCodeIndex::class)->name('qr_code');
+
     // products route for shop and manufacturers
+    Route::prefix('products')->middleware('can:viewProducts,App\Models\User')->name('products.')->group(function () {
+        Route::get('/', ProductsIndex::class)->name('index');
+        Route::get('/{serial_number}', Show::class)->name('show');
+        Route::get('qr-code/{serial_number}', QrCode::class)->name('qr_code');
+    });
+
     // customers route for shop
 
     Route::prefix('notifications')->name('notifications.')->group(function () {

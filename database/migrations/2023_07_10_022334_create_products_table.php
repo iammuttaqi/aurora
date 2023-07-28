@@ -17,13 +17,12 @@ return new class extends Migration
 
             $table->foreignId('manufacturer_id')->constrained('profiles');
             $table->foreignIdFor(ProductCategory::class, 'product_category_id')->constrained();
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('title');
             $table->longText('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable();
             $table->string('serial_number')->unique();
-            $table->binary('qr_code')->nullable();
+            $table->binary('qr_code')->nullable()->unique();
             $table->integer('warranty_period')->nullable();
             $table->enum('warranty_period_unit', ['days', 'weeks', 'months', 'years'])->nullable();
 

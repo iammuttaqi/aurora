@@ -67,4 +67,9 @@ class UserPolicy
     {
         return in_array($user->role->slug, Role::slugsInArray('admin'));
     }
+
+    public function viewProducts(User $user): bool
+    {
+        return $user->role->slug == 'manufacturer';
+    }
 }

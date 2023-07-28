@@ -30,6 +30,11 @@
                             {{ __('Partners') }}
                         </x-nav-link>
                     @endcan
+                    @can('viewProducts', auth()->user())
+                        <x-nav-link :active="request()->routeIs('products.*')" href="{{ route('products.index') }}">
+                            {{ __('Products') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -161,7 +166,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div class="block" x-collapse x-show="open" x-transition.duration.500ms>
-        <div class="space-y-1 pt-2 pb-3">
+        <div class="space-y-1 pb-3 pt-2">
             <x-responsive-nav-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
@@ -189,7 +194,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="border-t border-gray-200 pt-4 pb-1 dark:border-gray-600">
+        <div class="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="mr-3 shrink-0">

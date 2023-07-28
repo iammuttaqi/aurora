@@ -83,7 +83,7 @@ class Profile extends Model
     protected function logo(): Attribute
     {
         return Attribute::make(
-            get: fn (string|null $value) => $value && file_exists($value) ? $value : $this->default_logo,
+            get: fn (?string $value) => $value && file_exists($value) ? $value : $this->default_logo,
         );
     }
 
