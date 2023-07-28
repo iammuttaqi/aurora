@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Pages;
+namespace App\Http\Livewire\Auth\Pages\QrCode;
 
 use App\Models\Profile;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
-class QrCode extends Component
+class Index extends Component
 {
     use AuthorizesRequests;
 
@@ -21,6 +21,6 @@ class QrCode extends Component
 
     public function render()
     {
-        return view('livewire.auth.pages.qr-code');
+        return view('livewire.auth.pages.qr-code.index');
     }
 }

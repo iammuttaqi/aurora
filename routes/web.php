@@ -4,7 +4,9 @@ use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
 use App\Http\Livewire\Auth\Pages\Profile;
+use App\Http\Livewire\Auth\Pages\Profile\Index as ProfileIndex;
 use App\Http\Livewire\Auth\Pages\QrCode;
+use App\Http\Livewire\Auth\Pages\QrCode\Index as QrCodeIndex;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Middleware\SetLayoutMiddleware;
@@ -63,11 +65,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
         Route::get('/', PartnersIndex::class)->name('index');
-        Route::get('{username}', Profile::class)->name('show');
-        Route::get('qr-code/{username}', QrCode::class)->name('qr_code');
+        Route::get('{username}', ProfileIndex::class)->name('show');
+        Route::get('qr-code/{username}', QrCodeIndex::class)->name('qr_code');
     });
 
-    Route::get('profile', Profile::class)->name('profile')->can('viewAny', ModelsProfile::class);
+    Route::get('profile', ProfileIndex::class)->name('profile')->can('viewAny', ModelsProfile::class);
     Route::get('qr-code', QrCode::class)->name('qr_code');
     // products route for shop and manufacturers
     // customers route for shop

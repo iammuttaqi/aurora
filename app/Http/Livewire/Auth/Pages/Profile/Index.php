@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Pages;
+namespace App\Http\Livewire\Auth\Pages\Profile;
 
 use App\Models\Category;
 use App\Models\City;
 use App\Models\EmployeeRange;
-use App\Models\Profile as ModelsProfile;
+use App\Models\Profile;
 use App\Models\Role;
 use App\Rules\SocialLinksRule;
 use App\Traits\SocialLinksTrait;
@@ -14,9 +14,41 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Profile extends Component
+class Index extends Component
 {
     use WithFileUploads, SocialLinksTrait, AuthorizesRequests;
+
+    public function mount($username = null)
+    {
+        // $this->authorize('viewAny', Profile::class);
+
+        $profile = Profile::query()
+            ->when($username, function ($query) use ($username) {
+                $query->where('username', $username);
+            }, function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })
+            ->select(array_keys($this->form))
+            ->first();
+
+        if ($profile) {
+            $this->form = $profile->toArray();
+        }
+    }
+
+    public function render()
+    {
+        $cities = City::query()
+            ->has('country')
+            ->whereHas('country', function ($query) {
+                $query->where('iso', 'bd');
+            })
+            ->get();
+        $categories      = Category::all();
+        $employee_ranges = EmployeeRange::all();
+
+        return view('livewire.auth.pages.profile.index', compact('cities', 'categories', 'employee_ranges'));
+    }
 
     public $form = [
         'name'                       => null,
@@ -59,38 +91,6 @@ class Profile extends Component
     ];
 
     public $logo = null;
-
-    public function mount($username = null)
-    {
-        // $this->authorize('viewAny', ModelsProfile::class);
-
-        $profile = ModelsProfile::query()
-            ->when($username, function ($query) use ($username) {
-                $query->where('username', $username);
-            }, function ($query) {
-                $query->where('user_id', auth()->user()->id);
-            })
-            ->select(array_keys($this->form))
-            ->first();
-
-        if ($profile) {
-            $this->form = $profile->toArray();
-        }
-    }
-
-    public function render()
-    {
-        $cities = City::query()
-            ->has('country')
-            ->whereHas('country', function ($query) {
-                $query->where('iso', 'bd');
-            })
-            ->get();
-        $categories      = Category::all();
-        $employee_ranges = EmployeeRange::all();
-
-        return view('livewire.auth.pages.profile', compact('cities', 'categories', 'employee_ranges'));
-    }
 
     protected $validationAttributes = [
         'form.name'                       => 'Name',
@@ -193,7 +193,7 @@ class Profile extends Component
 
         DB::beginTransaction();
         try {
-            $profile = ModelsProfile::query()
+            $profile = Profile::query()
                 ->has('user')
                 ->with('user')
                 ->when(in_array(auth()->user()->role->slug, Role::slugsInArray('admin')), function ($query) {
@@ -205,7 +205,7 @@ class Profile extends Component
 
             $this->uploadImage($profile);
 
-            ModelsProfile::updateOrCreate(
+            Profile::updateOrCreate(
                 ['user_id' => $profile && $profile->user ? $profile->user->id : auth()->user()->id],
                 $this->form
             );
