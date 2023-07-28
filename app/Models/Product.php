@@ -12,11 +12,14 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public $default_image = 'assets/no-image.png';
 
     protected function image(): Attribute
     {
         return Attribute::make(
+            set: fn () => fake()->imageUrl,
             get: fn (?string $value) => $value ? $value : $this->default_image,
         );
     }

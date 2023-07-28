@@ -12,6 +12,7 @@
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
                 <div class="flex flex-col">
+
                     <div class="-m-1.5 overflow-x-auto">
                         <div class="inline-block min-w-full p-1.5 align-middle">
                             <div class="divide-y divide-gray-200 rounded-lg border dark:divide-gray-700 dark:border-gray-700">
@@ -21,18 +22,19 @@
                                     </h2>
 
                                     <div class="inline-flex gap-3 rounded-md shadow-sm">
-                                        <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="#">
+                                        <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
                                             Add Product
                                         </a>
                                     </div>
                                 </div>
+
                                 <div class="overflow-hidden">
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                             <tr>
                                                 <th class="px-4 py-3 pr-0" scope="col">
                                                     <div class="flex h-5 items-center">
-                                                        <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-all" type="checkbox" x-model="check_all">
+                                                        <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-all" type="checkbox">
                                                         <label class="sr-only" for="hs-table-pagination-checkbox-all">Checkbox</label>
                                                     </div>
                                                 </th>

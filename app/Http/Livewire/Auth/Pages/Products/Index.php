@@ -27,6 +27,7 @@ class Index extends Component
     {
         $product = Product::where('serial_number', $serial_number)->first();
         $new_product = $product->replicate();
+        $new_product->image = null;
         $new_product->serial_number = null;
         $new_product->qr_code = null;
         $new_product->save();

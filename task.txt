@@ -42,8 +42,9 @@
 - tables: products, customers, product_customer, product_shop
 - TIN, Trade License Number in Profile
 - products table to add products by manufacturers
-    - auto generate serial number
-    - a product can be duplicatable, auto generate serial number and qr code url
+    - auto generate serial number - DONE
+    - a product can be duplicatable, auto generate serial number and qr code url - DONE
+    - duplicate single product to multiple
 - customers table to add customers by shop
 - shop can sell a product to customer, they can select customer, or they can instantly add one customer (unique check by phone)
 - prove of manufacturer that using our platform. by qr code
