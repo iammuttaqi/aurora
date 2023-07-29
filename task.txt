@@ -38,17 +38,25 @@
 - notification show page, where each notification will be shown extensively - DONE partially
 - admin partner edit - DONE
 - setup laravel debugbar, laravel telescope, laravel discord logger - DONE
-
-- tables: products, customers, product_customer, product_shop
-- TIN, Trade License Number in Profile
+- prove of manufacturer that using our platform. by qr code - DONE
+- prove of shop that using our platform. by qr code - DONE
 - products table to add products by manufacturers
     - auto generate serial number - DONE
     - a product can be duplicatable, auto generate serial number and qr code url - DONE
-    - duplicate single product to multiple
+    - duplicate single product to multiple - DONE
+
+- edit product
+    - single product
+    - product with same name
+    - batch edit
+- sell products to shop
+    - always need to be checked
+- product already sold to a shop cannot be updated, deleted, can't be sold to another shop
+- for shop, product already sold to a customer cannot be updated, deleted, can't be sold to another customer
+- tables: products, customers, product_customer, product_shop
+- Trade License Number in Profile
 - customers table to add customers by shop
 - shop can sell a product to customer, they can select customer, or they can instantly add one customer (unique check by phone)
-- prove of manufacturer that using our platform. by qr code
-- prove of shop that using our platform. by qr code
 - ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
 - reminder every 7 day to fill profile, even after registration
@@ -56,14 +64,3 @@
 - admin editors page
 - for verify urls sake, look for permanent solution by assigning a unique key instead of username (using the same username field)
 - search product by serial number to verify
-
-
-
-
-
-
-
-
-questions to mam:
-- do we need to go formal in the defense board? - yes
-- when can our defense be? - 
