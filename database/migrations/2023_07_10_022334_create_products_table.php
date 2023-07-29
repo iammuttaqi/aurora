@@ -27,6 +27,8 @@ return new class extends Migration
             $table->enum('warranty_period_unit', ['days', 'weeks', 'months', 'years'])->nullable();
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
