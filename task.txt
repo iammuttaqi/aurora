@@ -51,6 +51,7 @@
     - batch edit
 - sell products to shop
     - always need to be checked
+    - filter products
 - product already sold to a shop cannot be updated, deleted, can't be sold to another shop
 - for shop, product already sold to a customer cannot be updated, deleted, can't be sold to another customer
 - tables: products, customers, product_customer, product_shop

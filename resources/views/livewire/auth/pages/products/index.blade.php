@@ -1,5 +1,10 @@
 @push('title', 'Products')
 
+@push('cdn')
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+@endpush
+
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -8,6 +13,9 @@
     </x-slot>
 
     <div class="py-12" class="relative z-50 h-auto w-auto" x-data="{
+        check_all: @entangle('check_all').defer,
+        checks: @entangle('checks').defer,
+        products: @js($products),
         multiDuplicateModalOpen: @entangle('multi_duplicate_modal_open').defer,
         multiDuplicateCount: @entangle('multi_duplicate_count').defer,
         multiDuplicateSerialNumber: @entangle('multi_duplicate_serial_number').defer,
@@ -16,8 +24,12 @@
                 this.multiDuplicateModalOpen = true;
                 this.multiDuplicateSerialNumber = serial_number;
             }
+        },
+        sell_modal: @entangle('sell_modal').defer,
+        sellModalOpen() {
+            this.sell_modal = true;
         }
-    }" x-on:keydown.escape.window="multiDuplicateModalOpen = false">
+    }" x-init="$watch('check_all', value => checks = value ? products.data.map(product => product.id) : [])" x-on:keydown.escape.window="multiDuplicateModalOpen = false">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
@@ -35,6 +47,9 @@
                                         <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
                                             Add Product
                                         </a>
+                                        <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Sell" type="button" x-cloak x-on:click="sellModalOpen()" x-show="checks.length" x-transition>
+                                            <i class="bi bi-bag-fill text-lg"></i>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -44,7 +59,7 @@
                                             <tr>
                                                 <th class="px-4 py-3 pr-0" scope="col">
                                                     <div class="flex h-5 items-center">
-                                                        <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-all" type="checkbox">
+                                                        <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-all" type="checkbox" x-model="check_all">
                                                         <label class="sr-only" for="hs-table-pagination-checkbox-all">Checkbox</label>
                                                     </div>
                                                 </th>
@@ -67,19 +82,23 @@
                                             @forelse ($products as $product)
                                                 <tr>
                                                     <td class="py-3 pl-4">
-                                                        <div class="flex h-5 items-center">
-                                                            <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}">
-                                                            <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
-                                                        </div>
+                                                        @if ($product->checkable_by_core)
+                                                            <div class="flex h-5 items-center">
+                                                                <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
+                                                                <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
+                                                            </div>
+                                                        @endif
                                                     </td>
-                                                    <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium" x-data>
+                                                    <td class="whitespace-nowrap px-6 py-4 text-left text-sm font-medium" x-data>
                                                         <a href="{{ route('products.show', $product->serial_number) }}" target="_blank"><i class="bi bi-eye-fill rounded bg-green-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-green-600"></i></a>
                                                         @if ($product->qr_code)
                                                             <a href="{{ route('products.qr_code', $product->serial_number) }}" target="_blank"><i class="bi bi-qr-code rounded bg-blue-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-blue-600"></i></a>
                                                         @endif
                                                         <button title="Duplicate" type="button" x-on:click="confirm('Are you sure you want to duplicate this product?') == true ? $wire.duplicate(@js($product->serial_number)) : null"><i class="bi bi-clipboard-plus-fill rounded bg-yellow-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-yellow-600"></i></button>
                                                         <button title="Duplicate Multiple" type="button" x-on:click="triggerMultiDuplicateModal(@js($product->serial_number))"><i class="bi bi-clipboard-data-fill rounded bg-purple-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-purple-600"></i></button>
-                                                        <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
+                                                        @if ($product->checkable_by_core)
+                                                            <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
+                                                        @endif
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
@@ -144,9 +163,56 @@
                             </form>
                         </div>
                     </div>
+
+                    <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="sell_modal">
+                        <div @click="sell_modal = false" class="absolute inset-0 h-full w-full bg-black bg-opacity-40" x-show="sell_modal" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100" x-transition:leave="ease-in duration-300"></div>
+                        <div class="relative w-full sm:max-w-lg sm:rounded-lg" x-show="sell_modal" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-trap.inert.noscroll="sell_modal">
+                            <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit.prevent="sell">
+                                <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
+                                    <h3 class="font-bold text-gray-800 dark:text-white">
+                                        Select the shop where you want to sell these products
+                                    </h3>
+                                    <button class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md text-sm text-gray-500 transition-all hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-basic-modal" type="button" x-on:click="sell_modal = false">
+                                        <i class="bi bi-x-lg text-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="overflow-y-auto p-4">
+                                    <p class="mt-1 text-gray-800 dark:text-gray-400">
+                                    <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4" wire:ignore>
+                                        <x-label for="shop_id" value="Shop" />
+                                        <select class="shop_id" name="shop_id[]" wire:model.defer="shop_id">
+                                            @foreach ($shops as $shop)
+                                                <option {{ $shop_id == $shop->id ? 'selected' : '' }} value="{{ $shop->id }}">{{ $shop->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-input-error for="shop_id" />
+                                    </div>
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
+                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="#" type="submit">
+                                        Sell
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        new TomSelect('.shop_id', {
+            placeholder: 'Select...',
+            plugins: {
+                remove_button: {
+                    title: 'Remove this item',
+                }
+            },
+        });
+    </script>
+@endpush

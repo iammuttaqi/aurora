@@ -17,6 +17,13 @@ class Product extends Model
 
     public $default_image = 'assets/no-image.png';
 
+    protected function checkableByCore(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->product_shop ? false : true,
+        );
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(
@@ -79,6 +86,11 @@ class Product extends Model
     public function product_category()
     {
         return $this->belongsTo(ProductCategory::class);
+    }
+
+    public function product_shop()
+    {
+        return $this->hasOne(ProductShop::class);
     }
 
     public function shops()
