@@ -45,6 +45,18 @@
     - a product can be duplicatable, auto generate serial number and qr code url - DONE
     - duplicate single product to multiple - DONE
 
+- product ownership
+    - all the "manufacturer_id" references need to be replaced with "profile_id"
+    - factory and seeder update
+    - relationship need to be changed too
+    - create product only by manufacturer
+    - product_shops entry on create product
+    - product_shops entry sell product
+    - setup policy for both operation
+    - refactor relationship
+    - "owner_id" update on create product and sell product
+    - product shouldn't be sellable if it is already sold to a customer
+
 - edit product
     - single product
     - product with same name

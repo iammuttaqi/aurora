@@ -22,11 +22,9 @@ class ProductSeeder extends Seeder
             $qr_code = QrCode::size(500)->generate($url);
 
             $products[] = [
-                'manufacturer_id' => fake()->randomElement(
+                'profile_id' => fake()->randomElement(
                     Profile::whereHas('user.role', function ($query) {
-                        // $query->whereHas('role', function ($query) {
-                        $query->where('slug', 'manufacturer');
-                        // });
+                        $query->where('type', 'user');
                     })
                         ->pluck('id')
                         ->toArray()

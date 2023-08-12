@@ -2,10 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\ProductShop;
+use App\Models\ProductProfile;
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
-class ProductShopPolicy
+class ProductProfilePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +19,7 @@ class ProductShopPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ProductShop $productShop): bool
+    public function view(User $user, ProductProfile $productProfile): bool
     {
         //
     }
@@ -34,7 +35,7 @@ class ProductShopPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ProductShop $productShop): bool
+    public function update(User $user, ProductProfile $productProfile): bool
     {
         //
     }
@@ -42,7 +43,7 @@ class ProductShopPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ProductShop $productShop): bool
+    public function delete(User $user, ProductProfile $productProfile): bool
     {
         //
     }
@@ -50,7 +51,7 @@ class ProductShopPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ProductShop $productShop): bool
+    public function restore(User $user, ProductProfile $productProfile): bool
     {
         //
     }
@@ -58,7 +59,7 @@ class ProductShopPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ProductShop $productShop): bool
+    public function forceDelete(User $user, ProductProfile $productProfile): bool
     {
         //
     }

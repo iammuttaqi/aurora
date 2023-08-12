@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('manufacturer_id')->constrained('profiles');
+            $table->foreignId('profile_id')->constrained('profiles');
             $table->foreignIdFor(ProductCategory::class, 'product_category_id')->constrained();
             $table->string('title');
             $table->longText('description')->nullable();

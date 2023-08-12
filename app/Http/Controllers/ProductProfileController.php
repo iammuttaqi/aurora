@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductShopRequest;
-use App\Http\Requests\UpdateProductShopRequest;
-use App\Models\ProductShop;
+use App\Models\ProductProfile;
+use App\Http\Requests\StoreProductProfileRequest;
+use App\Http\Requests\UpdateProductProfileRequest;
 
-class ProductShopController extends Controller
+class ProductProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProductShopController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductShopRequest $request)
+    public function store(StoreProductProfileRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ProductShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductShop $productShop)
+    public function show(ProductProfile $productProfile)
     {
         //
     }
@@ -43,7 +43,7 @@ class ProductShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductShop $productShop)
+    public function edit(ProductProfile $productProfile)
     {
         //
     }
@@ -51,7 +51,7 @@ class ProductShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductShopRequest $request, ProductShop $productShop)
+    public function update(UpdateProductProfileRequest $request, ProductProfile $productProfile)
     {
         //
     }
@@ -59,7 +59,7 @@ class ProductShopController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductShop $productShop)
+    public function destroy(ProductProfile $productProfile)
     {
         //
     }
