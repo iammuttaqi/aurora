@@ -14,8 +14,18 @@ class Index extends Component
 {
     public function render()
     {
-        $products = Product::where('manufacturer_id', auth()->user()->profile->id)
-            ->with('product_shop')
+        $products = Product::query()
+            ->when(auth()->user()->role->slug == 'manufacturer', function ($query) {
+                $query->where('manufacturer_id', auth()->user()->profile->id)
+                    ->with('product_shop');
+            })
+            ->when(auth()->user()->role->slug == 'shop', function ($query) {
+                $shop_products_id = ProductShop::where('shop_id', auth()->user()->profile->id)->pluck('product_id');
+
+                $query->whereIn('id', $shop_products_id)
+                    ->with('product_shop');
+            })
+            ->with('product_shops')
             ->latest()
             ->paginate(10);
         $shops = Profile::has('user')
@@ -23,6 +33,7 @@ class Index extends Component
             ->whereHas('user.role', function ($query) {
                 $query->where('slug', 'shop');
             })
+            ->where('id', '!=', auth()->user()->profile->id)
             ->get();
 
         return view('livewire.auth.pages.products.index', compact('products', 'shops'));

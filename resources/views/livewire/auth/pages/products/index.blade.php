@@ -44,9 +44,11 @@
                                     </h2>
 
                                     <div class="inline-flex gap-3 rounded-md shadow-sm">
-                                        <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
-                                            Add Product
-                                        </a>
+                                        @can('createProducts', auth()->user())
+                                            <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
+                                                Add Product
+                                            </a>
+                                        @endcan
                                         <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Sell" type="button" x-cloak x-on:click="sellModalOpen()" x-show="checks.length" x-transition>
                                             <i class="bi bi-bag-fill text-lg"></i>
                                         </button>
@@ -82,7 +84,7 @@
                                             @forelse ($products as $product)
                                                 <tr>
                                                     <td class="py-3 pl-4">
-                                                        @if ($product->checkable_by_core)
+                                                        @if ($product->checkable)
                                                             <div class="flex h-5 items-center">
                                                                 <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
                                                                 <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
@@ -94,9 +96,11 @@
                                                         @if ($product->qr_code)
                                                             <a href="{{ route('products.qr_code', $product->serial_number) }}" target="_blank"><i class="bi bi-qr-code rounded bg-blue-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-blue-600"></i></a>
                                                         @endif
-                                                        <button title="Duplicate" type="button" x-on:click="confirm('Are you sure you want to duplicate this product?') == true ? $wire.duplicate(@js($product->serial_number)) : null"><i class="bi bi-clipboard-plus-fill rounded bg-yellow-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-yellow-600"></i></button>
-                                                        <button title="Duplicate Multiple" type="button" x-on:click="triggerMultiDuplicateModal(@js($product->serial_number))"><i class="bi bi-clipboard-data-fill rounded bg-purple-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-purple-600"></i></button>
-                                                        @if ($product->checkable_by_core)
+                                                        @can('duplicateProducts', auth()->user())
+                                                            <button title="Duplicate" type="button" x-on:click="confirm('Are you sure you want to duplicate this product?') == true ? $wire.duplicate(@js($product->serial_number)) : null"><i class="bi bi-clipboard-plus-fill rounded bg-yellow-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-yellow-600"></i></button>
+                                                            <button title="Duplicate Multiple" type="button" x-on:click="triggerMultiDuplicateModal(@js($product->serial_number))"><i class="bi bi-clipboard-data-fill rounded bg-purple-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-purple-600"></i></button>
+                                                        @endcan
+                                                        @if ($product->checkable)
                                                             <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
                                                         @endif
                                                     </td>

@@ -78,6 +78,11 @@ class Profile extends Model
         return $this->belongsTo(EmployeeRange::class);
     }
 
+    public function product_shops()
+    {
+        return $this->hasMany(ProductShop::class, 'shop_id');
+    }
+
     public $default_logo = 'assets/default.png';
 
     protected function logo(): Attribute
