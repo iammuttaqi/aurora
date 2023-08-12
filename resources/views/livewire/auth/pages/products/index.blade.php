@@ -38,21 +38,26 @@
                     <div class="-m-1.5 overflow-x-auto">
                         <div class="inline-block min-w-full p-1.5 align-middle">
                             <div class="divide-y divide-gray-200 rounded-lg border dark:divide-gray-700 dark:border-gray-700">
-                                <div class="flex items-center justify-start gap-10 px-4 py-3">
-                                    <h2 class="py-3 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                        Products
-                                    </h2>
+                                <div class="flex items-center justify-between gap-10 px-4 py-3">
+                                    <div class="flex gap-5">
+                                        <h2 class="py-3 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                            List of Products
+                                        </h2>
+                                        @can('sell', \App\Models\Product::class)
+                                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-purple-500 px-4 py-0 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" x-cloak x-on:click="sellModalOpen()" x-show="checks.length" x-transition>
+                                                <i class="bi bi-bag-plus-fill text-base"></i>
+                                                Add to Box
+                                            </button>
+                                        @endcan
+                                    </div>
 
-                                    <div class="inline-flex gap-3 rounded-md shadow-sm">
-                                        @can('createProducts', auth()->user())
+                                    @can('create', \App\Models\Product::class)
+                                        <div class="inline-flex gap-3 rounded-md shadow-sm">
                                             <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
                                                 Add Product
                                             </a>
-                                        @endcan
-                                        <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Sell" type="button" x-cloak x-on:click="sellModalOpen()" x-show="checks.length" x-transition>
-                                            <i class="bi bi-bag-fill text-lg"></i>
-                                        </button>
-                                    </div>
+                                        </div>
+                                    @endcan
                                 </div>
 
                                 <div class="overflow-hidden">
@@ -84,12 +89,10 @@
                                             @forelse ($products as $product)
                                                 <tr>
                                                     <td class="py-3 pl-4">
-                                                        @if ($product->checkable)
-                                                            <div class="flex h-5 items-center">
-                                                                <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
-                                                                <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
-                                                            </div>
-                                                        @endif
+                                                        <div class="flex h-5 items-center">
+                                                            <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
+                                                            <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
+                                                        </div>
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-left text-sm font-medium" x-data>
                                                         <a href="{{ route('products.show', $product->serial_number) }}" target="_blank"><i class="bi bi-eye-fill rounded bg-green-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-green-600"></i></a>
@@ -100,9 +103,7 @@
                                                             <button title="Duplicate" type="button" x-on:click="confirm('Are you sure you want to duplicate this product?') == true ? $wire.duplicate(@js($product->serial_number)) : null"><i class="bi bi-clipboard-plus-fill rounded bg-yellow-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-yellow-600"></i></button>
                                                             <button title="Duplicate Multiple" type="button" x-on:click="triggerMultiDuplicateModal(@js($product->serial_number))"><i class="bi bi-clipboard-data-fill rounded bg-purple-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-purple-600"></i></button>
                                                         @endcan
-                                                        @if ($product->checkable)
-                                                            <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
-                                                        @endif
+                                                        <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>

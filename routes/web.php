@@ -77,9 +77,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('qr-code', QrCodeIndex::class)->name('qr_code');
 
     // products route for shop and manufacturers
-    Route::prefix('products')->middleware('can:viewProducts,App\Models\User')->name('products.')->group(function () {
+    Route::prefix('products')->name('products.')->group(function () {
         Route::get('/', ProductsIndex::class)->name('index');
-        Route::get('create', Create::class)->name('create')->middleware('can:createProducts,App\Models\User');
+        Route::get('create', Create::class)->name('create')->middleware('can:create,App\Models\Product');
         Route::get('/{serial_number}', Show::class)->name('show');
         Route::get('qr-code/{serial_number}', QrCode::class)->name('qr_code');
     });

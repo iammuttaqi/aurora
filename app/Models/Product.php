@@ -17,20 +17,20 @@ class Product extends Model
 
     public $default_image = 'assets/no-image.png';
 
-    protected function checkable(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => auth()->user()->role->slug == 'manufacturer' && $this->product_shop ? false : true,
-        );
-    }
+    // protected function checkable(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => auth()->user()->role->slug == 'manufacturer' && $this->product_shop ? false : true,
+    //     );
+    // }
 
-    private function isOwner()
-    {
-        $shop                = $this->product_shops->where('shop_id', auth()->user()->profile->id)->first();
-        $latest_product_shop = $this->product_shops()->latest()->first();
+    // private function isOwner()
+    // {
+    //     $shop                = $this->product_shops->where('shop_id', auth()->user()->profile->id)->first();
+    //     $latest_product_shop = $this->product_shops()->latest()->first();
 
-        return $shop->created_at == $latest_product_shop->created_at;
-    }
+    //     return $shop->created_at == $latest_product_shop->created_at;
+    // }
 
     protected function image(): Attribute
     {
@@ -86,7 +86,7 @@ class Product extends Model
         }
     }
 
-    public function manufacturer()
+    public function profile()
     {
         return $this->belongsTo(Profile::class);
     }
@@ -96,18 +96,23 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
-    public function product_shop()
+    public function product_profiles()
     {
-        return $this->hasOne(ProductShop::class);
+        return $this->hasMany(ProductProfile::class);
     }
 
-    public function product_shops()
-    {
-        return $this->hasMany(ProductShop::class);
-    }
+    // public function product_shop()
+    // {
+    //     return $this->hasOne(ProductShop::class);
+    // }
 
-    public function shops()
-    {
-        return $this->belongsToMany(Profile::class, 'product_shops', 'product_id', 'shop_id')->withTimestamps();
-    }
+    // public function product_shops()
+    // {
+    //     return $this->hasMany(ProductShop::class);
+    // }
+
+    // public function shops()
+    // {
+    //     return $this->belongsToMany(Profile::class, 'product_shops', 'product_id', 'shop_id')->withTimestamps();
+    // }
 }

@@ -68,17 +68,6 @@ class UserPolicy
         return in_array($user->role->slug, Role::slugsInArray('admin'));
     }
 
-    public function viewProducts(User $user): bool
-    {
-        return true;
-        // return $user->role->slug == 'manufacturer';
-    }
-
-    public function createProducts(User $user): bool
-    {
-        return $user->role->slug == 'manufacturer';
-    }
-
     public function duplicateProducts(User $user): bool
     {
         return $user->role->slug == 'manufacturer';

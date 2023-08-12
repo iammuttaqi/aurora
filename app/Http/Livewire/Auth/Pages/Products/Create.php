@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Auth\Pages\Products;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductProfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -36,7 +37,7 @@ class Create extends Component
     }
 
     public $form = [
-        'manufacturer_id'      => null,
+        'profile_id'           => null,
         'product_category_id'  => null,
         'title'                => null,
         'description'          => null,
@@ -49,7 +50,7 @@ class Create extends Component
     ];
 
     protected $validationAttributes = [
-        'form.manufacturer_id'      => 'Manufacturer',
+        'form.profile_id'           => 'Manufacturer',
         'form.product_category_id'  => 'Product Category',
         'form.title'                => 'Product Title',
         'form.description'          => 'Product Description',
@@ -93,8 +94,13 @@ class Create extends Component
         DB::beginTransaction();
         try {
             if (auth()->user()->profile) {
-                $this->form['manufacturer_id'] = auth()->user()->profile->id;
-                Product::create($this->form);
+                $this->form['profile_id'] = auth()->user()->profile->id;
+                $product                  = Product::create($this->form);
+
+                ProductProfile::create([
+                    'product_id' => $product->id,
+                    'profile_id' => $product->profile_id,
+                ]);
 
                 DB::commit();
                 $this->reset('form');

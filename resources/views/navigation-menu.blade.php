@@ -30,7 +30,7 @@
                             {{ __('Partners') }}
                         </x-nav-link>
                     @endcan
-                    @can('viewProducts', auth()->user())
+                    @can('viewAny', \App\Models\Product::class)
                         <x-nav-link :active="request()->routeIs('products.*')" href="{{ route('products.index') }}">
                             {{ __('Products') }}
                         </x-nav-link>

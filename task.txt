@@ -46,15 +46,17 @@
     - duplicate single product to multiple - DONE
 
 - product ownership
-    - all the "manufacturer_id" references need to be replaced with "profile_id"
-    - factory and seeder update
+    - all the "manufacturer_id" references need to be replaced with "profile_id" - DONE
+    - factory and seeder update - DONE
     - relationship need to be changed too
-    - create product only by manufacturer
-    - product_shops entry on create product
-    - product_shops entry sell product
+    - create product only by manufacturer - DONE
+    - product_shops entry on create product, duplicate, duplicate multiple - DONE
+    - product_shops entry on sell product
     - setup policy for both operation
     - refactor relationship
-    - "owner_id" update on create product and sell product
+    - "profile_id" update on create product and sell product
+    - manufacturer should only sell to shops
+    - shops should sell to another shop and customers
     - product shouldn't be sellable if it is already sold to a customer
 
 - edit product

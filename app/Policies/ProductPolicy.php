@@ -12,7 +12,7 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->role->type == 'user';
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->role->slug == 'manufacturer';
     }
 
     /**
@@ -61,5 +61,10 @@ class ProductPolicy
     public function forceDelete(User $user, Product $product): bool
     {
         //
+    }
+
+    public function sell(User $user): bool
+    {
+        return $user->role->type == 'user';
     }
 }

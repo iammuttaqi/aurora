@@ -20,8 +20,8 @@
                     </li>
                     <li class="-mt-px inline-flex items-center gap-x-2 border bg-white px-4 py-3 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-gray-700 dark:bg-gray-800 dark:text-white">
                         <div class="flex w-full justify-between">
-                            Manufacturer
-                            <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-white">{{ $product->manufacturer->name }}</span>
+                            Owner
+                            <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-white">{{ $product->profile->name }}</span>
                         </div>
                     </li>
                     <li class="-mt-px inline-flex items-center gap-x-2 border bg-white px-4 py-3 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-gray-700 dark:bg-gray-800 dark:text-white">
@@ -33,7 +33,7 @@
                     <li class="-mt-px inline-flex items-center gap-x-2 border bg-white px-4 py-3 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-gray-700 dark:bg-gray-800 dark:text-white">
                         <div class="flex w-full justify-between">
                             Description
-                            <span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium text-white">{{ $product->description }}</span>
+                            <span class="inline-flex w-1/2 items-center rounded-full px-2 py-1 text-end text-xs font-medium text-white">{{ $product->description }}</span>
                         </div>
                     </li>
                     <li class="-mt-px inline-flex items-center gap-x-2 border bg-white px-4 py-3 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-gray-700 dark:bg-gray-800 dark:text-white">
