@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductProfile;
 use App\Http\Requests\StoreProductProfileRequest;
 use App\Http\Requests\UpdateProductProfileRequest;
+use App\Models\ProductProfile;
 
 class ProductProfileController extends Controller
 {

@@ -15,19 +15,19 @@ class Create extends Component
         $warranty_period_units = [
             [
                 'title' => 'Days',
-                'slug' => 'days'
+                'slug'  => 'days',
             ],
             [
                 'title' => 'Weeks',
-                'slug' => 'weeks'
+                'slug'  => 'weeks',
             ],
             [
                 'title' => 'Months',
-                'slug' => 'months'
+                'slug'  => 'months',
             ],
             [
                 'title' => 'Years',
-                'slug' => 'years'
+                'slug'  => 'years',
             ],
         ];
         $product_categories = ProductCategory::all();
@@ -36,40 +36,40 @@ class Create extends Component
     }
 
     public $form = [
-        'manufacturer_id' => null,
-        'product_category_id' => null,
-        'title' => null,
-        'description' => null,
-        'price' => null,
-        'image' => null,
-        'serial_number' => null,
-        'qr_code' => null,
-        'warranty_period' => null,
+        'manufacturer_id'      => null,
+        'product_category_id'  => null,
+        'title'                => null,
+        'description'          => null,
+        'price'                => null,
+        'image'                => null,
+        'serial_number'        => null,
+        'qr_code'              => null,
+        'warranty_period'      => null,
         'warranty_period_unit' => null,
     ];
 
     protected $validationAttributes = [
-        'form.manufacturer_id' => 'Manufacturer',
-        'form.product_category_id' => 'Product Category',
-        'form.title' => 'Product Title',
-        'form.description' => 'Product Description',
-        'form.price' => 'Product Price',
-        'form.image' => 'Product Image',
-        'form.serial_number' => 'Serial Number',
-        'form.qr_code' => 'QR Code',
-        'form.warranty_period' => 'Warranty Period',
+        'form.manufacturer_id'      => 'Manufacturer',
+        'form.product_category_id'  => 'Product Category',
+        'form.title'                => 'Product Title',
+        'form.description'          => 'Product Description',
+        'form.price'                => 'Product Price',
+        'form.image'                => 'Product Image',
+        'form.serial_number'        => 'Serial Number',
+        'form.qr_code'              => 'QR Code',
+        'form.warranty_period'      => 'Warranty Period',
         'form.warranty_period_unit' => 'Warranty Period Unit',
     ];
 
     protected function rules()
     {
         return [
-            'form.product_category_id' => ['required', 'integer', 'exists:product_categories,id'],
-            'form.title' => ['required', 'string', 'max:255'],
-            'form.description' => ['required', 'string'],
-            'form.price' => ['required', 'numeric'],
-            'form.image' => ['nullable', 'image'],
-            'form.warranty_period' => ['required', 'integer'],
+            'form.product_category_id'  => ['required', 'integer', 'exists:product_categories,id'],
+            'form.title'                => ['required', 'string', 'max:255'],
+            'form.description'          => ['required', 'string'],
+            'form.price'                => ['required', 'numeric'],
+            'form.image'                => ['nullable', 'image'],
+            'form.warranty_period'      => ['required', 'integer'],
             'form.warranty_period_unit' => ['required', 'string', Rule::in(['days', 'weeks', 'months', 'years'])],
         ];
     }

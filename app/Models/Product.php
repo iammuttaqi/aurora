@@ -26,7 +26,7 @@ class Product extends Model
 
     private function isOwner()
     {
-        $shop = $this->product_shops->where('shop_id', auth()->user()->profile->id)->first();
+        $shop                = $this->product_shops->where('shop_id', auth()->user()->profile->id)->first();
         $latest_product_shop = $this->product_shops()->latest()->first();
 
         return $shop->created_at == $latest_product_shop->created_at;

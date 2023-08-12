@@ -18,8 +18,8 @@ class ProductSeeder extends Seeder
     {
         foreach (range(1, 500) as $key => $range) {
             $serial_number = fake()->unique()->numerify('SN-########');
-            $url = URL::signedRoute('verify_identity_product', $serial_number);
-            $qr_code = QrCode::size(500)->generate($url);
+            $url           = URL::signedRoute('verify_identity_product', $serial_number);
+            $qr_code       = QrCode::size(500)->generate($url);
 
             $products[] = [
                 'profile_id' => fake()->randomElement(

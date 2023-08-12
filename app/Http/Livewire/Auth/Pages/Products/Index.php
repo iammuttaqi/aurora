@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Models\ProductShop;
 use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -50,11 +49,11 @@ class Index extends Component
 
     public function duplicate($serial_number)
     {
-        $product = Product::where('serial_number', $serial_number)->first();
-        $new_product = $product->replicate();
-        $new_product->image = null;
+        $product                    = Product::where('serial_number', $serial_number)->first();
+        $new_product                = $product->replicate();
+        $new_product->image         = null;
         $new_product->serial_number = null;
-        $new_product->qr_code = null;
+        $new_product->qr_code       = null;
         $new_product->save();
 
         $this->dispatchBrowserEvent('banner-message', [
@@ -64,11 +63,15 @@ class Index extends Component
     }
 
     public $multi_duplicate_modal_open = false;
+
     public $multi_duplicate_count = 1;
+
     public $multi_duplicate_serial_number = null;
 
     public $check_all = false;
+
     public $checks = [];
+
     public $shop_id = null;
 
     public function duplicateMultiple()
@@ -77,11 +80,11 @@ class Index extends Component
         try {
             if ($this->multi_duplicate_count && $this->multi_duplicate_serial_number) {
                 foreach (range(1, $this->multi_duplicate_count) as $key => $range) {
-                    $product = Product::where('serial_number', $this->multi_duplicate_serial_number)->first();
-                    $new_product = $product->replicate();
-                    $new_product->image = null;
+                    $product                    = Product::where('serial_number', $this->multi_duplicate_serial_number)->first();
+                    $new_product                = $product->replicate();
+                    $new_product->image         = null;
                     $new_product->serial_number = null;
-                    $new_product->qr_code = null;
+                    $new_product->qr_code       = null;
                     $new_product->save();
                 }
 
@@ -113,16 +116,16 @@ class Index extends Component
     public function sell()
     {
         $this->validate([
-            'checks' => ['required', 'array', 'min:1'],
+            'checks'   => ['required', 'array', 'min:1'],
             'checks.*' => ['required', 'integer', Rule::exists('products', 'id')],
-            'shop_id' => ['required', 'integer', Rule::exists('profiles', 'id')],
+            'shop_id'  => ['required', 'integer', Rule::exists('profiles', 'id')],
         ]);
 
         DB::beginTransaction();
         try {
             $product_shops = [];
             foreach ($this->checks as $key => $product_id) {
-                $product_shops[$key]['shop_id'] = $this->shop_id;
+                $product_shops[$key]['shop_id']    = $this->shop_id;
                 $product_shops[$key]['product_id'] = $product_id;
                 $product_shops[$key]['created_at'] = now();
                 $product_shops[$key]['updated_at'] = now();

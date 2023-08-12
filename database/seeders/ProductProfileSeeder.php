@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Product;
 use App\Models\ProductProfile;
 use App\Models\Profile;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductProfileSeeder extends Seeder
@@ -18,7 +17,7 @@ class ProductProfileSeeder extends Seeder
         foreach (range(1, 1000) as $key => $range) {
             $profile_products[] = [
                 'product_id' => fake()->randomElement(Product::whereBetween('id', [1, 200])->pluck('id')->toArray()),
-                'profile_id'    => fake()->randomElement(
+                'profile_id' => fake()->randomElement(
                     Profile::whereHas('user.role', function ($query) {
                         $query->where('type', 'user');
                     })
