@@ -39,12 +39,12 @@
                         <div class="inline-block min-w-full p-1.5 align-middle">
                             <div class="divide-y divide-gray-200 rounded-lg border dark:divide-gray-700 dark:border-gray-700">
                                 <div class="flex items-center justify-between gap-10 px-4 py-3">
-                                    <div class="flex gap-5">
-                                        <h2 class="py-3 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                    <div class="flex items-center gap-5">
+                                        <h2 class="my-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
                                             List of Products
                                         </h2>
                                         @can('sell', \App\Models\Product::class)
-                                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-purple-500 px-4 py-0 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" x-cloak x-on:click="sellModalOpen()" x-show="checks.length" x-transition>
+                                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" wire:click="addToBox()" x-cloak x-show="checks.length" x-transition>
                                                 <i class="bi bi-bag-plus-fill text-base"></i>
                                                 Add to Box
                                             </button>
@@ -89,10 +89,12 @@
                                             @forelse ($products as $product)
                                                 <tr>
                                                     <td class="py-3 pl-4">
-                                                        <div class="flex h-5 items-center">
-                                                            <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
-                                                            <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
-                                                        </div>
+                                                        @if ($product->checkable)
+                                                            <div class="flex h-5 items-center">
+                                                                <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-pagination-checkbox-{{ $loop->index + 1 }}" type="checkbox" value="{{ $product->id }}" x-model="checks">
+                                                                <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
+                                                            </div>
+                                                        @endif
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-left text-sm font-medium" x-data>
                                                         <a href="{{ route('products.show', $product->serial_number) }}" target="_blank"><i class="bi bi-eye-fill rounded bg-green-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-green-600"></i></a>
@@ -169,7 +171,7 @@
                         </div>
                     </div>
 
-                    <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="sell_modal">
+                    {{-- <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="sell_modal">
                         <div @click="sell_modal = false" class="absolute inset-0 h-full w-full bg-black bg-opacity-40" x-show="sell_modal" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100" x-transition:leave="ease-in duration-300"></div>
                         <div class="relative w-full sm:max-w-lg sm:rounded-lg" x-show="sell_modal" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-trap.inert.noscroll="sell_modal">
                             <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit.prevent="sell">
@@ -201,7 +203,7 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

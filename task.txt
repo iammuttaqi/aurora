@@ -45,6 +45,7 @@
     - a product can be duplicatable, auto generate serial number and qr code url - DONE
     - duplicate single product to multiple - DONE
 
+- add multiple product, on the same page, another input to increase product count
 - product ownership
     - all the "manufacturer_id" references need to be replaced with "profile_id" - DONE
     - factory and seeder update - DONE

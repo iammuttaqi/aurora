@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Auth\Pages\Products;
 use App\Models\Product;
 use App\Models\ProductProfile;
 use App\Models\ProductShop;
-use App\Models\Profile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -16,18 +15,13 @@ class Index extends Component
     {
         $products = Product::query()
             ->where('profile_id', auth()->user()->profile->id)
-            ->with('profile', 'product_profiles')
             ->latest()
             ->paginate(10);
-        $shops = Profile::has('user')
-            ->with('user')
-            ->whereHas('user.role', function ($query) {
-                $query->where('slug', 'shop');
-            })
-            ->where('id', '!=', auth()->user()->profile->id)
-            ->get();
+        // foreach ($products as $key => $product) {
+        //     dd($product->checkable);
+        // }
 
-        return view('livewire.auth.pages.products.index', compact('products', 'shops'));
+        return view('livewire.auth.pages.products.index', compact('products'));
     }
 
     public function destroy($serial_number)
@@ -73,12 +67,6 @@ class Index extends Component
 
     public $multi_duplicate_serial_number = null;
 
-    public $check_all = false;
-
-    public $checks = [];
-
-    public $shop_id = null;
-
     public function duplicateMultiple()
     {
         DB::beginTransaction();
@@ -112,6 +100,28 @@ class Index extends Component
     }
 
     public $sell_modal = false;
+
+    public $check_all = false;
+
+    public $checks = [];
+
+    public function addToBox()
+    {
+        $this->validate([
+            'checks'   => ['required', 'array', 'min:1'],
+            'checks.*' => ['required', 'integer', Rule::exists('products', 'id')],
+        ]);
+
+        $product_ids = is_array(session('product_ids')) ? array_merge(session('product_ids'), $this->checks) : $this->checks;
+
+        session()->put('product_ids', $product_ids);
+
+        $this->reset();
+        $this->dispatchBrowserEvent('banner-message', [
+            'style'   => 'success',
+            'message' => 'Products added to the box.',
+        ]);
+    }
 
     // public function sell()
     // {
