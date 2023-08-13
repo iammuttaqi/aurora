@@ -170,40 +170,6 @@
                             </form>
                         </div>
                     </div>
-
-                    {{-- <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="sell_modal">
-                        <div @click="sell_modal = false" class="absolute inset-0 h-full w-full bg-black bg-opacity-40" x-show="sell_modal" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100" x-transition:leave="ease-in duration-300"></div>
-                        <div class="relative w-full sm:max-w-lg sm:rounded-lg" x-show="sell_modal" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-trap.inert.noscroll="sell_modal">
-                            <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit.prevent="sell">
-                                <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
-                                    <h3 class="font-bold text-gray-800 dark:text-white">
-                                        Select the shop where you want to sell these products
-                                    </h3>
-                                    <button class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md text-sm text-gray-500 transition-all hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-basic-modal" type="button" x-on:click="sell_modal = false">
-                                        <i class="bi bi-x-lg text-lg"></i>
-                                    </button>
-                                </div>
-                                <div class="overflow-y-auto p-4">
-                                    <p class="mt-1 text-gray-800 dark:text-gray-400">
-                                    <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-4" wire:ignore>
-                                        <x-label for="shop_id" value="Shop" />
-                                        <select class="shop_id" name="shop_id[]" wire:model.defer="shop_id">
-                                            @foreach ($shops as $shop)
-                                                <option {{ $shop_id == $shop->id ? 'selected' : '' }} value="{{ $shop->id }}">{{ $shop->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <x-input-error for="shop_id" />
-                                    </div>
-                                    </p>
-                                </div>
-                                <div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
-                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="#" type="submit">
-                                        Sell
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div> --}}
                 </div>
 
             </div>

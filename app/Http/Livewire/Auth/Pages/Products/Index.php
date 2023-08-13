@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Auth\Pages\Products;
 
 use App\Models\Product;
 use App\Models\ProductProfile;
-use App\Models\ProductShop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -16,10 +15,7 @@ class Index extends Component
         $products = Product::query()
             ->where('profile_id', auth()->user()->profile->id)
             ->latest()
-            ->paginate(10);
-        // foreach ($products as $key => $product) {
-        //     dd($product->checkable);
-        // }
+            ->paginate(50);
 
         return view('livewire.auth.pages.products.index', compact('products'));
     }
@@ -121,42 +117,7 @@ class Index extends Component
             'style'   => 'success',
             'message' => 'Products added to the box.',
         ]);
+
+        return redirect()->route('products.box');
     }
-
-    // public function sell()
-    // {
-    //     $this->validate([
-    //         'checks'   => ['required', 'array', 'min:1'],
-    //         'checks.*' => ['required', 'integer', Rule::exists('products', 'id')],
-    //         'shop_id'  => ['required', 'integer', Rule::exists('profiles', 'id')],
-    //     ]);
-
-    //     DB::beginTransaction();
-    //     try {
-    //         $product_shops = [];
-    //         foreach ($this->checks as $key => $product_id) {
-    //             $product_shops[$key]['shop_id']    = $this->shop_id;
-    //             $product_shops[$key]['product_id'] = $product_id;
-    //             $product_shops[$key]['created_at'] = now();
-    //             $product_shops[$key]['updated_at'] = now();
-    //         }
-
-    //         ProductShop::insert($product_shops);
-
-    //         DB::commit();
-    //         $this->reset();
-    //         $this->dispatchBrowserEvent('banner-message', [
-    //             'style'   => 'success',
-    //             'message' => 'Product Sold.',
-    //         ]);
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         logger(__METHOD__, [$th]);
-    //         $this->dispatchBrowserEvent('banner-message', [
-    //             'style'   => 'danger',
-    //             'message' => 'Failed.',
-    //         ]);
-    //         throw $th;
-    //     }
-    // }
 }

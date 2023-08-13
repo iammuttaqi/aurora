@@ -49,15 +49,15 @@
 - product ownership
     - all the "manufacturer_id" references need to be replaced with "profile_id" - DONE
     - factory and seeder update - DONE
-    - relationship need to be changed too
     - create product only by manufacturer - DONE
     - product_shops entry on create product, duplicate, duplicate multiple - DONE
-    - product_shops entry on sell product
+    - product_shops entry on sell product - DONE
+    - "profile_id" update on create product and sell product - DONE
+    - manufacturer should only sell to shops - DONE
+    - shops should sell to another shop - DONE
+    - shops should sell to customers
     - setup policy for both operation
     - refactor relationship
-    - "profile_id" update on create product and sell product
-    - manufacturer should only sell to shops
-    - shops should sell to another shop and customers
     - product shouldn't be sellable if it is already sold to a customer
 
 - edit product
@@ -69,11 +69,10 @@
     - filter products
 - product already sold to a shop cannot be updated, deleted, can't be sold to another shop
 - for shop, product already sold to a customer cannot be updated, deleted, can't be sold to another customer
-- tables: products, customers, product_customer, product_shop
+- tables: customers, product_customers
 - Trade License Number in Profile
 - customers table to add customers by shop
 - shop can sell a product to customer, they can select customer, or they can instantly add one customer (unique check by phone)
-- ownership history table
 - people can scan a product to see it's ownership details and history. eg: manufacturer > shop > customer
 - reminder every 7 day to fill profile, even after registration
 - different email notification for manufacturer and shop
