@@ -59,6 +59,7 @@
     - setup policy for both operation
     - refactor relationship
     - product shouldn't be sellable if it is already sold to a customer
+    - manufacturers and shops must need to be approved for actions
 
 - database notification and email notification to shops and customers on selling
 - edit product

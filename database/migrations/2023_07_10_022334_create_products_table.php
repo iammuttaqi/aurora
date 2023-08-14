@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable();
             $table->string('serial_number')->unique();
-            $table->binary('qr_code')->nullable()->unique();
+            $table->binary('qr_code')->nullable();
             $table->integer('warranty_period')->nullable();
             $table->enum('warranty_period_unit', ['days', 'weeks', 'months', 'years'])->nullable();
 

@@ -1,10 +1,5 @@
 @push('title', 'Products')
 
-@push('cdn')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-@endpush
-
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -36,8 +31,9 @@
                 <div class="flex flex-col">
 
                     <div class="-m-1.5 overflow-x-auto">
-                        <div class="inline-block min-w-full p-1.5 align-middle">
+                        <div class="inline-block w-full p-1.5 align-middle">
                             <div class="divide-y divide-gray-200 rounded-lg border dark:divide-gray-700 dark:border-gray-700">
+
                                 <div class="flex items-center justify-between gap-10 px-4 py-3">
                                     <div class="flex items-center gap-5">
                                         <h2 class="my-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
@@ -176,16 +172,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        new TomSelect('.shop_id', {
-            placeholder: 'Select...',
-            plugins: {
-                remove_button: {
-                    title: 'Remove this item',
-                }
-            },
-        });
-    </script>
-@endpush
