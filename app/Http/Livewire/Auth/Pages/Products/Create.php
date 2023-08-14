@@ -49,6 +49,12 @@ class Create extends Component
         'warranty_period_unit' => null,
     ];
 
+    public $product_count = 1;
+
+    public $product_count_max = 50;
+
+    public $product_count_min = 1;
+
     protected $validationAttributes = [
         'form.profile_id'           => 'Manufacturer',
         'form.product_category_id'  => 'Product Category',
@@ -60,6 +66,7 @@ class Create extends Component
         'form.qr_code'              => 'QR Code',
         'form.warranty_period'      => 'Warranty Period',
         'form.warranty_period_unit' => 'Warranty Period Unit',
+        'product_count'             => 'Product Count',
     ];
 
     protected function rules()
@@ -72,6 +79,7 @@ class Create extends Component
             'form.image'                => ['nullable', 'image'],
             'form.warranty_period'      => ['required', 'integer'],
             'form.warranty_period_unit' => ['required', 'string', Rule::in(['days', 'weeks', 'months', 'years'])],
+            'product_count'             => ['required', 'integer', 'min:' . $this->product_count_min, 'max:' . $this->product_count_max],
         ];
     }
 
@@ -95,15 +103,17 @@ class Create extends Component
         try {
             if (auth()->user()->profile) {
                 $this->form['profile_id'] = auth()->user()->profile->id;
-                $product                  = Product::create($this->form);
+                foreach (range(1, $this->product_count) as $key => $range) {
+                    $product = Product::create($this->form);
 
-                ProductProfile::create([
-                    'product_id' => $product->id,
-                    'profile_id' => $product->profile_id,
-                ]);
+                    ProductProfile::create([
+                        'product_id' => $product->id,
+                        'profile_id' => $product->profile_id,
+                    ]);
+                }
 
                 DB::commit();
-                $this->reset('form');
+                $this->reset('form', 'product_count');
                 $this->dispatchBrowserEvent('banner-message', [
                     'style'   => 'success',
                     'message' => 'Product created.',

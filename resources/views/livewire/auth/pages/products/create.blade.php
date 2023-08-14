@@ -11,7 +11,11 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-                <form class="grid grid-cols-1 gap-5 p-5 md:grid-cols-12" wire:submit.prevent="store">
+                <form class="grid grid-cols-1 gap-5 p-5 md:grid-cols-12" wire:submit.prevent="store" x-data="{
+                    product_count: @entangle('product_count').defer,
+                    product_count_max: @entangle('product_count_max').defer,
+                    product_count_min: @entangle('product_count_min').defer,
+                }">
                     {{-- <div class="col-span-full flex flex-col gap-1">
                         <x-label :value="$this->label('logo')" for="name" />
                         <div class="flex items-center">
@@ -73,6 +77,22 @@
                         <x-label :value="$this->label('form.warranty_period_unit')" for="warranty_period_unit" />
                         <x-select :value="old('form.warranty_period_unit')" :options="$warranty_period_units" class="block w-full" default="Select City..." id="warranty_period_unit" key="slug" name="warranty_period_unit" required value_key="title" wire:model.defer="form.warranty_period_unit"></x-select>
                         <x-input-error for="form.warranty_period_unit" />
+                    </div>
+
+                    <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
+                        <x-label :value="$this->label('product_count')" for="product_count" />
+                        <div class="flex">
+                            <button class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-200 px-3 text-sm text-black dark:border-gray-600 dark:bg-gray-600 dark:text-white" type="button" x-on:click="product_count > product_count_min ? product_count-- : null">
+                                <i class="bi bi-dash-circle-fill mr-2 text-lg text-purple-500 dark:text-purple-400"></i>
+                                Decrease
+                            </button>
+                            <x-input :required="$this->required('product_count')" :placeholder="$this->label('product_count')" class="block w-full rounded-none" id="product_count" name="product_count" type="number" x-bind:max="product_count_max" x-bind:min="product_count_min" x-model="product_count" />
+                            <button class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-200 px-3 text-sm text-black dark:border-gray-600 dark:bg-gray-600 dark:text-white" type="button" x-on:click="product_count < product_count_max ? product_count++ : null">
+                                <i class="bi bi-plus-circle-fill mr-2 text-lg text-purple-500 dark:text-purple-400"></i>
+                                Increase
+                            </button>
+                        </div>
+                        <x-input-error for="product_count" />
                     </div>
 
                     <div class="col-span-full block">

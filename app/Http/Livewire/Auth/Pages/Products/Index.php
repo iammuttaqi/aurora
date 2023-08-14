@@ -15,7 +15,7 @@ class Index extends Component
         $products = Product::query()
             ->where('profile_id', auth()->user()->profile->id)
             ->latest()
-            ->paginate(50);
+            ->paginate(100);
 
         return view('livewire.auth.pages.products.index', compact('products'));
     }
