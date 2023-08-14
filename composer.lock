@@ -7450,16 +7450,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.13.0",
+            "version": "v2.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "47f2ae32c14cd3f15520f5a12a3c36fdec25a2ee"
+                "reference": "df2212055b8a11c881ff2f59a8976c51d03e05ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/47f2ae32c14cd3f15520f5a12a3c36fdec25a2ee",
-                "reference": "47f2ae32c14cd3f15520f5a12a3c36fdec25a2ee",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/df2212055b8a11c881ff2f59a8976c51d03e05ed",
+                "reference": "df2212055b8a11c881ff2f59a8976c51d03e05ed",
                 "shasum": ""
             },
             "require": {
@@ -7536,7 +7536,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.13.0"
+                "source": "https://github.com/pestphp/pest/tree/v2.14.0"
             },
             "funding": [
                 {
@@ -7548,7 +7548,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-09T11:14:39+00:00"
+            "time": "2023-08-14T08:41:14+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -8668,16 +8668,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "5.0.0",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "72f01e6586e0caf6af81297897bd112eb7e9627c"
+                "reference": "2db5010a484d53ebf536087a70b4a5423c102372"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/72f01e6586e0caf6af81297897bd112eb7e9627c",
-                "reference": "72f01e6586e0caf6af81297897bd112eb7e9627c",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2db5010a484d53ebf536087a70b4a5423c102372",
+                "reference": "2db5010a484d53ebf536087a70b4a5423c102372",
                 "shasum": ""
             },
             "require": {
@@ -8688,7 +8688,7 @@
                 "sebastian/exporter": "^5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.0"
+                "phpunit/phpunit": "^10.3"
             },
             "type": "library",
             "extra": {
@@ -8732,7 +8732,8 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/5.0.0"
+                "security": "https://github.com/sebastianbergmann/comparator/security/policy",
+                "source": "https://github.com/sebastianbergmann/comparator/tree/5.0.1"
             },
             "funding": [
                 {
@@ -8740,7 +8741,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T07:07:16+00:00"
+            "time": "2023-08-14T13:18:12+00:00"
         },
         {
             "name": "sebastian/complexity",
