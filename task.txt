@@ -55,12 +55,13 @@
     - "profile_id" update on create product and sell product - DONE
     - manufacturer should only sell to shops - DONE
     - shops should sell to another shop - DONE
-    - shops should sell to customers
+    - only shops should sell to customers
     - setup policy for both operation
     - refactor relationship
     - product shouldn't be sellable if it is already sold to a customer
     - manufacturers and shops must need to be approved for actions
 
+- white mode content fix
 - database notification and email notification to shops and customers on selling
 - edit product
     - single product
