@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Auth\Pages\Products;
 use App\Models\Product;
 use App\Models\ProductProfile;
 use App\Models\Profile;
+use App\Notifications\User\BuyerProductSoldNotification;
+use App\Notifications\User\SellerProductSoldNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -30,6 +32,14 @@ class Box extends Component
         return view('livewire.auth.pages.products.box', compact('products', 'shops'));
     }
 
+    public function remove($product_id)
+    {
+        $product_ids = session('product_ids');
+        $new_product_ids = in_array($product_id, $product_ids) ? array_diff($product_ids, [$product_id]) : $product_ids;
+
+        session()->put('product_ids', $new_product_ids);
+    }
+
     public $shop_id = null;
 
     public function sell()
@@ -41,7 +51,9 @@ class Box extends Component
         DB::beginTransaction();
         try {
             $product_ids = session('product_ids');
-            if (is_array($product_ids) && count($product_ids)) {
+            $profile = Profile::where('id', $this->shop_id)->with('user')->first();
+
+            if ($profile && is_array($product_ids) && count($product_ids)) {
                 $product_shops = [];
                 foreach ($product_ids as $key => $product_id) {
                     $product_shops[$key]['product_id'] = $product_id;
@@ -55,9 +67,13 @@ class Box extends Component
                 ]);
                 ProductProfile::insert($product_shops);
 
+                $profile->user->notify(new BuyerProductSoldNotification(request()->user()->profile));
+                request()->user()->notify(new SellerProductSoldNotification($profile));
+
                 DB::commit();
                 $this->reset();
                 session()->forget('product_ids');
+                $this->emit('notificationsUpdated');
                 $this->dispatchBrowserEvent('banner-message', [
                     'style'   => 'success',
                     'message' => 'Product Sold to the Selected Shop.',

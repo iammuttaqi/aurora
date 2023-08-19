@@ -96,12 +96,13 @@
                     </div>
 
                     <div class="col-span-full block">
-                        <x-button wire:loading.attr="disabled" wire:target="store">
+                        <x-button wire:loading.class="!bg-gray-400" wire:target="store">
                             <div aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-gray-800" role="status" wire:loading wire:target="store">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             {{ __('Save') }}
                         </x-button>
+                        <span class="ml-2 text-sm text-yellow-500" wire:loading wire:target="store">Please wait. This action may take a few minutes.</span>
                     </div>
                 </form>
 

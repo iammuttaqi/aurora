@@ -45,8 +45,8 @@ class Create extends Component
         'image'                => null,
         'serial_number'        => null,
         'qr_code'              => null,
-        'warranty_period'      => null,
-        'warranty_period_unit' => null,
+        'warranty_period'      => 1,
+        'warranty_period_unit' => 'years',
     ];
 
     public $product_count = 1;

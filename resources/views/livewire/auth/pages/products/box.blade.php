@@ -30,6 +30,9 @@
                                                         <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $product->serial_number }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
+                                                        <td>
+                                                            <button title="Remove" type="button" wire:loading.attr="disabled" wire:target="addToBox" x-on:click="confirm('Are you sure you want to remove this product from product box?') == true ? $wire.remove(@js($product->id)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
+                                                        </td>
                                                     </tr>
                                                 @empty
                                                     <tr>
@@ -43,12 +46,13 @@
                             </div>
                         </div>
                     </div>
+
                     @if (count($products))
                         <div class="col-span-1 rounded bg-gray-700/50 p-5">
                             <h2 class="mb-5 text-xl text-white">Select Shop to Sell</h2>
                             <form wire:submit.prevent="sell">
                                 <div class="grid gap-y-4">
-                                    <div class="flex flex-col gap-1">
+                                    <div class="flex flex-col gap-1" wire:ignore>
                                         <select class="shop_id" name="shop_id" required wire:model.defer="shop_id">
                                             <option value="">Select</option>
                                             @foreach ($shops as $shop)
@@ -58,7 +62,7 @@
                                         <x-input-error for="shop_id" />
                                     </div>
 
-                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" type="submit">
+                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" type="submit" wire:loading.class="!bg-blue-400" wire:target="sell">
                                         <span aria-label="loading" class="inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white" role="status" wire:loading wire:target="sell"></span>
                                         Sell to the Selected Shop
                                     </button>
