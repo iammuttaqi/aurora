@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->integer('age')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->foreignIdFor(Country::class)
                 ->constrained()

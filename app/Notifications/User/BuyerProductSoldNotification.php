@@ -3,7 +3,6 @@
 namespace App\Notifications\User;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -15,6 +14,7 @@ class BuyerProductSoldNotification extends Notification
      * Create a new notification instance.
      */
     public $profile;
+
     public function __construct($profile)
     {
         $this->profile = $profile;

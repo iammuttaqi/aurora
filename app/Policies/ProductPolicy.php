@@ -72,4 +72,9 @@ class ProductPolicy
     {
         return $user->role->type == 'user' && is_array(session('product_ids')) && count(session('product_ids'));
     }
+
+    public function canSellToBoth(User $user): bool
+    {
+        return $user->role->slug == 'shop';
+    }
 }

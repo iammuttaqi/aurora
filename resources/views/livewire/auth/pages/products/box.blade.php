@@ -18,10 +18,18 @@
 
                 <div class="mb-48 grid grid-cols-3 gap-5 p-5">
                     <div class="col-span-2">
-                        <h2 class="mb-5 text-xl text-white">List of Products to Sell</h2>
+                        <div class="mb-5 flex justify-between">
+                            <h2 class="text-xl text-gray-900 dark:text-white">List of Products to Sell</h2>
+                            @if (count($products))
+                                <button class="relative !block items-center justify-center gap-2 rounded-md border border-none border-transparent bg-red-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:text-white hover:dark:text-white dark:focus:ring-offset-gray-800" wire:click="removeAll" wire:loading.attr="disabled" wire:loading.class="!bg-red-400" wire:target="removeAll">
+                                    <i class="bi bi-trash-fill text-base"></i>
+                                    <span>Remove All</span>
+                                </button>
+                            @endif
+                        </div>
                         <div class="flex flex-col">
                             <div class="-m-1.5 overflow-x-auto">
-                                <div class="inline-block min-w-full p-1.5 align-middle">
+                                <div class="inline-block min-w-full align-middle">
                                     <div class="overflow-hidden">
                                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -48,26 +56,32 @@
                     </div>
 
                     @if (count($products))
-                        <div class="col-span-1 rounded bg-gray-700/50 p-5">
-                            <h2 class="mb-5 text-xl text-white">Select Shop to Sell</h2>
-                            <form wire:submit.prevent="sell">
-                                <div class="grid gap-y-4">
-                                    <div class="flex flex-col gap-1" wire:ignore>
-                                        <select class="shop_id" name="shop_id" required wire:model.defer="shop_id">
-                                            <option value="">Select</option>
-                                            @foreach ($shops as $shop)
-                                                <option value="{{ $shop->id }}">{{ $shop->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <x-input-error for="shop_id" />
-                                    </div>
-
-                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" type="submit" wire:loading.class="!bg-blue-400" wire:target="sell">
-                                        <span aria-label="loading" class="inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white" role="status" wire:loading wire:target="sell"></span>
-                                        Sell to the Selected Shop
-                                    </button>
+                        <div class="col-span-1 flex flex-col gap-5" x-data="{
+                            buyer_types: @js($buyer_types),
+                            buyer_type_default: @js($buyer_type_default),
+                        }">
+                            @can('canSellToBoth', \App\Models\Product::class)
+                                <div class="grid gap-2 sm:grid-cols-2">
+                                    <template :key="buyer_type.title" x-for="buyer_type in buyer_types">
+                                        <label class="flex w-full cursor-pointer rounded-md border border-gray-200 bg-white p-3 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400" x-bind:for="'buyer-type-' + buyer_type.slug">
+                                            <input class="pointer-events-none mt-0.5 shrink-0 rounded-full border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" name="buyer_type" type="radio" x-bind:value="buyer_type.slug" x-bind:id="'buyer-type-' + buyer_type.slug" x-bind:checked="buyer_type.slug == 'customer'" x-model="buyer_type_default">
+                                            <span class="ml-3 text-sm text-gray-500 dark:text-gray-400" x-text="buyer_type.title"></span>
+                                        </label>
+                                    </template>
                                 </div>
-                            </form>
+                            @endcan
+
+                            @can('canSellToBoth', \App\Models\Product::class)
+                                <div class="rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'customer'" x-transition>
+                                    <h2 class="mb-5 text-xl text-gray-900 dark:text-white">Add Customer to Sell</h2>
+                                    <livewire:auth.components.customer-form />
+                                </div>
+                            @endcan
+
+                            <div class="rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'shop'" x-transition>
+                                <h2 class="mb-5 text-xl text-gray-900 dark:text-white">Select Shop to Sell</h2>
+                                <livewire:auth.components.shop-select-form />
+                            </div>
                         </div>
                     @endif
                 </div>

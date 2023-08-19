@@ -3,21 +3,21 @@
 namespace App\Notifications\User;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SellerProductSoldNotification extends Notification
+class ShopProductSoldNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public $profile;
-
-    public function __construct($profile)
+    public $customer;
+    public function __construct($customer)
     {
-        $this->profile = $profile;
+        $this->customer = $customer;
     }
 
     /**
@@ -48,6 +48,6 @@ class SellerProductSoldNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return $this->profile->toArray();
+        return $this->customer->toArray();
     }
 }
