@@ -3,13 +3,7 @@
 namespace App\Http\Livewire\Auth\Pages\Products;
 
 use App\Models\Product;
-use App\Models\ProductProfile;
-use App\Models\Profile;
-use App\Notifications\User\BuyerProductSoldNotification;
-use App\Notifications\User\SellerProductSoldNotification;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Box extends Component
@@ -22,6 +16,7 @@ class Box extends Component
 
         $products = Product::where('profile_id', auth()->user()->profile->id)
             ->whereIn('id', $product_ids ?? [])
+            ->doesnthave('product_customers')
             ->get();
         $buyer_types = [
             ['title' => 'Customer', 'slug' => 'customer'],

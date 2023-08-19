@@ -14,6 +14,7 @@ class Index extends Component
     {
         $products = Product::query()
             ->where('profile_id', auth()->user()->profile->id)
+            ->doesnthave('product_customers')
             ->latest()
             ->paginate(100);
 
@@ -113,6 +114,7 @@ class Index extends Component
         session()->put('product_ids', $product_ids);
 
         $this->reset();
+        $this->emit('sessionUpdated');
         $this->dispatchBrowserEvent('banner-message', [
             'style'   => 'success',
             'message' => 'Products added to the box.',

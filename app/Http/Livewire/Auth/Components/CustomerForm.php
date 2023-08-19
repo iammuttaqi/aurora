@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Auth\Components;
 use App\Models\Country;
 use App\Models\Customer;
 use App\Models\ProductCustomer;
-use App\Models\Profile;
 use App\Notifications\User\ShopProductSoldNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -33,7 +32,7 @@ class CustomerForm extends Component
 
     public function render()
     {
-        $genders  = [
+        $genders = [
             ['id' => 1, 'title' => 'Male'],
             ['id' => 2, 'title' => 'Female'],
             ['id' => 3, 'title' => 'Other'],
@@ -90,16 +89,19 @@ class CustomerForm extends Component
         DB::beginTransaction();
         try {
             $product_ids = session('product_ids');
-
             if (is_array($product_ids) && count($product_ids)) {
                 $customer = Customer::create($this->form);
 
                 $product_customers = [];
                 foreach ($product_ids as $key => $product_id) {
-                    $product_customers[$key]['product_id'] = $product_id;
-                    $product_customers[$key]['customer_id'] = $customer->id;
-                    $product_customers[$key]['created_at'] = now();
-                    $product_customers[$key]['updated_at'] = now();
+                    $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
+
+                    if (!$product_customer_exists) {
+                        $product_customers[$key]['product_id']  = $product_id;
+                        $product_customers[$key]['customer_id'] = $customer->id;
+                        $product_customers[$key]['created_at']  = now();
+                        $product_customers[$key]['updated_at']  = now();
+                    }
                 }
 
                 ProductCustomer::insert($product_customers);

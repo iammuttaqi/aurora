@@ -24,21 +24,6 @@ class Product extends Model
         );
     }
 
-    // protected function checkable(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn () => auth()->user()->role->slug == 'manufacturer' && $this->product_shop ? false : true,
-    //     );
-    // }
-
-    // private function isOwner()
-    // {
-    //     $shop                = $this->product_shops->where('shop_id', auth()->user()->profile->id)->first();
-    //     $latest_product_shop = $this->product_shops()->latest()->first();
-
-    //     return $shop->created_at == $latest_product_shop->created_at;
-    // }
-
     protected function image(): Attribute
     {
         return Attribute::make(
@@ -108,18 +93,8 @@ class Product extends Model
         return $this->hasMany(ProductProfile::class);
     }
 
-    // public function product_shop()
-    // {
-    //     return $this->hasOne(ProductShop::class);
-    // }
-
-    // public function product_shops()
-    // {
-    //     return $this->hasMany(ProductShop::class);
-    // }
-
-    // public function shops()
-    // {
-    //     return $this->belongsToMany(Profile::class, 'product_shops', 'product_id', 'shop_id')->withTimestamps();
-    // }
+    public function product_customers()
+    {
+        return $this->hasMany(ProductCustomer::class);
+    }
 }

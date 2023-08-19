@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Auth\Components;
 
 use App\Models\Product;
+use App\Models\ProductCustomer;
 use App\Models\ProductProfile;
 use App\Models\Profile;
 use App\Notifications\User\BuyerProductSoldNotification;
@@ -43,10 +44,14 @@ class ShopSelectForm extends Component
             if ($profile && is_array($product_ids) && count($product_ids)) {
                 $product_shops = [];
                 foreach ($product_ids as $key => $product_id) {
-                    $product_shops[$key]['product_id'] = $product_id;
-                    $product_shops[$key]['profile_id'] = $this->shop_id;
-                    $product_shops[$key]['created_at'] = now();
-                    $product_shops[$key]['updated_at'] = now();
+                    $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
+
+                    if (!$product_customer_exists) {
+                        $product_shops[$key]['product_id'] = $product_id;
+                        $product_shops[$key]['profile_id'] = $this->shop_id;
+                        $product_shops[$key]['created_at'] = now();
+                        $product_shops[$key]['updated_at'] = now();
+                    }
                 }
 
                 Product::whereIn('id', $product_ids)->update([
