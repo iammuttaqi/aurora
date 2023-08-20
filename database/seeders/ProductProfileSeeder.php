@@ -16,7 +16,7 @@ class ProductProfileSeeder extends Seeder
     {
         foreach (range(1, 1000) as $key => $range) {
             $profile_products[] = [
-                'product_id' => fake()->randomElement(Product::whereBetween('id', [1, 200])->pluck('id')->toArray()),
+                'product_id' => fake()->randomElement(Product::pluck('id')->toArray()),
                 'profile_id' => fake()->randomElement(
                     Profile::whereHas('user.role', function ($query) {
                         $query->where('slug', 'manufacturer');
