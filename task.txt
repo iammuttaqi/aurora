@@ -66,6 +66,9 @@
 
 - both manufacturers and shops should see sold products
 - both manufacturers and shops should see timeline of a sold product
+- verify product page, warranty date and till date
+- qr code should be downloadable from qr code page
+- seeder fix
 - company verify page design change. list some basic information of the company
 - company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
     - VerifyIdentity = where('approved', true)

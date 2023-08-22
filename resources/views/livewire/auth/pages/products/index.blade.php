@@ -2,9 +2,14 @@
 
 <div>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Products') }}
-        </h2>
+        <div class="flex items-center justify-between">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                {{ __('Products') }}
+            </h2>
+            <a class="gap-2 rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.sold') }}">
+                Sold Products
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-12" class="relative z-50 h-auto w-auto" x-data="{
@@ -56,7 +61,7 @@
                                     @endcan
                                 </div>
 
-                                <div class="overflow-hidden">
+                                <div class="overflow-x-scroll">
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                             <tr>

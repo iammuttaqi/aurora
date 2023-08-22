@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Pages\Products\Create;
 use App\Http\Livewire\Auth\Pages\Products\Index as ProductsIndex;
 use App\Http\Livewire\Auth\Pages\Products\QrCode;
 use App\Http\Livewire\Auth\Pages\Products\Show;
+use App\Http\Livewire\Auth\Pages\Products\Sold as ProductsSold;
 use App\Http\Livewire\Auth\Pages\Profile\Index as ProfileIndex;
 use App\Http\Livewire\Auth\Pages\QrCode\Index as QrCodeIndex;
 use App\Http\Livewire\Frontend\Pages\Index;
@@ -73,6 +74,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('show/{serial_number}', Show::class)->name('show');
         Route::get('qr-code/{serial_number}', QrCode::class)->name('qr_code');
         Route::get('box', ProductsBox::class)->name('box');
+
+        Route::get('sold', ProductsSold::class)->name('sold');
     });
 
     // customers route for shop
