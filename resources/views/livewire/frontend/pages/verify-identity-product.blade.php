@@ -1,4 +1,4 @@
-@push('title', 'Verify Product - ' . $product->title)
+@push('title', 'Verify Product - ' . $product->title . ' - ' . $product->serial_number)
 
 <div class="bg-gray-100 pt-4 dark:bg-gray-900">
     <div class="flex min-h-screen flex-col items-center pt-6 sm:pt-0">
@@ -10,6 +10,7 @@
             <div class="col-span-3 flex items-center justify-center lg:col-span-1 lg:col-start-2">
                 <div class="border-1 mt-10 rounded-md border border-gray-500 bg-white px-5 py-5 dark:bg-inherit md:px-10 md:py-10">
                     <h1 class="text-2xl md:text-3xl">Timeline Of {{ $product->title }}</h1>
+                    <span class="text-gray-400">#{{ $product->serial_number }}</span>
                     <ol class="relative mt-10 border-l border-gray-300 dark:border-gray-700">
                         @foreach ($product->product_profiles as $product_profile)
                             <li class="mb-10 ml-6">
@@ -37,8 +38,11 @@
                                 </span>
                                 <h3 class="mb-1 flex items-center text-lg font-semibold text-gray-900 dark:text-white">{{ $product_customer->customer->name }} <span class="ml-3 mr-2 rounded bg-orange-500 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-orange-500 dark:text-white">Customer</span></h3>
                                 <time class="my-2 block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $product_customer->created_at->format('F d, Y - h:i A') }}</time>
+
+                                <span class="{{ $this->warrantyExpired($this->warrantyTill($product_customer->created_at, $product->warranty_period, $product->warranty_period_unit)) ? 'bg-red-500' : 'bg-purple-500' }} inline-block truncate whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium text-white">Warranty Till: <strong>{{ $this->warrantyTill($product_customer->created_at, $product->warranty_period, $product->warranty_period_unit)->format('d F, Y') }}</strong></span>
                             </li>
                         @endforeach
+
                     </ol>
                 </div>
             </div>
