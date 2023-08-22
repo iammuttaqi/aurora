@@ -14,7 +14,6 @@ use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentityProduct;
 use App\Http\Middleware\SetLayoutMiddleware;
-use App\Models\Product;
 use App\Models\Profile as ModelsProfile;
 use Illuminate\Support\Facades\Route;
 
