@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Http\Livewire\Auth\Pages\Profile as PagesProfile;
+use App\Http\Livewire\Auth\Pages\Profile\Index;
 use App\Models\Profile;
 use App\Models\Role;
 use App\Models\User;
@@ -67,7 +67,7 @@ class ProfilePolicy
 
     public function approvable(User $user, Profile $profile): bool
     {
-        $profile_component = new PagesProfile;
+        $profile_component = new Index;
         $has_empty_values  = collect($profile_component->form)
             ->keys()
             ->filter(function ($key) use ($profile_component) {

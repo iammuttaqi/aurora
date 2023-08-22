@@ -48,7 +48,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::middleware('signed')->group(function () {
         Route::get('verify-identity/{username}', VerifyIdentity::class)->name('verify_identity');
         // verify product url
-        Route::get('verify-product/{slug}', VerifyIdentityProduct::class)->name('verify_identity_product');
+        Route::get('verify-product/{serial_number}', VerifyIdentityProduct::class)->name('verify_identity_product');
     });
 });
 
