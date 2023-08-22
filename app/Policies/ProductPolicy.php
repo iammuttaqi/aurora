@@ -44,7 +44,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        //
+        return $user->role->slug == 'manufacturer' && $product->profile_id == $user->profile->id;
     }
 
     /**
@@ -61,6 +61,16 @@ class ProductPolicy
     public function forceDelete(User $user, Product $product): bool
     {
         //
+    }
+
+    public function duplicate(User $user, Product $product): bool
+    {
+        return $user->role->slug == 'manufacturer' && $product->profile_id == $user->profile->id;
+    }
+
+    public function checkable(User $user, Product $product): bool
+    {
+        return !session('product_ids') || (is_array(session('product_ids')) && !in_array($product->id, session('product_ids')));
     }
 
     public function sell(User $user): bool

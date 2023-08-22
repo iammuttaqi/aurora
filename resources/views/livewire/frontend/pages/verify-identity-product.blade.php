@@ -6,7 +6,7 @@
             <x-authentication-card-logo />
         </div>
 
-        <div class="border-1 mt-10 rounded-md border border-gray-500 bg-white px-5 py-5 md:px-20 md:py-10">
+        <div class="border-1 mt-10 rounded-md border border-gray-500 bg-white px-5 py-5 dark:bg-inherit md:px-20 md:py-10">
             <h1 class="text-2xl md:text-3xl">Timeline Of {{ $product->title }}</h1>
             <ol class="relative mt-10 border-l border-gray-300 dark:border-gray-700">
                 @foreach ($product->product_profiles as $product_profile)
@@ -15,7 +15,7 @@
                             <img class="w-6" src="{{ asset($product_profile->profile->logo) }}">
                         </span>
                         <h3 class="mb-1 flex items-center text-lg font-semibold text-gray-900 dark:text-white">
-                            {{ $product_profile->profile->name }}
+                            <a href="{{ URL::signedRoute('verify_identity', $product_profile->profile->username) }}">{{ $product_profile->profile->name }}</a>
                             @if ($product_profile->profile->user->role_id == 3)
                                 <span class="ml-3 mr-2 rounded bg-blue-500 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-blue-500 dark:text-white">Manufacturer</span>
                             @else

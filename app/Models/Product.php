@@ -17,13 +17,6 @@ class Product extends Model
 
     public $default_image = 'assets/no-image.png';
 
-    protected function checkable(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => !session('product_ids') || (is_array(session('product_ids')) && !in_array($this->id, session('product_ids'))),
-        );
-    }
-
     protected function image(): Attribute
     {
         return Attribute::make(

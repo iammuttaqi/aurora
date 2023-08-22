@@ -62,10 +62,13 @@
     - refactor relationship - DONE
     - product shouldn't be sellable if it is already sold to a customer - DONE
     - manufacturers and shops must need to be approved for actions - DONE
-
 - people can scan a product to see it's ownership details, history, chain of ownership. eg: manufacturer > shop 1 > shop 2 > shop 2 > customer - DONE
+
 - both manufacturers and shops should see sold products
 - both manufacturers and shops should see timeline of a sold product
+- company verify page design change. list some basic information of the company
+- company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
+    - VerifyIdentity = where('approved', true)
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
 - product image upload
@@ -77,4 +80,6 @@
 - reminder every 7 day to fill profile, even after registration
 - different email notification for manufacturer and shop
 - admin editors page
+- dashboard page design
+- admin login and dashboard works
 - search product by serial number to verify
