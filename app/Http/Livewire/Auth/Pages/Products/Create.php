@@ -114,20 +114,22 @@ class Create extends Component
 
                 DB::commit();
                 $this->reset('form', 'product_count');
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'success',
-                    'message' => 'Product created.',
-                ]);
+                $this->dispatch(
+                    'banner-message',
+                    style: 'success',
+                    message: 'Product created.',
+                );
             } else {
                 abort(404);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }

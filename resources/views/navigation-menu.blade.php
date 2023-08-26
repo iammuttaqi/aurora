@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" wire:navigate>
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -99,7 +99,7 @@
                         <livewire:auth.components.notifications-count />
                     </x-nav-link>
 
-                    <x-nav-link class="relative cursor-pointer border-none" x-on:click.prevent="dark = !dark">
+                    <x-nav-link class="relative cursor-pointer border-none" x-cloak x-on:click.prevent="dark = !dark">
                         <i class="bi bi-brightness-high text-xl" x-show="dark"></i>
                         <i class="bi bi-moon text-xl" x-show="!dark"></i>
                     </x-nav-link>
@@ -154,7 +154,7 @@
             </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center sm:hidden" x-cloak>
                 <button class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400" type="button" x-on:click="dark = !dark">
                     <i class="bi bi-brightness-high text-xl" x-show="dark"></i>
                     <i class="bi bi-moon text-xl" x-show="!dark"></i>
@@ -167,7 +167,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div class="block" x-collapse x-show="open" x-transition.duration.500ms>
+    <div class="block" x-cloak x-collapse x-show="open" x-transition.duration.500ms>
         <div class="space-y-1 pb-3 pt-2">
             <x-responsive-nav-link :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">
                 {{ __('Dashboard') }}

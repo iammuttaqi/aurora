@@ -1,10 +1,5 @@
 @push('title', 'Product Box')
 
-@push('cdn')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-@endpush
-
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -35,7 +30,7 @@
                                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                                 @forelse ($products as $product)
                                                     <tr>
-                                                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
+                                                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{!! $product->title_wrapped !!}</td>
                                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $product->serial_number }}</td>
                                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
                                                         <td>
@@ -72,14 +67,14 @@
                             @endcan
 
                             @can('canSellToBoth', \App\Models\Product::class)
-                                <div class="rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'customer'" x-transition>
-                                    <h2 class="mb-5 text-xl text-gray-900 dark:text-white">Add Customer to Sell</h2>
+                                <div class="flex flex-col gap-3 rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'customer'" x-transition>
+                                    <h2 class="text-xl text-gray-900 dark:text-white">Add Customer to Sell</h2>
                                     <livewire:auth.components.customer-form />
                                 </div>
                             @endcan
 
-                            <div class="rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'shop'" x-transition>
-                                <h2 class="mb-5 text-xl text-gray-900 dark:text-white">Select Shop to Sell</h2>
+                            <div class="flex flex-col gap-3 rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'shop'" x-transition>
+                                <h2 class="text-xl text-gray-900 dark:text-white">Select Shop to Sell</h2>
                                 <livewire:auth.components.shop-select-form />
                             </div>
                         </div>

@@ -1,9 +1,10 @@
 @push('title', 'Sold Products')
 
+
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Products') }}
+            {{ __('Sold Products') }}
         </h2>
     </x-slot>
 
@@ -23,7 +24,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="overflow-x-scroll">
+                                <div>
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                             <tr>
@@ -54,7 +55,7 @@
                                                             <i class="bi bi-calendar-week-fill rounded bg-cyan-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-cyan-600"></i>
                                                         </a>
                                                     </td>
-                                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
+                                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{!! $product->title_wrapped !!}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
                                                         <img alt="Product Image" class="w-10" src="{{ $product->image }}">

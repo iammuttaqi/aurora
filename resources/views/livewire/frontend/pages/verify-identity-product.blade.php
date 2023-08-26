@@ -15,7 +15,7 @@
                         @foreach ($product->product_profiles as $product_profile)
                             <li class="mb-10 ml-6">
                                 <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-1 ring-white dark:bg-blue-900 dark:ring-gray-900">
-                                    <img class="w-6" src="{{ asset($product_profile->profile->logo) }}">
+                                    <img class="w-6 rounded-full" src="{{ asset($product_profile->profile->logo) }}">
                                 </span>
                                 <h3 class="mb-1 flex items-center text-lg font-semibold text-gray-900 dark:text-white">
                                     <a href="{{ URL::signedRoute('verify_identity', $product_profile->profile->username) }}">{{ $product_profile->profile->name }}</a>

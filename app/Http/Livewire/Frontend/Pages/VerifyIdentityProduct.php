@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Frontend\Pages;
 
 use App\Models\Product;
-use Carbon\Carbon;
 use Livewire\Component;
 
 class VerifyIdentityProduct extends Component
@@ -30,11 +29,11 @@ class VerifyIdentityProduct extends Component
 
         if ($warranty_period_unit == 'days') {
             return $date_from->addDays($warranty_period);
-        } else if ($warranty_period_unit == 'weeks') {
+        } elseif ($warranty_period_unit == 'weeks') {
             return $date_from->addWeeks($warranty_period);
-        } else if ($warranty_period_unit == 'months') {
+        } elseif ($warranty_period_unit == 'months') {
             return $date_from->addMonths($warranty_period);
-        } else if ($warranty_period_unit == 'years') {
+        } elseif ($warranty_period_unit == 'years') {
             return $date_from->addYears($warranty_period);
         }
 

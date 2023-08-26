@@ -65,26 +65,29 @@ class ShopSelectForm extends Component
                 DB::commit();
                 $this->reset();
                 session()->forget('product_ids');
-                $this->emit('notificationsUpdated');
-                $this->emit('sessionUpdated');
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'success',
-                    'message' => 'Product Sold to the Selected Shop.',
-                ]);
+                $this->dispatch('notificationsUpdated');
+                $this->dispatch('sessionUpdated');
+                $this->dispatch(
+                    'banner-message',
+                    style: 'success',
+                    message: 'Product Sold to the Selected Shop.',
+                );
             } else {
                 DB::rollBack();
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'danger',
-                    'message' => 'No products on the box.',
-                ]);
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'No products on the box.',
+                );
             }
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }

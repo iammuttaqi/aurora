@@ -18,7 +18,7 @@
                                     <div class="relative max-w-xs">
                                         <form action="">
                                             <label class="sr-only" for="hs-table-with-pagination-search">Search</label>
-                                            <input class="block w-full rounded-md border-gray-200 p-3 pl-10 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400" id="hs-table-with-pagination-search" name="search" placeholder="Search for partners" type="search" wire:model.defer="search">
+                                            <input class="block w-full rounded-md border-gray-200 p-3 pl-10 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-900 dark:text-gray-400" id="hs-table-with-pagination-search" name="search" placeholder="Search for partners" type="search" wire:model="search">
                                             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                                                 <i class="bi bi-search text-base text-gray-400"></i>
                                             </div>

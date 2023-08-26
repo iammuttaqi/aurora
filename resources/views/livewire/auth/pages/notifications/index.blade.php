@@ -13,8 +13,8 @@
 
                 <div class="flex flex-col" x-data="{
                     notifications: @js($notifications),
-                    check_all: @entangle('check_all').defer,
-                    checks: @entangle('checks').defer,
+                    check_all: @entangle('check_all'),
+                    checks: @entangle('checks'),
                 }" x-init="$watch('check_all', value => checks = value ? notifications.data.map(notification => notification.id) : [])">
                     <div class="-m-1.5 overflow-x-auto">
                         <div class="inline-block min-w-full p-1.5 align-middle">

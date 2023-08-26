@@ -11,10 +11,10 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-                <form class="grid grid-cols-1 gap-5 p-5 md:grid-cols-12" wire:submit.prevent="store" x-data="{
-                    product_count: @entangle('product_count').defer,
-                    product_count_max: @entangle('product_count_max').defer,
-                    product_count_min: @entangle('product_count_min').defer,
+                <form class="grid grid-cols-1 gap-5 p-5 md:grid-cols-12" wire:submit="store" x-data="{
+                    product_count: @entangle('product_count'),
+                    product_count_max: @entangle('product_count_max'),
+                    product_count_min: @entangle('product_count_min'),
                 }">
                     {{-- <div class="col-span-full flex flex-col gap-1">
                         <x-label :value="$this->label('logo')" for="name" />
@@ -37,7 +37,7 @@
                                             800x800px)</p>
                                     </div>
                                 @endif
-                                <input class="hidden" id="dropzone-file" type="file" wire:model="logo" />
+                                <input class="hidden" id="dropzone-file" type="file" wire:model.live="logo" />
                             </label>
                         </div>
                         <x-input-error for="logo" />
@@ -45,37 +45,37 @@
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-4 lg:col-span-4">
                         <x-label :value="$this->label('form.title')" for="title" />
-                        <x-input :required="$this->required('form.title')" :placeholder="$this->label('form.title')" autofocus class="block w-full" id="title" name="title" type="text" wire:model.defer="form.title" />
+                        <x-input :required="$this->required('form.title')" :placeholder="$this->label('form.title')" autofocus class="block w-full" id="title" name="title" type="text" wire:model="form.title" />
                         <x-input-error for="form.title" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-4 lg:col-span-4">
                         <x-label :value="$this->label('form.price')" for="price" />
-                        <x-input :required="$this->required('form.price')" :placeholder="$this->label('form.price')" class="block w-full" id="price" name="price" type="text" wire:model.defer="form.price" />
+                        <x-input :required="$this->required('form.price')" :placeholder="$this->label('form.price')" class="block w-full" id="price" name="price" type="text" wire:model="form.price" />
                         <x-input-error for="form.price" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-4 lg:col-span-4">
                         <x-label :value="$this->label('form.product_category_id')" for="product_category_id" />
-                        <x-select :value="old('form.product_category_id')" :options="$product_categories" class="block w-full" default="Select City..." id="product_category_id" key="id" name="product_category_id" required value_key="title" wire:model.defer="form.product_category_id"></x-select>
+                        <x-select :value="old('form.product_category_id')" :options="$product_categories" class="block w-full" default="Select City..." id="product_category_id" key="id" name="product_category_id" required value_key="title" wire:model="form.product_category_id"></x-select>
                         <x-input-error for="form.product_category_id" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-12">
                         <x-label :value="$this->label('form.description')" for="description" />
-                        <x-textarea :required="$this->required('form.description')" :placeholder="$this->label('form.description')" class="block w-full" id="description" name="description" rows="5" type="text" wire:model.defer="form.description" />
+                        <x-textarea :required="$this->required('form.description')" :placeholder="$this->label('form.description')" class="block w-full" id="description" name="description" rows="5" type="text" wire:model="form.description" />
                         <x-input-error for="form.description" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.warranty_period')" for="warranty_period" />
-                        <x-input :required="$this->required('form.warranty_period')" :placeholder="$this->label('form.warranty_period')" class="block w-full" id="warranty_period" name="warranty_period" type="number" wire:model.defer="form.warranty_period" />
+                        <x-input :required="$this->required('form.warranty_period')" :placeholder="$this->label('form.warranty_period')" class="block w-full" id="warranty_period" name="warranty_period" type="number" wire:model="form.warranty_period" />
                         <x-input-error for="form.warranty_period" />
                     </div>
 
                     <div class="col-span-full flex flex-col gap-1 sm:col-span-6 lg:col-span-6">
                         <x-label :value="$this->label('form.warranty_period_unit')" for="warranty_period_unit" />
-                        <x-select :value="old('form.warranty_period_unit')" :options="$warranty_period_units" class="block w-full" default="Select City..." id="warranty_period_unit" key="slug" name="warranty_period_unit" required value_key="title" wire:model.defer="form.warranty_period_unit"></x-select>
+                        <x-select :value="old('form.warranty_period_unit')" :options="$warranty_period_units" class="block w-full" default="Select City..." id="warranty_period_unit" key="slug" name="warranty_period_unit" required value_key="title" wire:model="form.warranty_period_unit"></x-select>
                         <x-input-error for="form.warranty_period_unit" />
                     </div>
 
@@ -96,10 +96,7 @@
                     </div>
 
                     <div class="col-span-full block">
-                        <x-button wire:loading.class="!bg-gray-400" wire:target="store">
-                            <div aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-gray-800" role="status" wire:loading wire:target="store">
-                                <span class="sr-only">Loading...</span>
-                            </div>
+                        <x-button loading="store">
                             {{ __('Save') }}
                         </x-button>
                         <span class="ml-2 text-sm text-yellow-500" wire:loading wire:target="store">Please wait. This action may take a few minutes.</span>

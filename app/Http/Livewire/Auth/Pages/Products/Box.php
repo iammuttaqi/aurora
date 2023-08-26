@@ -34,11 +34,12 @@ class Box extends Component
     public function removeAll()
     {
         session()->forget('product_ids');
-        $this->emit('sessionUpdated');
-        $this->dispatchBrowserEvent('banner-message', [
-            'style'   => 'success',
-            'message' => 'All Product Removed from Product Box.',
-        ]);
+        $this->dispatch('sessionUpdated');
+        $this->dispatch(
+            'banner-message',
+            style: 'success',
+            message: 'All Product Removed from Product Box.',
+        );
     }
 
     public function remove($product_id)
@@ -47,6 +48,6 @@ class Box extends Component
         $new_product_ids = in_array($product_id, $product_ids) ? array_diff($product_ids, [$product_id]) : $product_ids;
 
         session()->put('product_ids', $new_product_ids);
-        $this->emit('sessionUpdated');
+        $this->dispatch('sessionUpdated');
     }
 }

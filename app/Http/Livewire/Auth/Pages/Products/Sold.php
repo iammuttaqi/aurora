@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Auth\Pages\Products;
 
 use App\Models\Product;
-use App\Models\ProductProfile;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Sold extends Component
 {
+    use WithPagination;
+
     public function render()
     {
         $sold_products = Product::query()

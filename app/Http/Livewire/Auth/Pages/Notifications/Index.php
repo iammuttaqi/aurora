@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Auth\Pages\Notifications;
 
 use App\Traits\NotificationsTrait;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use NotificationsTrait;
+    use NotificationsTrait, WithPagination;
 
     public $search = '';
 
@@ -34,10 +35,11 @@ class Index extends Component
             $this->check_all = false;
             $this->checks    = [];
 
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'success',
-                'message' => 'Marked As Read.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'success',
+                message: 'Marked As Read.',
+            );
         } else {
             foreach (request()->user()->notifications->whereIn('id', $this->checks) as $key => $notification) {
                 $notification->update(['read_at' => null]);
@@ -46,12 +48,13 @@ class Index extends Component
             $this->check_all = false;
             $this->checks    = [];
 
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'success',
-                'message' => 'Marked As Unread.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'success',
+                message: 'Marked As Unread.',
+            );
         }
 
-        $this->emit('notificationsUpdated');
+        $this->dispatch('notificationsUpdated');
     }
 }

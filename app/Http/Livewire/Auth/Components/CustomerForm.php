@@ -111,26 +111,29 @@ class CustomerForm extends Component
                 DB::commit();
                 $this->reset();
                 session()->forget('product_ids');
-                $this->emit('sessionUpdated');
-                $this->emit('notificationsUpdated');
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'success',
-                    'message' => 'Products Sold to the Selected Customer.',
-                ]);
+                $this->dispatch('sessionUpdated');
+                $this->dispatch('notificationsUpdated');
+                $this->dispatch(
+                    'banner-message',
+                    style: 'success',
+                    message: 'Products Sold to the Selected Customer.',
+                );
             } else {
                 DB::rollBack();
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'danger',
-                    'message' => 'No products on the box.',
-                ]);
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'No products on the box.',
+                );
             }
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }

@@ -7,9 +7,12 @@ use App\Models\ProductProfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public function render()
     {
         $products = Product::query()
@@ -25,10 +28,11 @@ class Index extends Component
     {
         Product::where('serial_number', $serial_number)->delete();
 
-        $this->dispatchBrowserEvent('banner-message', [
-            'style'   => 'success',
-            'message' => 'Product Deleted.',
-        ]);
+        $this->dispatch(
+            'banner-message',
+            style: 'success',
+            message: 'Product Deleted.',
+        );
     }
 
     public function duplicateProduct($serial_number)
@@ -52,10 +56,11 @@ class Index extends Component
     {
         $this->duplicateProduct($serial_number);
 
-        $this->dispatchBrowserEvent('banner-message', [
-            'style'   => 'success',
-            'message' => 'Product Deleted.',
-        ]);
+        $this->dispatch(
+            'banner-message',
+            style: 'success',
+            message: 'Product Deleted.',
+        );
     }
 
     public $multi_duplicate_modal_open = false;
@@ -75,23 +80,26 @@ class Index extends Component
 
                 DB::commit();
                 $this->reset();
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'success',
-                    'message' => 'Product Duplicated.',
-                ]);
+                $this->dispatch(
+                    'banner-message',
+                    style: 'success',
+                    message: 'Product Duplicated.',
+                );
             } else {
-                $this->dispatchBrowserEvent('banner-message', [
-                    'style'   => 'danger',
-                    'message' => 'No product selected to duplicate.',
-                ]);
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'No product selected to duplicate.',
+                );
             }
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }
@@ -113,13 +121,14 @@ class Index extends Component
 
         session()->put('product_ids', $product_ids);
 
-        $this->reset();
-        $this->emit('sessionUpdated');
-        $this->dispatchBrowserEvent('banner-message', [
-            'style'   => 'success',
-            'message' => 'Products added to the box.',
-        ]);
+        $this->reset('checks');
+        $this->dispatch('sessionUpdated');
+        $this->dispatch(
+            'banner-message',
+            style: 'success',
+            message: 'Products added to the box.',
+        );
 
-        return redirect()->route('products.box');
+        return $this->redirect(route('products.box'), navigate: true);
     }
 }

@@ -62,18 +62,20 @@ class Index extends Component
 
             DB::commit();
             // $this->skipRender();
-            $this->emit('notificationsUpdated');
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'success',
-                'message' => 'Partner Approved and QR Code Assigned.',
-            ]);
+            $this->dispatch('notificationsUpdated');
+            $this->dispatch(
+                'banner-message',
+                style: 'success',
+                message: 'Partner Approved and QR Code Assigned.',
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }

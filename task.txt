@@ -47,7 +47,6 @@
 - add multiple product, on the same page, another input to increase product count - DONE
 - product already sold to a shop cannot be updated, deleted, can't be sold to another shop - DONE
 - for shop, product already sold to a customer cannot be updated, deleted, can't be sold to another customer - DONE
-
 - product ownership
     - all the "manufacturer_id" references need to be replaced with "profile_id" - DONE
     - factory and seeder update - DONE
@@ -64,19 +63,24 @@
     - manufacturers and shops must need to be approved for actions - DONE
 - people can scan a product to see it's ownership details, history, chain of ownership. eg: manufacturer > shop 1 > shop 2 > shop 2 > customer - DONE
 - verify product page, warranty date and till date - DONE
+- both manufacturers and shops should see sold products - DONE
+- both manufacturers and shops should see timeline of a sold product - DONE
 
-- both manufacturers and shops should see sold products
-- both manufacturers and shops should see timeline of a sold product
+- image upload check on live server
 - qr code should be downloadable from qr code page
+- remove created at date from shop, instead configure and show sold at
+- configure and show sold at on sold products page
+- secure sell to shop
+    - should be full username matchable
 - seeder fix
 - company verify page design change. list some basic information of the company
 - company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
     - VerifyIdentity = where('approved', true)
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
-- product image upload
 - edit product
     - single product
+    - product image
     - product with same name
     - batch edit
 - Trade License Number in Profile

@@ -6,29 +6,25 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                 {{ __('Products') }}
             </h2>
-            <a class="gap-2 rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.sold') }}">
+            <a class="gap-2 rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.sold') }}" wire:navigate>
                 Sold Products
             </a>
         </div>
     </x-slot>
 
     <div class="py-12" class="relative z-50 h-auto w-auto" x-data="{
-        check_all: @entangle('check_all').defer,
-        checks: @entangle('checks').defer,
+        check_all: @entangle('check_all'),
+        checks: @entangle('checks'),
         products: @js($products),
-        multiDuplicateModalOpen: @entangle('multi_duplicate_modal_open').defer,
-        multiDuplicateCount: @entangle('multi_duplicate_count').defer,
-        multiDuplicateSerialNumber: @entangle('multi_duplicate_serial_number').defer,
+        multiDuplicateModalOpen: @entangle('multi_duplicate_modal_open'),
+        multiDuplicateCount: @entangle('multi_duplicate_count'),
+        multiDuplicateSerialNumber: @entangle('multi_duplicate_serial_number'),
         triggerMultiDuplicateModal(serial_number) {
             if (serial_number) {
                 this.multiDuplicateModalOpen = true;
                 this.multiDuplicateSerialNumber = serial_number;
             }
         },
-        sell_modal: @entangle('sell_modal').defer,
-        sellModalOpen() {
-            this.sell_modal = true;
-        }
     }" x-init="$watch('check_all', value => checks = value ? products.data.map(product => product.id) : [])" x-on:keydown.escape.window="multiDuplicateModalOpen = false">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
@@ -45,7 +41,7 @@
                                             List of Products
                                         </h2>
                                         @can('sell', \App\Models\Product::class)
-                                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" wire:click="addToBox()" wire:loading.attr="disabled" wire:target="addToBox" x-cloak x-show="checks.length" x-transition>
+                                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-blue-400 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" wire:click="addToBox()" wire:loading.attr="disabled" wire:target="addToBox" x-cloak x-show="checks.length" x-transition>
                                                 <i class="bi bi-bag-plus-fill text-base"></i>
                                                 Add to Box
                                             </button>
@@ -54,14 +50,14 @@
 
                                     @can('create', \App\Models\Product::class)
                                         <div class="inline-flex gap-3 rounded-md shadow-sm">
-                                            <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}">
+                                            <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}" wire:navigate>
                                                 Add Product
                                             </a>
                                         </div>
                                     @endcan
                                 </div>
 
-                                <div class="overflow-x-scroll">
+                                <div>
                                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                             <tr>
@@ -113,7 +109,7 @@
                                                             <button title="Delete" type="button" x-on:click="confirm('Are you sure you want to delete this product?') == true ? $wire.destroy(@js($product->serial_number)) : null"><i class="bi bi-trash-fill rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></button>
                                                         @endcan
                                                     </td>
-                                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
+                                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{!! $product->title_wrapped !!}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
                                                         <img alt="Product Image" class="w-10" src="{{ $product->image }}">
@@ -144,7 +140,7 @@
                     <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="multiDuplicateModalOpen">
                         <div @click="multiDuplicateModalOpen = false" class="absolute inset-0 h-full w-full bg-black bg-opacity-40" x-show="multiDuplicateModalOpen" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100" x-transition:leave="ease-in duration-300"></div>
                         <div class="relative w-full sm:max-w-lg sm:rounded-lg" x-show="multiDuplicateModalOpen" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-trap.inert.noscroll="multiDuplicateModalOpen">
-                            <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit.prevent="duplicateMultiple">
+                            <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit="duplicateMultiple">
                                 <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
                                     <h3 class="font-bold text-gray-800 dark:text-white">
                                         How many duplicates you want for this product?

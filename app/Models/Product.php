@@ -17,6 +17,13 @@ class Product extends Model
 
     public $default_image = 'assets/no-image.png';
 
+    protected function titleWrapped(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => str()->wordWrap($this->title, 30, "<br>"),
+        );
+    }
+
     protected function image(): Attribute
     {
         return Attribute::make(
