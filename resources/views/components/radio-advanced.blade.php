@@ -1,7 +1,6 @@
-@props(['options' => [], 'id' => 'option', 'selected' => null, 'key' => 'id', 'value_key' => 'title', 'disabled' => false, 'full' => false])
+@props(['options' => [], 'id' => 'option', 'selected' => null, 'key' => 'id', 'value_key' => 'title', 'disabled' => false])
 
-{{-- <ul class="{{ $full ? 'grid-cols-2' : 'md:grid-cols-3 lg:grid-cols-6' }} mt-2 grid w-full grid-cols-2 gap-6"> --}}
-<ul {!! $attributes->merge(['class' => 'grid gap-5']) !!}>
+<ul {!! $attributes->merge(['class' => 'grid grid-cols-2 gap-5']) !!}>
     @foreach ($options as $option)
         <li>
             <input {{ $selected != null && $selected == $option[$key] ? 'checked' : '' }} {!! $attributes->merge(['class' => 'hidden peer']) !!} id="{{ $id }}_{{ $loop->index + 1 }}" type="radio" value="{{ $option[$key] }}">

@@ -18,19 +18,19 @@
 
                 <form class="grid grid-cols-1 gap-5 p-5 md:grid-cols-12" wire:submit.prevent="update" x-data="{
                     form: {
-                        email_1: @entangle('form.email_1').defer,
-                        email_2: @entangle('form.email_2').defer,
-                        email_3: @entangle('form.email_3').defer,
-                        website: @entangle('form.website').defer,
-                        map_link: @entangle('form.map_link').defer,
-                        facebook: @entangle('form.facebook').defer,
-                        instagram: @entangle('form.instagram').defer,
-                        twitter: @entangle('form.twitter').defer,
-                        linkedin: @entangle('form.linkedin').defer,
-                        general_manager_email: @entangle('form.general_manager_email').defer,
-                        sales_manager_email: @entangle('form.sales_manager_email').defer,
-                        hr_manager_email: @entangle('form.hr_manager_email').defer,
-                        it_manager_email: @entangle('form.it_manager_email').defer,
+                        email_1: @entangle('form.email_1'),
+                        email_2: @entangle('form.email_2'),
+                        email_3: @entangle('form.email_3'),
+                        website: @entangle('form.website'),
+                        map_link: @entangle('form.map_link'),
+                        facebook: @entangle('form.facebook'),
+                        instagram: @entangle('form.instagram'),
+                        twitter: @entangle('form.twitter'),
+                        linkedin: @entangle('form.linkedin'),
+                        general_manager_email: @entangle('form.general_manager_email'),
+                        sales_manager_email: @entangle('form.sales_manager_email'),
+                        hr_manager_email: @entangle('form.hr_manager_email'),
+                        it_manager_email: @entangle('form.it_manager_email'),
                     },
                     makeUrlFriendly(str) {
                         return str.replace(/\s+/g, '-').toLowerCase();
@@ -175,7 +175,7 @@
                         <x-label :value="$this->label('form.facebook')" for="facebook" />
                         <div class="relative">
                             <i class="bi bi-facebook pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-blue-500"></i>
-                            <x-input :required="$this->required('form.facebook')" :placeholder="$this->label('form.facebook')" class="block w-full pl-10" name="facebook" pattern="{{ $social_links_patterns['facebook'] }}" type="url" wire:model.defer="form.facebook" x-model="form.facebook" />
+                            <x-input :required="$this->required('form.facebook')" :placeholder="$this->label('form.facebook')" class="block w-full pl-10" name="facebook" type="url" wire:model.defer="form.facebook" x-model="form.facebook" />
                         </div>
                         <x-input-error for="form.facebook" />
                     </div>
@@ -184,7 +184,7 @@
                         <x-label :value="$this->label('form.instagram')" for="instagram" />
                         <div class="relative">
                             <i class="bi bi-instagram pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-pink-500"></i>
-                            <x-input :required="$this->required('form.instagram')" :placeholder="$this->label('form.instagram')" class="block w-full pl-10" id="instagram" name="instagram" pattern="{{ $social_links_patterns['instagram'] }}" type="url" wire:model.defer="form.instagram" x-model="form.instagram" />
+                            <x-input :required="$this->required('form.instagram')" :placeholder="$this->label('form.instagram')" class="block w-full pl-10" id="instagram" name="instagram" type="url" wire:model.defer="form.instagram" x-model="form.instagram" />
                         </div>
                         <x-input-error for="form.instagram" />
                     </div>
@@ -193,7 +193,7 @@
                         <x-label :value="$this->label('form.twitter')" for="twitter" />
                         <div class="relative">
                             <i class="bi bi-twitter pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-blue-500"></i>
-                            <x-input :required="$this->required('form.twitter')" :placeholder="$this->label('form.twitter')" class="block w-full pl-10" id="twitter" name="twitter" pattern="{{ $social_links_patterns['twitter'] }}" type="url" wire:model.defer="form.twitter" x-model="form.twitter" />
+                            <x-input :required="$this->required('form.twitter')" :placeholder="$this->label('form.twitter')" class="block w-full pl-10" id="twitter" name="twitter" type="url" wire:model.defer="form.twitter" x-model="form.twitter" />
                         </div>
                         <x-input-error for="form.twitter" />
                     </div>
@@ -202,7 +202,7 @@
                         <x-label :value="$this->label('form.linkedin')" for="linkedin" />
                         <div class="relative">
                             <i class="bi bi-linkedin pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-sky-600"></i>
-                            <x-input :required="$this->required('form.linkedin')" :placeholder="$this->label('form.linkedin')" class="block w-full pl-10" id="linkedin" name="linkedin" pattern="{{ $social_links_patterns['linkedin'] }}" type="url" wire:model.defer="form.linkedin" x-model="form.linkedin" />
+                            <x-input :required="$this->required('form.linkedin')" :placeholder="$this->label('form.linkedin')" class="block w-full pl-10" id="linkedin" name="linkedin" type="url" wire:model.defer="form.linkedin" x-model="form.linkedin" />
                         </div>
                         <x-input-error for="form.linkedin" />
                     </div>
@@ -231,7 +231,7 @@
 
                     <div class="col-span-full flex flex-col gap-1">
                         <x-label :value="$this->label('form.employee_range_id')" for="employee_range_id" />
-                        <x-radio-advanced :options="$employee_ranges" id="employee_range_id" name="employee_range_id" wire:model.defer="form.employee_range_id" />
+                        <x-radio-advanced :options="$employee_ranges" class="grid-cols-{{ count($employee_ranges) }}" id="employee_range_id" name="employee_range_id" wire:model.defer="form.employee_range_id" />
                         <x-input-error for="form.employee_range_id" />
                     </div>
 
@@ -320,10 +320,7 @@
                     </div>
 
                     <div class="col-span-full block">
-                        <x-button wire:loading.attr="disabled" wire:target="update">
-                            <div aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-gray-800" role="status" wire:loading wire:target="update">
-                                <span class="sr-only">Loading...</span>
-                            </div>
+                        <x-button loading="update">
                             {{ __('Submit') }}
                         </x-button>
                     </div>

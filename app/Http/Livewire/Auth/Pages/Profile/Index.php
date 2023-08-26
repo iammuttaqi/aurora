@@ -211,17 +211,19 @@ class Index extends Component
             );
 
             DB::commit();
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'success',
-                'message' => 'Profile updated!',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'success',
+                message: 'Profile updated!',
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->dispatchBrowserEvent('banner-message', [
-                'style'   => 'danger',
-                'message' => 'Failed.',
-            ]);
+            $this->dispatch(
+                'banner-message',
+                style: 'danger',
+                message: 'Failed.',
+            );
             throw $th;
         }
     }

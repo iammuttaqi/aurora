@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
+use Livewire\WithPagination;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Index extends Component
 {
-    use AuthorizesRequests;
+    use AuthorizesRequests, WithPagination;
 
     public $search = null;
 
@@ -27,7 +28,7 @@ class Index extends Component
         $partners = Profile::where('name', 'like', '%' . $request->search . '%')
             ->has('user')
             ->with('user.role')
-            ->paginate()
+            ->paginate(100)
             ->withQueryString();
 
         return view('livewire.auth.pages.partners.index', compact('partners'));
