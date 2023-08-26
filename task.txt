@@ -63,10 +63,10 @@
     - product shouldn't be sellable if it is already sold to a customer - DONE
     - manufacturers and shops must need to be approved for actions - DONE
 - people can scan a product to see it's ownership details, history, chain of ownership. eg: manufacturer > shop 1 > shop 2 > shop 2 > customer - DONE
+- verify product page, warranty date and till date - DONE
 
 - both manufacturers and shops should see sold products
 - both manufacturers and shops should see timeline of a sold product
-- verify product page, warranty date and till date
 - qr code should be downloadable from qr code page
 - seeder fix
 - company verify page design change. list some basic information of the company
