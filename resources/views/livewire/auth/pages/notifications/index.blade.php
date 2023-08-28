@@ -44,12 +44,17 @@
                                                     </div>
                                                 </th>
                                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">
+                                                    Sl</th>
+                                                <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">
                                                     Notication</th>
                                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">
                                                     Date & Time</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                            {{-- @php
+                                                dd($notifications, $notifications->currentPage(), $notifications->perPage());
+                                            @endphp --}}
                                             @forelse ($notifications as $notification)
                                                 <tr class="{{ !$notification->read_at ? 'dark:bg-gray-700' : '' }}">
                                                     <td class="py-3 pl-4">
@@ -58,6 +63,7 @@
                                                             <label class="sr-only" for="hs-table-pagination-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
                                                         </div>
                                                     </td>
+                                                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $loop->index + $notifications->firstItem() }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{!! $notification->message !!}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $notification->created_at->format('Y-m-d | h:i A') }}</td>
                                                 </tr>
