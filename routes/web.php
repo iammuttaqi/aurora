@@ -40,7 +40,7 @@ Route::get('sl/{user_id}', function ($user_id) {
     return redirect()->route('dashboard');
 });
 
-// -------------------------------------- //
+// ------------------------------------------------------------------------------------------------------------------ //
 
 Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::get('/', Index::class)->name('index');
@@ -51,7 +51,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
     });
 });
 
-// -------------------------------------- //
+// ------------------------------------------------------------------------------------------------------------------ //
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
