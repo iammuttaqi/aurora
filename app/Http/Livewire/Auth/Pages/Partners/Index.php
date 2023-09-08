@@ -23,15 +23,20 @@ class Index extends Component
         'search' => ['except' => ''],
     ];
 
-    public function render(Request $request)
+    public function render()
     {
-        $partners = Profile::where('name', 'like', '%' . $request->search . '%')
+        $partners = Profile::where('name', 'like', '%' . $this->search . '%')
             ->has('user')
             ->with('user.role')
             ->paginate(100)
             ->withQueryString();
 
         return view('livewire.auth.pages.partners.index', compact('partners'));
+    }
+
+    public function updating()
+    {
+        $this->resetPage();
     }
 
     public function approve($partner_id)
@@ -61,7 +66,6 @@ class Index extends Component
             $profile->user->notify(new ProfileApproveNotification($profile));
 
             DB::commit();
-            // $this->skipRender();
             $this->dispatch('notificationsUpdated');
             $this->dispatch(
                 'banner-message',

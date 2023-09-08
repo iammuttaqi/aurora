@@ -12,7 +12,7 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role->type == 'user' && $user->profile;
+        return $user->role->type == 'user' && $user->profile && $user->profile->approved && $user->profile->qr_code;
     }
 
     /**
