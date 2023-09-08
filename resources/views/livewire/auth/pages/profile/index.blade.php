@@ -328,14 +328,16 @@
 
 @push('scripts')
     <script>
-        let tom_select = new TomSelect('.multiselect', {
-            placeholder: 'Select...',
-            plugins: {
-                remove_button: {
-                    title: 'Remove this item',
-                }
-            },
-        });
+        if (typeof tom_select === 'undefined') {
+            const tom_select = new TomSelect('.multiselect', {
+                placeholder: 'Select...',
+                plugins: {
+                    remove_button: {
+                        title: 'Remove this item',
+                    }
+                },
+            });
+        }
 
         // Livewire.on('form-updating', () => {
         //     tom_select.disable();

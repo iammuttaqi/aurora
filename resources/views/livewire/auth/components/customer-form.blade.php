@@ -27,7 +27,7 @@
 
         <div class="flex flex-col gap-1">
             <x-label :value="$this->label('form.gender')" for="gender" />
-            <x-radio-advanced :full="true" :options="$genders" class="grid-cols-3" id="gender" key="title" name="gender" value_key="title" wire:model="form.gender" />
+            <x-radio-advanced :options="$genders" :full="true" class="grid-cols-3" id="gender" key="title" name="gender" value_key="title" wire:model="form.gender" />
             <x-input-error for="form.gender" />
         </div>
 
@@ -80,6 +80,8 @@
             };
         }
 
-        new TomSelect('.country_id', config)
+        if (typeof tom_select === 'undefined') {
+            const tom_select = new TomSelect('.country_id', config)
+        }
     </script>
 @endpush

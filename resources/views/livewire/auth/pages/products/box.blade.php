@@ -88,14 +88,16 @@
 
 @push('scripts')
     <script>
-        new TomSelect('.shop_id', {
-            placeholder: 'Select...',
-            plugins: {
-                remove_button: {
-                    title: 'Remove this item',
-                }
-            },
-            maxOptions: 1000
-        });
+        if (typeof tom_select === 'undefined') {
+            const tom_select = new TomSelect('.shop_id', {
+                placeholder: 'Select...',
+                plugins: {
+                    remove_button: {
+                        title: 'Remove this item',
+                    }
+                },
+                maxOptions: 1000
+            });
+        }
     </script>
 @endpush
