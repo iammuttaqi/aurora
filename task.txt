@@ -65,7 +65,10 @@
 - verify product page, warranty date and till date - DONE
 - both manufacturers and shops should see sold products - DONE
 - both manufacturers and shops should see timeline of a sold product - DONE
+- company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
+    - VerifyIdentity = where('approved', true) - DONE
 
+- include frontend
 - image upload check on live server
 - qr code should be downloadable from qr code page
 - remove created at date from shop, instead configure and show sold at
@@ -74,8 +77,6 @@
     - should be full username matchable
 - seeder fix
 - company verify page design change. list some basic information of the company
-- company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
-    - VerifyIdentity = where('approved', true)
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
 - edit product
@@ -90,3 +91,12 @@
 - dashboard page design
 - admin login and dashboard works
 - search product by serial number to verify
+
+
+--------------------------------------------------------
+- include payment functionality
+    - for manufacturers and shops, they will only be able to sell 100 products on free Account
+    - they should renew subscription for
+        1000 products - 5000 taka
+        5000 products - 20000 taka
+        10000 products - 40000 taka

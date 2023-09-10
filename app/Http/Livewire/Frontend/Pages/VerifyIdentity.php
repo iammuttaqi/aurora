@@ -17,7 +17,7 @@ class VerifyIdentity extends Component
     public function render()
     {
         $profile = Profile::where('username', $this->username)
-            // ->where('approved', true)
+            ->where('approved', true)
             ->first();
 
         return view('livewire.frontend.pages.verify-identity', compact('profile'));
