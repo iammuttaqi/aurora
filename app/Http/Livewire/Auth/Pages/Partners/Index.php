@@ -28,6 +28,7 @@ class Index extends Component
         $partners = Profile::where('name', 'like', '%' . $this->search . '%')
             ->has('user')
             ->with('user.role')
+            ->latest()
             ->paginate(100)
             ->withQueryString();
 

@@ -67,8 +67,8 @@
 - both manufacturers and shops should see timeline of a sold product - DONE
 - company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
     - VerifyIdentity = where('approved', true) - DONE
+- include frontend - DONE
 
-- include frontend
 - image upload check on live server
 - qr code should be downloadable from qr code page
 - remove created at date from shop, instead configure and show sold at

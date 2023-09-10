@@ -134,7 +134,7 @@
             <!-- Grid -->
             <div class="grid gap-6 sm:grid-cols-2 md:gap-12">
                 @foreach ($faqs as $faq)
-                    <div>
+                    <div class="rounded-lg bg-white p-5 shadow">
                         <h3 class="text-lg font-semibold text-gray-800">
                             {{ $faq['title'] }}
                         </h3>
