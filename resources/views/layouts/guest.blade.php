@@ -25,7 +25,7 @@
 </head>
 
 <body class="scroll-smooth">
-    <header class="sticky top-0 z-50 flex w-full flex-wrap border-b border-white/[.5] bg-white py-3 text-sm sm:flex-nowrap sm:justify-start sm:py-0" x-data="{ open: false }">
+    <header class="sticky top-0 z-50 flex w-full flex-wrap border-b border-white/[.5] bg-white py-3 text-sm shadow sm:flex-nowrap sm:justify-start sm:py-0" x-data="{ open: false }">
         <nav aria-label="Global" class="relative mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <a aria-label="Brand" class="flex-none text-xl font-semibold text-white" href="{{ route('index') }}" wire:navigate.hover>

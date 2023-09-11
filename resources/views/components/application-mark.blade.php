@@ -7,4 +7,5 @@
     fill="#6875F5" />
 </svg> --}}
 
-<img src="{{ asset('assets/logo.png') }}" {!! $attributes->merge(['class' => 'w-10']) !!} alt="Aurora">
+{{-- <img src="{{ asset('assets/logo.png') }}" {!! $attributes->merge(['class' => 'w-10']) !!} alt="Aurora"> --}}
+<img {!! $attributes->merge(['class' => 'w-10']) !!} alt="Aurora" src="{{ asset('assets/logo-full.png') }}">
