@@ -2,9 +2,6 @@
 
 <div class="bg-gray-100 pt-4 dark:bg-gray-900">
     <div class="flex min-h-screen flex-col items-center pt-6 sm:pt-0">
-        <div>
-            <x-authentication-card-logo />
-        </div>
 
         <div class="grid grid-cols-3 px-5">
             <div class="col-span-3 flex items-center justify-center lg:col-span-1 lg:col-start-2">

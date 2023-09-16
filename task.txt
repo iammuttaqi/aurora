@@ -68,15 +68,16 @@
 - company must need to be approved by admin to access products and all other operation. also need to be changed on verify company page
     - VerifyIdentity = where('approved', true) - DONE
 - include frontend - DONE
+- company verify page design change. list some basic information of the company - DONE
 
-- image upload check on live server
 - qr code should be downloadable from qr code page
+- auth pages change
+- image upload check on live server
 - remove created at date from shop, instead configure and show sold at
 - configure and show sold at on sold products page
 - secure sell to shop
     - should be full username matchable
 - seeder fix
-- company verify page design change. list some basic information of the company
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
 - edit product

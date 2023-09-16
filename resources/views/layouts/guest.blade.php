@@ -64,13 +64,6 @@
                     <a class="font-medium text-blue-600/[.8] hover:text-blue-600 sm:py-6" href="' .
                     route('index') .
                     '/#clients">Clients</a>
-
-                    <a class="flex items-center gap-x-2 font-medium text-blue-600/[.8] hover:text-blue-600 sm:my-6 sm:border-l sm:border-blue-600/[.3] sm:pl-6" href="' .
-                    route('login') .
-                    '" wire:navigate.hover>
-                        <i class="bi bi-person-fill"></i>
-                        Log in
-                    </a>
                 </div>';
             @endphp
 

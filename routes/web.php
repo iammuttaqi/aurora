@@ -59,7 +59,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('dashboard');
 
     Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
-        Route::get('/', PartnersIndex::class)->name('index');
+        Route::get('/', PartnersIndex::class)->name('index')->lazy();
         Route::get('{username}', ProfileIndex::class)->name('show');
         Route::get('qr-code/{username}', QrCodeIndex::class)->name('qr_code');
     });

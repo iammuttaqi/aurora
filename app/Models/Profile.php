@@ -15,6 +15,7 @@ class Profile extends Model
         'approved',
         'name',
         'username',
+        'qr_code',
         'contact_person',
         'address',
         'city_id',

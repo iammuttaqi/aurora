@@ -53,12 +53,14 @@
                                                         </div>
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
-                                                        <img class="h-10 w-10" src="{{ $partner->logo }}">
+                                                        <img class="h-10 w-10 object-cover" src="{{ $partner->logo }}">
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $partner->name }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->user->role->title }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->address }}</td>
                                                     <td class="flex justify-end gap-2 whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
+                                                        <a href="{{ URL::signedRoute('verify_identity', $partner->username) }}" target="_blank" title="Check Identity"><i class="bi bi-shield-fill-exclamation rounded bg-red-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-red-600"></i></a>
+
                                                         @can('qrCode', $partner)
                                                             <a href="{{ route('partners.qr_code', $partner->username) }}" target="_blank" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-blue-600"></i></a>
                                                         @endcan

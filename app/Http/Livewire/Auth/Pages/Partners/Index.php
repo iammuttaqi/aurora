@@ -58,10 +58,12 @@ class Index extends Component
             $this->authorize('approvable', $profile);
 
             $qr_code = $this->generateQrCode($profile);
+
             if ($profile && $qr_code) {
-                $profile->approved = 1;
-                $profile->qr_code  = $qr_code;
-                $profile->save();
+                $profile->update([
+                    'qr_code'  => $qr_code,
+                    'approved' => 1,
+                ]);
             }
 
             $profile->user->notify(new ProfileApproveNotification($profile));

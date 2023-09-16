@@ -11,7 +11,8 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-                <div class="flex justify-center py-5">
+                <button class="m-3 rounded-md bg-green-500 px-3 py-2 text-white transition-all hover:bg-green-600" type="button" wire:click="download()">Download</button>
+                <div class="flex justify-center">
                     <div>{!! $product->qr_code !!}</div>
                 </div>
 

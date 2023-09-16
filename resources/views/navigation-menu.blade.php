@@ -226,7 +226,7 @@
                 <form action="{{ route('logout') }}" method="POST" x-data>
                     @csrf
 
-                    <x-responsive-nav-link @click.prevent="$root.submit();" href="{{ route('logout') }}">
+                    <x-responsive-nav-link @click.prevent="$root.submit();" :navigate="false" href="{{ route('logout') }}">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
