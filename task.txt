@@ -69,9 +69,9 @@
     - VerifyIdentity = where('approved', true) - DONE
 - include frontend - DONE
 - company verify page design change. list some basic information of the company - DONE
+- qr code should be downloadable from qr code page - DONE
 
-- qr code should be downloadable from qr code page
-- auth pages change
+- auth pages design change
 - image upload check on live server
 - remove created at date from shop, instead configure and show sold at
 - configure and show sold at on sold products page
@@ -92,9 +92,11 @@
 - dashboard page design
 - admin login and dashboard works
 - search product by serial number to verify
+- google analytics include
 
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
---------------------------------------------------------
 - include payment functionality
     - for manufacturers and shops, they will only be able to sell 100 products on free Account
     - they should renew subscription for

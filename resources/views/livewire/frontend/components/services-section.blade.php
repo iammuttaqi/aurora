@@ -1,8 +1,8 @@
 <section class="mx-auto max-w-[85rem] bg-gray-50 px-4 py-10 sm:px-6 lg:px-8 lg:py-14" id="services">
     <!-- Title -->
     <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-        <h2 class="text-2xl font-bold md:text-4xl md:leading-tight">Services</h2>
-        <p class="mt-1 text-gray-600">Our Comprehensive Offerings to Serve You Better.</p>
+        <h2 class="text-2xl font-bold md:text-4xl md:leading-tight">Features</h2>
+        <p class="mt-1 text-gray-600">Our Comprehensive Features to Serve You Better.</p>
     </div>
     <!-- End Title -->
 
