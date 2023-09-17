@@ -71,6 +71,7 @@
 - company verify page design change. list some basic information of the company - DONE
 - qr code should be downloadable from qr code page - DONE
 
+- qr code bug fixing
 - auth pages design change
 - image upload check on live server
 - remove created at date from shop, instead configure and show sold at

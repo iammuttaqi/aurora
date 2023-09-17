@@ -48,7 +48,7 @@
                     '<div class="mt-5 flex flex-col gap-x-0 gap-y-4 sm:mt-0 sm:flex-row sm:items-center sm:justify-end sm:gap-x-7 sm:gap-y-0 sm:pl-7">
                     <a aria-current="page" class="font-medium text-blue-600 sm:py-6" href="' .
                     route('index') .
-                    '/#services">Features</a>
+                    '/#features">Features</a>
                     <a class="font-medium text-blue-600/[.8] hover:text-blue-600 sm:py-6" href="' .
                     route('index') .
                     '/#pricing">Pricing</a>
@@ -60,7 +60,7 @@
                     '/#testimonials">Testimonials</a>
                     <a class="font-medium text-blue-600/[.8] hover:text-blue-600 sm:py-6" href="' .
                     route('index') .
-                    '/#features">Features</a>
+                    '/#achievements">Achievements</a>
                     <a class="font-medium text-blue-600/[.8] hover:text-blue-600 sm:py-6" href="' .
                     route('index') .
                     '/#clients">Clients</a>
