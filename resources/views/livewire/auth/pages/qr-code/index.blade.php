@@ -18,9 +18,13 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                <button class="m-3 rounded-md bg-green-500 px-3 py-2 text-white transition-all hover:bg-green-600" type="button" wire:click="download()">Download</button>
+                <form wire:submit="download('{{ $profile->username }}')">
+                    <x-button class="m-3" loading="download">
+                        {{ __('Download') }}
+                    </x-button>
+                </form>
                 <div class="flex justify-center">
-                    <div>{!! $qr_code !!}</div>
+                    <div>{!! $profile->qr_code !!}</div>
                 </div>
             </div>
         </div>

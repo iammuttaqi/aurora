@@ -10,31 +10,32 @@ class Index extends Component
 {
     use AuthorizesRequests;
 
-    public $qr_code = null;
-    public $profile = null;
+    public $username = null;
 
     public function mount($username = null)
     {
-        $this->profile = $username ? Profile::where('username', $username)->first() : auth()->user()->profile;
-        $this->authorize('qrCode', $this->profile);
-        $this->qr_code = $this->profile->whereNotNull('username')->whereNotNull('qr_code')->value('qr_code');
+        $this->username = $username;
+        $profile = $username ? Profile::where('username', $username)->first() : auth()->user()->profile;
+        $this->authorize('qrCode', $profile);
     }
 
     public function render()
     {
-        return view('livewire.auth.pages.qr-code.index');
+        $profile = Profile::where('username', $this->username)->whereNotNull('qr_code')->first();
+
+        return view('livewire.auth.pages.qr-code.index', compact('profile'));
     }
 
-    public function download()
+    public function download($username)
     {
-        $svg = $this->qr_code;
+        $profile = Profile::where('username', $username)->first();
 
         return response()
-            ->stream(function () use ($svg) {
-                echo $svg;
+            ->stream(function () use ($profile) {
+                echo $profile->qr_code;
             }, 200, [
                 'Content-Type' => 'image/svg+xml',
-                'Content-Disposition' => 'attachment; filename="' . $this->profile->username . '.svg"'
+                'Content-Disposition' => 'attachment; filename="' . $profile->username . '.svg"'
             ]);
     }
 }
