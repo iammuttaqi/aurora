@@ -13,7 +13,7 @@
 
                 <div class="mb-48 grid grid-cols-3 gap-5 p-5">
                     <div class="col-span-2">
-                        <div class="mb-5 flex justify-between">
+                        <div class="mb-5 flex items-start justify-between">
                             <div>
                                 <h2 class="text-xl text-gray-900 dark:text-white">List of Products to Sell</h2>
                                 <span class="text-sm text-gray-400">(Total Products: {{ count($products) }})</span>

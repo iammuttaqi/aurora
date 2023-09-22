@@ -19,6 +19,7 @@ class Sold extends Component
             })
             ->latest()
             ->paginate(100);
+        // dd($sold_products);
 
         return view('livewire.auth.pages.products.sold', compact('sold_products'));
     }

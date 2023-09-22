@@ -98,6 +98,11 @@
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
+- product profiles functional with Package - DONE
+- product customers functional with Package
+- Buy Package
+    - checkout form
+    - thank you page
 - include payment functionality
     - for manufacturers and shops, they will only be able to sell 100 products on free Account
     - they should renew subscription for

@@ -84,6 +84,11 @@ class Profile extends Model
         return $this->hasMany(ProductShop::class, 'shop_id');
     }
 
+    public function profile_packages()
+    {
+        return $this->hasMany(ProfilePackage::class);
+    }
+
     public $default_logo = 'assets/default.png';
 
     protected function logo(): Attribute

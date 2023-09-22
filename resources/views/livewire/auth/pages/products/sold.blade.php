@@ -19,9 +19,10 @@
                             <div class="divide-y divide-gray-200 rounded-lg border dark:divide-gray-700 dark:border-gray-700">
 
                                 <div class="flex items-center justify-between gap-10 px-4 py-3">
-                                    <h2 class="my-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                        List of Sold Products
-                                    </h2>
+                                    <div>
+                                        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">List of Sold Products</h2>
+                                        <span class="text-sm text-gray-400">({{ $sold_products->total() }} total sold products)</span>
+                                    </div>
                                 </div>
 
                                 <div>
