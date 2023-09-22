@@ -14,8 +14,8 @@ class Index extends Component
 
     public function mount($username = null)
     {
-        $this->username = $username;
-        $profile = $username ? Profile::where('username', $username)->first() : auth()->user()->profile;
+        $this->username = $username ?? auth()->user()->profile->username;
+        $profile = Profile::where('username', $this->username)->first();
         $this->authorize('qrCode', $profile);
     }
 
