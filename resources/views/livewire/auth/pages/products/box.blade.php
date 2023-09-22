@@ -14,7 +14,10 @@
                 <div class="mb-48 grid grid-cols-3 gap-5 p-5">
                     <div class="col-span-2">
                         <div class="mb-5 flex justify-between">
-                            <h2 class="text-xl text-gray-900 dark:text-white">List of Products to Sell</h2>
+                            <div>
+                                <h2 class="text-xl text-gray-900 dark:text-white">List of Products to Sell</h2>
+                                <span class="text-sm text-gray-400">(Total Products: {{ count($products) }})</span>
+                            </div>
                             @if (count($products))
                                 <button class="relative !block items-center justify-center gap-2 rounded-md border border-none border-transparent bg-red-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:text-white hover:dark:text-white dark:focus:ring-offset-gray-800" wire:click="removeAll" wire:loading.attr="disabled" wire:loading.class="!bg-red-400" wire:target="removeAll">
                                     <i class="bi bi-trash-fill text-base"></i>
