@@ -1,3 +1,5 @@
+@push('title', 'Confirm Password')
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -10,15 +12,15 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('password.confirm') }}">
+        <form action="{{ route('password.confirm') }}" method="POST">
             @csrf
 
             <div>
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" autofocus />
+                <x-input autocomplete="current-password" autofocus class="mt-1 block w-full" id="password" name="password" required type="password" />
             </div>
 
-            <div class="flex justify-end mt-4">
+            <div class="mt-4 flex justify-end">
                 <x-button class="ml-4">
                     {{ __('Confirm') }}
                 </x-button>

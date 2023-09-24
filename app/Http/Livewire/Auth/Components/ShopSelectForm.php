@@ -30,18 +30,23 @@ class ShopSelectForm extends Component
         return view('livewire.auth.components.shop-select-form', compact('shops'));
     }
 
-    public $shop_id = null;
+    public $username = null;
 
     public function sell()
     {
         $this->validate([
-            'shop_id' => ['required', 'integer', Rule::exists('profiles', 'id')],
+            'username' => ['required', 'string', Rule::exists('profiles', 'username')
+                ->where(function ($query) {
+                    $query->where('username', '!=', auth()->user()->profile->username);
+                })],
         ]);
 
         DB::beginTransaction();
         try {
             $product_ids = session('product_ids');
-            $profile     = Profile::where('id', $this->shop_id)->with('user')->first();
+            $profile     = Profile::where('username', $this->username)
+                ->with('user')
+                ->first();
 
             if (Gate::denies('canSell', Profile::class)) {
                 DB::rollBack();
@@ -49,6 +54,13 @@ class ShopSelectForm extends Component
                     'banner-message',
                     style: 'danger',
                     message: 'Sorry! Your products count ended. Please Buy A Package.',
+                );
+            } else if ($profile->user->role_id != 4) {
+                DB::rollBack();
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'Please select a valid username of a shop.',
                 );
             } else {
                 if ($profile && is_array($product_ids) && count($product_ids)) {
@@ -58,14 +70,14 @@ class ShopSelectForm extends Component
 
                         if (!$product_customer_exists) {
                             $product_shops[$key]['product_id'] = $product_id;
-                            $product_shops[$key]['profile_id'] = $this->shop_id;
+                            $product_shops[$key]['profile_id'] = $profile->id;
                             $product_shops[$key]['created_at'] = now();
                             $product_shops[$key]['updated_at'] = now();
                         }
                     }
 
                     Product::whereIn('id', $product_ids)->update([
-                        'profile_id' => $this->shop_id,
+                        'profile_id' => $profile->id,
                     ]);
                     ProductProfile::insert($product_shops);
 

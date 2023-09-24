@@ -77,7 +77,8 @@
                             @endcan
 
                             <div class="flex flex-col gap-3 rounded bg-gray-100/100 p-5 dark:bg-gray-700/50" x-show="buyer_type_default == 'shop'" x-transition>
-                                <h2 class="text-xl text-gray-900 dark:text-white">Select Shop to Sell</h2>
+                                {{-- <h2 class="text-xl text-gray-900 dark:text-white">Select Shop to Sell</h2> --}}
+                                <h2 class="text-xl text-gray-900 dark:text-white">Enter Username of Shop</h2>
                                 <livewire:auth.components.shop-select-form />
                             </div>
                         </div>
