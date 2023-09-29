@@ -16,7 +16,7 @@ class PackageSeeder extends Seeder
         $packages = [
             [
                 'popular' => false,
-                'label' => 'Free',
+                'title' => 'Free',
                 'price' => 0,
                 'products_count' => 100,
                 'details' => 'Free Plan',
@@ -30,7 +30,7 @@ class PackageSeeder extends Seeder
             ],
             [
                 'popular' => true,
-                'label' => 'Startup',
+                'title' => 'Startup',
                 'price' => 5000,
                 'products_count' => 1000,
                 'details' => 'For new business',
@@ -44,7 +44,7 @@ class PackageSeeder extends Seeder
             ],
             [
                 'popular' => false,
-                'label' => 'Growing',
+                'title' => 'Growing',
                 'price' => 20000,
                 'products_count' => 5000,
                 'details' => 'For growing business',
@@ -58,7 +58,7 @@ class PackageSeeder extends Seeder
             ],
             [
                 'popular' => false,
-                'label' => 'Enterprise',
+                'title' => 'Enterprise',
                 'price' => 40000,
                 'products_count' => 10000,
                 'details' => 'Advanced features',

@@ -73,6 +73,7 @@
 - qr code bug fixing - DONE
 
 - auth pages design change
+- call role shop as "Shop/Reseller"
 - image upload check on live server
 - remove created at date from shop, instead configure and show sold at
 - configure and show sold at on sold products page

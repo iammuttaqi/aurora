@@ -11,6 +11,9 @@ use App\Http\Livewire\Auth\Pages\Products\Show;
 use App\Http\Livewire\Auth\Pages\Products\Sold as ProductsSold;
 use App\Http\Livewire\Auth\Pages\Profile\Index as ProfileIndex;
 use App\Http\Livewire\Auth\Pages\QrCode\Index as QrCodeIndex;
+use App\Http\Livewire\Frontend\Components\ThankYou;
+use App\Http\Livewire\Frontend\Pages\Cart;
+use App\Http\Livewire\Frontend\Pages\Checkout;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentityProduct;
@@ -52,6 +55,10 @@ Route::get('artisan/{command}', function ($command) {
 
 Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::get('/', Index::class)->name('index');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('checkout', Checkout::class)->name('checkout');
+        Route::get('thank-you', ThankYou::class)->name('thank_you');
+    });
 
     Route::middleware('signed')->group(function () {
         Route::get('verify-identity/{username}', VerifyIdentity::class)->name('verify_identity');

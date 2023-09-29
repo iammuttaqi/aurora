@@ -13,7 +13,7 @@ class Package extends Model
 
     protected $casts = [
         'popular' => 'boolean',
-        'label' => 'string',
+        'title' => 'string',
         'details' => 'string',
         'price' => 'integer',
         'features' => 'array',

@@ -9,7 +9,7 @@
     <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 lg:gap-6">
         @foreach ($testimonials as $testimonial)
             <div class="rounded-lg bg-gray-100 p-4 md:p-7">
-                <img class="mx-auto h-[100px] object-contain py-3 lg:py-5" src="{{ asset($testimonial['logo']) }}">
+                <img class="mx-auto h-[100px] object-contain py-3 lg:py-5" src="{{ $testimonial['logo'] }}">
             </div>
         @endforeach
     </div>

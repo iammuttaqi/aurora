@@ -13,7 +13,7 @@
             <!-- Card -->
             <div class="flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm">
                 <div class="flex-auto p-4 md:p-6">
-                    <img alt="{{ $testimonial['title'] }}" class="h-10" src="{{ asset($testimonial['logo']) }}">
+                    <img alt="{{ $testimonial['title'] }}" class="h-10" src="{{ $testimonial['logo'] }}">
                     <p class="mt-3 text-base text-gray-800 sm:mt-6 md:text-xl"><em>
                             " {{ $testimonial['details'] }} "
                         </em></p>

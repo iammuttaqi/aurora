@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CitySeeder::class,
             EmployeeRangeSeeder::class,
+            PaymentTypeSeeder::class,
+            PaymentMethodSeeder::class,
 
             RoleSeeder::class,
             UserSeeder::class,
