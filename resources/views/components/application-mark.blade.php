@@ -7,6 +7,6 @@
     fill="#6875F5" />
 </svg> --}}
 
-{{-- <img src="{{ asset('assets/logo.png') }}" {!! $attributes->merge(['class' => 'w-10']) !!} alt="Aurora"> --}}
-<img {!! $attributes->merge(['class' => 'w-10 block dark:hidden']) !!} alt="Aurora" src="{{ asset('assets/logo-dark.png') }}">
-<img {!! $attributes->merge(['class' => 'w-10 hidden dark:block']) !!} alt="Aurora" src="{{ asset('assets/logo-white.png') }}">
+{{-- <img src="{{ Vite::asset('resources/images/logo.png') }}" {!! $attributes->merge(['class' => 'w-10']) !!} alt="Aurora"> --}}
+<img {!! $attributes->merge(['class' => 'w-10 block dark:hidden']) !!} alt="Aurora" src="{{ Vite::asset('resources/images/logo-dark.png') }}">
+<img {!! $attributes->merge(['class' => 'w-10 hidden dark:block']) !!} alt="Aurora" src="{{ Vite::asset('resources/images/logo-white.png') }}">

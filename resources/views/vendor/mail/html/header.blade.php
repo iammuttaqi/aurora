@@ -6,7 +6,7 @@
 <img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo">
 @else
 {{-- {{ $slot }} --}}
-<img src="{{ asset('assets/logo.png') }}" class="logo" alt="Logo">
+<img src="{{ Vite::asset('resources/images/logo.png') }}" class="logo" alt="Logo">
 @endif
 </a>
 </td>

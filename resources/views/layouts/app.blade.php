@@ -11,10 +11,10 @@
     <title>@stack('title', config('app.name', 'Laravel'))</title>
 
     {{-- Favicon --}}
-    <link href="{{ asset('assets/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
-    <link href="{{ asset('assets/favicon-32x32.png') }}" rel="icon" sizes="32x32" type="image/png">
-    <link href="{{ asset('assets/favicon-16x16.png') }}" rel="icon" sizes="16x16" type="image/png">
-    <link href="{{ asset('assets/site.webmanifest') }}" rel="manifest">
+    <link href="{{ Vite::asset('resources/images/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
+    <link href="{{ Vite::asset('resources/images/favicon-32x32.png') }}" rel="icon" sizes="32x32" type="image/png">
+    <link href="{{ Vite::asset('resources/images/favicon-16x16.png') }}" rel="icon" sizes="16x16" type="image/png">
+    <link href="{{ Vite::asset('resources/images/site.webmanifest') }}" rel="manifest">
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net" rel="preconnect">
@@ -22,6 +22,7 @@
 
     {{-- Tom Select --}}
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 
     @stack('cdn')
 
@@ -54,7 +55,6 @@
 
     @stack('modals')
 
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     @stack('scripts')
 </body>
 

@@ -1,7 +1,7 @@
 <div class="border-b border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent lg:p-8">
     {{-- <x-application-logo class="block h-12 w-auto" /> --}}
     <div class="flex items-center gap-5">
-        <img alt="Logo" class="w-10" src="{{ asset('assets/logo.png') }}">
+        <img alt="Logo" class="w-10" src="{{ Vite::asset('resources/images/logo.png') }}">
         <span class="text-3xl font-bold text-white">{{ config('app.name') }}</span>
     </div>
 
