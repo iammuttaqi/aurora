@@ -18,4 +18,9 @@ class Package extends Model
         'price' => 'integer',
         'features' => 'array',
     ];
+
+    public function profile_packages()
+    {
+        return $this->hasMany(ProfilePackage::class);
+    }
 }

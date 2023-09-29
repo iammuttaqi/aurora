@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Auth\Pages\Products;
 
+use App\Models\Package;
 use App\Models\Product;
 use App\Models\ProductProfile;
+use App\Models\ProfilePackage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -21,7 +23,26 @@ class Index extends Component
             ->latest()
             ->paginate(100);
 
-        return view('livewire.auth.pages.products.index', compact('products'));
+        $sold_products_count = Product::query()
+            ->where('profile_id', '!=', auth()->user()->profile->id)
+            ->whereHas('product_profiles', function ($query) {
+                $query->where('profile_id', auth()->user()->profile->id);
+            })
+            ->latest()
+            ->count();
+
+        $free_package_count = Package::where('id', 1)->value('products_count');
+        $profile_packages = ProfilePackage::where('profile_id', auth()->user()->profile->id)
+            ->with('package')
+            ->get();
+
+        $packages_count = $free_package_count;
+        foreach ($profile_packages as $key => $profile_package) {
+            $packages_count += $profile_package->package->products_count;
+        }
+        $products_count_left = ($packages_count - $sold_products_count);
+
+        return view('livewire.auth.pages.products.index', compact('products', 'products_count_left'));
     }
 
     public function destroy($serial_number)
