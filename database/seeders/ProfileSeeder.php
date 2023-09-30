@@ -28,12 +28,17 @@ class ProfileSeeder extends Seeder
         $profiles = [];
         foreach ($users as $key => $user) {
             $username = fake()->slug() . uniqid();
-            $url           = URL::signedRoute('verify_identity', $username);
-            $qr_code       = QrCode::size(500)->generate($url);
+            $qr_code = null;
+
+            $approved = fake()->boolean();
+            if ($approved) {
+                $url           = URL::signedRoute('verify_identity', $username);
+                $qr_code       = QrCode::size(500)->generate($url);
+            }
 
             $profiles[] = [
                 'user_id'           => $user->id,
-                'approved'          => fake()->boolean(),
+                'approved'          => $approved,
                 'name'              => $user->name,
                 'username'          => $username,
                 'qr_code'           => $qr_code,
