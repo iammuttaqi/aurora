@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Auth\Components;
 
-use App\Models\Package;
 use App\Models\Product;
 use App\Models\ProductCustomer;
 use App\Models\ProductProfile;
@@ -55,7 +54,7 @@ class ShopSelectForm extends Component
                     style: 'danger',
                     message: 'Sorry! Your products count ended. Please Buy A Package.',
                 );
-            } else if ($profile->user->role_id != 4) {
+            } elseif ($profile->user->role_id != 4) {
                 DB::rollBack();
                 $this->dispatch(
                     'banner-message',

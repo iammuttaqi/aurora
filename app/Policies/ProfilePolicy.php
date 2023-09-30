@@ -102,7 +102,7 @@ class ProfilePolicy
             })
             ->latest()
             ->count();
-        $package_free_product_count = Package::where('price', 0)->value('products_count');
+        $package_free_product_count   = Package::where('price', 0)->value('products_count');
         $package_total_products_count = $my_profile->profile_packages->sum(function ($package) {
             return $package->package->products_count;
         });

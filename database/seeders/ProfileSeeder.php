@@ -26,7 +26,7 @@ class ProfileSeeder extends Seeder
         $profiles = [];
         foreach ($users as $key => $user) {
             $profiles[] = [
-                'user_id' => $user->id,
+                'user_id'           => $user->id,
                 'name'              => $user->name,
                 'username'          => fake()->slug() . uniqid(),
                 'contact_person'    => fake()->name,

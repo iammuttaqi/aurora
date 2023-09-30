@@ -16,7 +16,7 @@ use Livewire\WithFileUploads;
 
 class Index extends Component
 {
-    use WithFileUploads, SocialLinksTrait, AuthorizesRequests;
+    use AuthorizesRequests, SocialLinksTrait, WithFileUploads;
 
     public function mount($username = null)
     {

@@ -12,10 +12,10 @@ class Package extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'popular' => 'boolean',
-        'title' => 'string',
-        'details' => 'string',
-        'price' => 'integer',
+        'popular'  => 'boolean',
+        'title'    => 'string',
+        'details'  => 'string',
+        'price'    => 'integer',
         'features' => 'array',
     ];
 

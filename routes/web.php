@@ -12,7 +12,6 @@ use App\Http\Livewire\Auth\Pages\Products\Sold as ProductsSold;
 use App\Http\Livewire\Auth\Pages\Profile\Index as ProfileIndex;
 use App\Http\Livewire\Auth\Pages\QrCode\Index as QrCodeIndex;
 use App\Http\Livewire\Frontend\Components\ThankYou;
-use App\Http\Livewire\Frontend\Pages\Cart;
 use App\Http\Livewire\Frontend\Pages\Checkout;
 use App\Http\Livewire\Frontend\Pages\Index;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
@@ -21,8 +20,6 @@ use App\Http\Middleware\SetLayoutMiddleware;
 use App\Models\Profile as ModelsProfile;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
-use function Pest\Laravel\artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +45,7 @@ Route::get('sl/{user_id}', function ($user_id) {
 
 Route::get('artisan/{command}', function ($command) {
     Artisan::call($command);
+
     return $command;
 });
 

@@ -20,7 +20,7 @@ class Product extends Model
     protected function titleWrapped(): Attribute
     {
         return Attribute::make(
-            get: fn () => str()->wordWrap($this->title, 30, "<br>"),
+            get: fn () => str()->wordWrap($this->title, 30, '<br>'),
         );
     }
 

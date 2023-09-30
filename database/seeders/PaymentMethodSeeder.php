@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\PaymentMethod;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PaymentMethodSeeder extends Seeder
@@ -16,33 +15,33 @@ class PaymentMethodSeeder extends Seeder
         $payment_methods = [
             [
                 'payment_type_id' => 1,
-                'title' => 'Bkash',
-                'created_at' => now(),
-                'updated_at' => now()
+                'title'           => 'Bkash',
+                'created_at'      => now(),
+                'updated_at'      => now(),
             ],
             [
                 'payment_type_id' => 1,
-                'title' => 'Nagad',
-                'created_at' => now(),
-                'updated_at' => now()
+                'title'           => 'Nagad',
+                'created_at'      => now(),
+                'updated_at'      => now(),
             ],
             [
                 'payment_type_id' => 1,
-                'title' => 'Rocket',
-                'created_at' => now(),
-                'updated_at' => now()
+                'title'           => 'Rocket',
+                'created_at'      => now(),
+                'updated_at'      => now(),
             ],
             [
                 'payment_type_id' => 2,
-                'title' => 'Visa',
-                'created_at' => now(),
-                'updated_at' => now()
+                'title'           => 'Visa',
+                'created_at'      => now(),
+                'updated_at'      => now(),
             ],
             [
                 'payment_type_id' => 2,
-                'title' => 'MasterCard',
-                'created_at' => now(),
-                'updated_at' => now()
+                'title'           => 'MasterCard',
+                'created_at'      => now(),
+                'updated_at'      => now(),
             ],
         ];
 

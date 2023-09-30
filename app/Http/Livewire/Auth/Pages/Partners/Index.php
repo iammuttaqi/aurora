@@ -6,7 +6,6 @@ use App\Models\Profile;
 use App\Models\Role;
 use App\Notifications\User\ProfileApproveNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;

@@ -15,7 +15,7 @@ class Index extends Component
     public function mount($username = null)
     {
         $this->username = $username ?? auth()->user()->profile->username;
-        $profile = Profile::where('username', $this->username)->first();
+        $profile        = Profile::where('username', $this->username)->first();
         $this->authorize('qrCode', $profile);
     }
 
@@ -34,8 +34,8 @@ class Index extends Component
             ->stream(function () use ($profile) {
                 echo $profile->qr_code;
             }, 200, [
-                'Content-Type' => 'image/svg+xml',
-                'Content-Disposition' => 'attachment; filename="' . $profile->username . '.svg"'
+                'Content-Type'        => 'image/svg+xml',
+                'Content-Disposition' => 'attachment; filename="' . $profile->username . '.svg"',
             ]);
     }
 }

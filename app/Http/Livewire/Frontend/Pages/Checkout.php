@@ -16,7 +16,7 @@ class Checkout extends Component
     public function render()
     {
         $package_id = session('package_id');
-        $package = Package::where('id', $package_id)->first();
+        $package    = Package::where('id', $package_id)->first();
 
         return view('livewire.frontend.pages.checkout', compact('package'));
     }
@@ -28,26 +28,28 @@ class Checkout extends Component
 
     public function fetchPaymentMethods()
     {
-        $this->payment_methods = PaymentMethod::where('payment_type_id', $this->form['payment_type_id'])->get();
+        $this->payment_methods           = PaymentMethod::where('payment_type_id', $this->form['payment_type_id'])->get();
         $this->form['payment_method_id'] = null;
     }
 
     public $form = [
-        'payment_type_id' => 1,
+        'payment_type_id'   => 1,
         'payment_method_id' => null,
-        'account_number' => null,
-        'pin' => null,
+        'account_number'    => null,
+        'pin'               => null,
     ];
+
     public $payment_types = null;
+
     public $payment_methods = null;
 
     public function validationAttributes()
     {
         return [
-            'form.payment_type_id' => 'Payment Type',
+            'form.payment_type_id'   => 'Payment Type',
             'form.payment_method_id' => 'Payment Method',
-            'form.account_number' => 'Account Number/Card Number',
-            'form.pin' => 'PIN',
+            'form.account_number'    => 'Account Number/Card Number',
+            'form.pin'               => 'PIN',
         ];
     }
 
@@ -56,10 +58,10 @@ class Checkout extends Component
         $payment_methods = PaymentMethod::pluck('id')->toArray();
 
         return [
-            'form.payment_type_id' => ['required', 'integer', Rule::in($this->payment_types->pluck('id')->toArray())],
+            'form.payment_type_id'   => ['required', 'integer', Rule::in($this->payment_types->pluck('id')->toArray())],
             'form.payment_method_id' => ['required', 'integer', Rule::in($payment_methods)],
-            'form.account_number' => ['required', 'string'],
-            'form.pin' => ['required', 'string'],
+            'form.account_number'    => ['required', 'string'],
+            'form.pin'               => ['required', 'string'],
         ];
     }
 

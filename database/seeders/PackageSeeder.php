@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Package;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PackageSeeder extends Seeder
@@ -15,12 +14,12 @@ class PackageSeeder extends Seeder
     {
         $packages = [
             [
-                'popular' => false,
-                'title' => 'Free',
-                'price' => 0,
+                'popular'        => false,
+                'title'          => 'Free',
+                'price'          => 0,
                 'products_count' => 100,
-                'details' => 'Free Plan',
-                'features' => json_encode([
+                'details'        => 'Free Plan',
+                'features'       => json_encode([
                     ['title' => '100 Products', 'active' => true],
                     ['title' => 'Technical Support', 'active' => true],
                     ['title' => 'Instant Approval', 'active' => false],
@@ -29,12 +28,12 @@ class PackageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'popular' => true,
-                'title' => 'Startup',
-                'price' => 5000,
+                'popular'        => true,
+                'title'          => 'Startup',
+                'price'          => 5000,
                 'products_count' => 1000,
-                'details' => 'For new business',
-                'features' => json_encode([
+                'details'        => 'For new business',
+                'features'       => json_encode([
                     ['title' => '1000 Products', 'active' => true],
                     ['title' => 'Technical Support', 'active' => true],
                     ['title' => 'Instant Approval', 'active' => false],
@@ -43,12 +42,12 @@ class PackageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'popular' => false,
-                'title' => 'Growing',
-                'price' => 20000,
+                'popular'        => false,
+                'title'          => 'Growing',
+                'price'          => 20000,
                 'products_count' => 5000,
-                'details' => 'For growing business',
-                'features' => json_encode([
+                'details'        => 'For growing business',
+                'features'       => json_encode([
                     ['title' => '5000 Products', 'active' => true],
                     ['title' => 'Technical Support', 'active' => true],
                     ['title' => 'Instant Approval', 'active' => false],
@@ -57,12 +56,12 @@ class PackageSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'popular' => false,
-                'title' => 'Enterprise',
-                'price' => 40000,
+                'popular'        => false,
+                'title'          => 'Enterprise',
+                'price'          => 40000,
                 'products_count' => 10000,
-                'details' => 'Advanced features',
-                'features' => json_encode([
+                'details'        => 'Advanced features',
+                'features'       => json_encode([
                     ['title' => '10000 Products', 'active' => true],
                     ['title' => 'Technical Support', 'active' => true],
                     ['title' => 'Instant Approval', 'active' => true],

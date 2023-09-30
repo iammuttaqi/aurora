@@ -25,8 +25,8 @@ class ProductCustomerSeeder extends Seeder
                         ->toArray()
                 ),
                 'customer_id' => $customer->id,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at'  => now(),
+                'updated_at'  => now(),
             ];
         }
 

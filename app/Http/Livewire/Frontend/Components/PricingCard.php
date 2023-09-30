@@ -9,6 +9,7 @@ use Livewire\Component;
 class PricingCard extends Component
 {
     public $package_id;
+
     public $purchaseable = true;
 
     public function render()

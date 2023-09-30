@@ -29,8 +29,8 @@ class QrCode extends Component
             ->stream(function () use ($product) {
                 echo $product->qr_code;
             }, 200, [
-                'Content-Type' => 'image/svg+xml',
-                'Content-Disposition' => 'attachment; filename="' . $serial_number . '.svg"'
+                'Content-Type'        => 'image/svg+xml',
+                'Content-Disposition' => 'attachment; filename="' . $serial_number . '.svg"',
             ]);
     }
 }

@@ -32,7 +32,7 @@ class Index extends Component
             ->count();
 
         $free_package_count = Package::where('id', 1)->value('products_count');
-        $profile_packages = ProfilePackage::where('profile_id', auth()->user()->profile->id)
+        $profile_packages   = ProfilePackage::where('profile_id', auth()->user()->profile->id)
             ->with('package')
             ->get();
 

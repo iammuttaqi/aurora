@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Frontend\Components;
 
-use App\Http\Livewire\Frontend\Pages\Cart;
-use App\Http\Livewire\Frontend\Pages\Checkout;
 use App\Models\Package;
 use Livewire\Component;
 

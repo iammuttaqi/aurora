@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 $qr_code       = QrCode::size(500)->generate($url);
 
                 $products[] = [
-                    'profile_id' => $profile->id,
+                    'profile_id'           => $profile->id,
                     'product_category_id'  => fake()->randomElement(ProductCategory::pluck('id')->toArray()),
                     'title'                => fake()->sentence,
                     'description'          => fake()->paragraph,
