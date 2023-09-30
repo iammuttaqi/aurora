@@ -1,4 +1,4 @@
-<div class="{{ $package->popular ? 'border-blue-600 border-2' : 'border-gray-200 border' }} flex flex-col rounded-xl p-8 text-center">
+<div class="{{ $package->popular ? 'border-blue-600 border-2' : 'border-gray-300 border' }} flex flex-col rounded-xl bg-white p-8 text-center">
     @if ($package->popular)
         <p class="mb-3"><span class="inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-3 py-1.5 text-xs font-semibold uppercase text-blue-800">Most popular</span></p>
     @endif

@@ -5,7 +5,7 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-                <div>
+                <div class="py-12">
                     <h3 class="text-center text-3xl font-bold">Checkout</h3>
 
                     @if ($package)

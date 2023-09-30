@@ -24,12 +24,13 @@ class Index extends Component
 
     public function render()
     {
-        $partners = Profile::where('name', 'like', '%' . $this->search . '%')
+        $partners = Profile::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('username', 'like', '%' . $this->search . '%')
             ->has('user')
             ->with('user.role')
             ->latest()
-            ->paginate(100)
-            ->withQueryString();
+            ->paginate(100);
 
         return view('livewire.auth.pages.partners.index', compact('partners'));
     }

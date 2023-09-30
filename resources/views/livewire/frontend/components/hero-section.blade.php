@@ -5,9 +5,7 @@
             <a class="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white p-1 pl-3 text-sm text-gray-800 transition-all hover:border-gray-300 hover:bg-gray-200" href="#">
                 Beta Release - Join to waitlist
                 <span class="inline-flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-600">
-                    <svg class="h-2.5 w-2.5" fill="none" height="16" viewBox="0 0 16 16" width="16">
-                        <path d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14" stroke-linecap="round" stroke-width="2" stroke="currentColor" />
-                    </svg>
+                    <i class="bi bi-chevron-right text-xs"></i>
                 </span>
             </a>
         </div>
@@ -29,15 +27,21 @@
 
         <!-- Buttons -->
         <div class="mt-8 grid w-full gap-3 sm:inline-flex sm:justify-center">
-            <a class="inline-flex items-center justify-center gap-x-3 rounded-md border border-transparent bg-gradient-to-tl from-blue-600 to-violet-600 px-4 py-3 text-center text-sm font-medium text-white transition-all hover:from-violet-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white" href="{{ route('register') }}" wire:navigate.hover>
-                Get started
-                <svg class="h-3 w-3" fill="none" height="16" viewBox="0 0 16 16" width="16">
-                    <path d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14" stroke-linecap="round" stroke-width="2" stroke="currentColor" />
-                </svg>
-            </a>
-            <a class="group relative inline-flex items-center justify-center gap-x-3.5 rounded-md border bg-white px-4 py-3 text-center text-sm font-medium shadow-sm transition hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:border-gray-800 dark:bg-slate-900 dark:text-white dark:shadow-slate-700/[.7] dark:hover:border-gray-600 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" href="{{ route('login') }}" wire:navigate.hover>
-                Login
-            </a>
+            @guest
+                <a class="inline-flex items-center justify-center gap-x-3 rounded-md border border-transparent bg-gradient-to-tl from-blue-600 to-violet-600 px-4 py-3 text-center text-sm font-medium text-white transition-all hover:from-violet-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white" href="{{ route('register') }}">
+                    Get started
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+                <a class="group relative inline-flex items-center justify-center gap-x-3.5 rounded-md border bg-white px-4 py-3 text-center text-sm font-medium shadow-sm transition hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:border-gray-800 dark:bg-slate-900 dark:text-white dark:shadow-slate-700/[.7] dark:hover:border-gray-600 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                    Login
+                </a>
+            @endguest
+            @auth
+                <a class="inline-flex items-center justify-center gap-x-3 rounded-md border border-transparent bg-gradient-to-tl from-blue-600 to-violet-600 px-4 py-3 text-center text-sm font-medium text-white transition-all hover:from-violet-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white" href="{{ route('dashboard') }}">
+                    Dashboard
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            @endauth
         </div>
         <!-- End Buttons -->
     </div>
