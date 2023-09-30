@@ -71,15 +71,14 @@
 - company verify page design change. list some basic information of the company - DONE
 - qr code should be downloadable from qr code page - DONE
 - qr code bug fixing - DONE
+- seeder fix - DONE
+- should be full username matchable on sell - DONE
 
 - auth pages design change
 - call role shop as "Shop/Reseller"
 - image upload check on live server
 - remove created at date from shop, instead configure and show sold at
 - configure and show sold at on sold products page
-- secure sell to shop
-    - should be full username matchable
-- seeder fix
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
 - edit product
@@ -92,6 +91,8 @@
 - different email notification for manufacturer and shop
 - admin editors page
 - dashboard page design
+    - role
+    - package status - total products, sold products, products left to sell
 - admin login and dashboard works
 - search product by serial number to verify
 - google analytics include
