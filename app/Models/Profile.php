@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Vite;
 
 class Profile extends Model
 {
@@ -89,12 +90,12 @@ class Profile extends Model
         return $this->hasMany(ProfilePackage::class);
     }
 
-    public $default_logo = 'assets/default.png';
-
     protected function logo(): Attribute
     {
+        $default_logo = Vite::asset('resources/images/default.png');
+
         return Attribute::make(
-            get: fn (?string $value) => $value && file_exists($value) ? $value : $this->default_logo,
+            get: fn (?string $value) => $value && file_exists($value) ? $value : $default_logo,
         );
     }
 

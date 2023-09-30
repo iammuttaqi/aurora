@@ -20,6 +20,12 @@
                         @csrf
                         <div class="grid gap-y-4">
                             <div class="space-y-1">
+                                <x-label for="role_id" value="{{ __('Role') }}" />
+                                <x-radio-advanced :options="$roles" :selected="old('role_id')" id="role_id" name="role_id" />
+                                <x-input-error for="role_id" />
+                            </div>
+
+                            <div class="space-y-1">
                                 <x-label for="name" value="{{ __('Name') }}" />
                                 <x-input :value="old('name')" class="block w-full" id="name" name="name" required type="text" />
                                 <x-input-error for="name" />

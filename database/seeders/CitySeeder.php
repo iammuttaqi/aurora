@@ -80,7 +80,7 @@ class CitySeeder extends Seeder
             'Thakurgaon',
         ];
 
-        $bangladesh_id = Country::where('iso', 'bd')->value('id');
+        $bangladesh_id = 18;
 
         foreach ($cities as $key => $city) {
             City::create([

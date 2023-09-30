@@ -11,6 +11,7 @@ use App\Rules\SocialLinksRule;
 use App\Traits\SocialLinksTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Vite;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -41,7 +42,7 @@ class Index extends Component
         $cities = City::query()
             ->has('country')
             ->whereHas('country', function ($query) {
-                $query->where('iso', 'bd');
+                $query->where('id', 18);
             })
             ->get();
         $categories      = Category::all();
@@ -230,8 +231,10 @@ class Index extends Component
 
     private function uploadImage($profile)
     {
+        $default_logo = Vite::asset('resources/images/default.png');
+
         if ($this->logo) {
-            if ($profile && $profile && $profile->logo && $profile->logo != $profile->default_logo && file_exists($profile->logo)) {
+            if ($profile && $profile && $profile->logo && $profile->logo != $default_logo && file_exists($profile->logo)) {
                 unlink($profile->logo);
             }
             $filename = 'logo/logo-' . time() . rand() . '.png';
