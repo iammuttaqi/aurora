@@ -14,16 +14,13 @@ class ProductProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (range(1, 1000) as $key => $range) {
+        $products = Product::has('profile')->with('profile')->get();
+
+        $profile_products = [];
+        foreach ($products as $key => $product) {
             $profile_products[] = [
-                'product_id' => fake()->randomElement(Product::pluck('id')->toArray()),
-                'profile_id' => fake()->randomElement(
-                    Profile::whereHas('user.role', function ($query) {
-                        $query->where('slug', 'manufacturer');
-                    })
-                        ->pluck('id')
-                        ->toArray()
-                ),
+                'product_id' => $product->id,
+                'profile_id' => $product->profile->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

@@ -15,6 +15,16 @@ jobs:
         with:
           php-version: "8.2"
       - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: 🔨 Build Project for Production
+        run: |
+          npm install
+          npm run build
+
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.production', '.env');"
       - name: Install Dependencies
@@ -29,15 +39,7 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-      - name: 🔨 Build Project for Production
-        run: |
-          npm install
-          npm run build
+          php artisan migrate:fresh --seed
 
       # - name: Execute tests (Unit and Feature tests) via Pest PHP
       #   env:

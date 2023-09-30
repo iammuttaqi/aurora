@@ -52,9 +52,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                            {{-- @php
-                                                dd($notifications, $notifications->currentPage(), $notifications->perPage());
-                                            @endphp --}}
                                             @forelse ($notifications as $notification)
                                                 <tr class="{{ !$notification->read_at ? 'dark:bg-gray-700' : '' }}">
                                                     <td class="py-3 pl-4">

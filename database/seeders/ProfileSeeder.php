@@ -16,21 +16,19 @@ class ProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        // Profile::factory(100)->create();
+        $users = User::with('role')
+            ->whereHas('role', function ($query) {
+                $query->where('type', 'user');
+            })
+            ->whereDoesntHave('profile')
+            ->get();
 
-        foreach (range(1, 100) as $key => $range) {
+        $profiles = [];
+        foreach ($users as $key => $user) {
             $profiles[] = [
-                'user_id' => fake()->unique()->randomElement(
-                    User::with('role')
-                        ->whereHas('role', function ($query) {
-                            $query->where('type', 'user');
-                        })
-                        ->whereDoesntHave('profile')
-                        ->pluck('id')
-                        ->toArray()
-                ),
-                'name'              => fake()->company,
-                'username'          => fake()->unique()->slug(),
+                'user_id' => $user->id,
+                'name'              => $user->name,
+                'username'          => fake()->slug() . uniqid(),
                 'contact_person'    => fake()->name,
                 'address'           => fake()->address,
                 'city_id'           => fake()->randomElement(City::pluck('id')->toArray()),

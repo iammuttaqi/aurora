@@ -14,16 +14,17 @@ class ProductCustomerSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (range(1, 10) as $key => $range) {
+        $customers = Customer::all();
+
+        $product_customers = [];
+        foreach ($customers as $key => $customer) {
             $product_customers[] = [
                 'product_id' => fake()->randomElement(
                     Product::doesnthave('product_customers')
                         ->pluck('id')
                         ->toArray()
                 ),
-                'customer_id' => fake()->randomElement(
-                    Customer::pluck('id')->toArray()
-                ),
+                'customer_id' => $customer->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
