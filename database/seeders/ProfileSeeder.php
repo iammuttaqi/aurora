@@ -8,6 +8,8 @@ use App\Models\EmployeeRange;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\URL;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProfileSeeder extends Seeder
 {
@@ -25,11 +27,16 @@ class ProfileSeeder extends Seeder
 
         $profiles = [];
         foreach ($users as $key => $user) {
+            $username = fake()->slug() . uniqid();
+            $url           = URL::signedRoute('verify_identity', $username);
+            $qr_code       = QrCode::size(500)->generate($url);
+
             $profiles[] = [
                 'user_id'           => $user->id,
                 'approved'          => fake()->boolean(),
                 'name'              => $user->name,
-                'username'          => fake()->slug() . uniqid(),
+                'username'          => $username,
+                'qr_code'           => $qr_code,
                 'contact_person'    => fake()->name,
                 'address'           => fake()->address,
                 'city_id'           => fake()->randomElement(City::pluck('id')->toArray()),
