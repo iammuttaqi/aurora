@@ -17,6 +17,7 @@ class CustomerSeeder extends Seeder
             $customers[] = [
                 'profile_id' => fake()->randomElement(
                     Profile::whereHas('user.role', fn ($query) => $query->where('slug', 'shop'))
+                        ->where('approved', 1)
                         ->pluck('id')
                         ->toArray()
                 ),

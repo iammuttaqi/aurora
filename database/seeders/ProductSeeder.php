@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $profiles = Profile::all();
+        $profiles = Profile::where('approved', 1)->get();
 
         $products = [];
         foreach ($profiles as $key => $profile) {

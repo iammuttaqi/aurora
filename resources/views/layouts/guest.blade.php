@@ -77,7 +77,7 @@
         </nav>
     </header>
 
-    <div class="font-sans text-gray-900 antialiased">
+    <div class="bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
 

@@ -144,7 +144,7 @@
                             <form action="{{ route('logout') }}" method="POST" x-data>
                                 @csrf
 
-                                <x-dropdown-link @click.prevent="$root.submit();" href="{{ route('logout') }}" :navigate="false">
+                                <x-dropdown-link @click.prevent="$root.submit();" :navigate="false" href="{{ route('logout') }}">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
