@@ -18,7 +18,6 @@ use App\Http\Livewire\Frontend\Pages\VerifyIdentity;
 use App\Http\Livewire\Frontend\Pages\VerifyIdentityProduct;
 use App\Http\Middleware\SetLayoutMiddleware;
 use App\Models\Profile as ModelsProfile;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
