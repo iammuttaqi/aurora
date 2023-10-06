@@ -10,7 +10,7 @@ Your privacy is important to us. This Privacy Policy outlines how we collect, us
 
 ### User Profile Information
 
--   When you register on our platform as a Manufacturer, Shop, or Customer, we collect personal information such as your name, contact details, and business information.
+-   When you register on our platform as a Manufacturer, Shop/Reseller, or Customer, we collect personal information such as your name, contact details, and business information.
 
 ### Product Data
 

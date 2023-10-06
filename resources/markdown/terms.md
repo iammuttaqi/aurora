@@ -10,7 +10,7 @@ By accessing or using the Platform, you agree to be bound by these Terms. If you
 
 ## Use of the Platform
 
--   The Platform provides services for Manufacturers, Shops, and Customers to manage and trade products. You must use the Platform in accordance with its intended purpose.
+-   The Platform provides services for Manufacturers, Shops/Resellers, and Customers to manage and trade products. You must use the Platform in accordance with its intended purpose.
 
 -   You agree not to misuse the Platform, including but not limited to hacking, reverse engineering, or attempting to gain unauthorized access to our systems.
 

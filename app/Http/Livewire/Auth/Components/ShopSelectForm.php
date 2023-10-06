@@ -59,7 +59,7 @@ class ShopSelectForm extends Component
                 $this->dispatch(
                     'banner-message',
                     style: 'danger',
-                    message: 'Please select a valid username of a shop.',
+                    message: 'Please select a valid username of a shop/reseller.',
                 );
             } else {
                 if ($profile && is_array($product_ids) && count($product_ids)) {
@@ -91,7 +91,7 @@ class ShopSelectForm extends Component
                     $this->dispatch(
                         'banner-message',
                         style: 'success',
-                        message: 'Product Sold to the Selected Shop.',
+                        message: 'Product Sold to the Selected Shop/Reseller.',
                     );
                 } else {
                     DB::rollBack();

@@ -27,8 +27,8 @@ class Product extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            set: fn () => fake()->imageUrl,
-            get: fn (?string $value) => $value ? $value : $this->default_image,
+            // set: fn (?string $value) => $value ?? fake()->imageUrl,
+            get: fn (?string $value) => $value ?? $this->default_image,
         );
     }
 

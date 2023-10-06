@@ -32,7 +32,7 @@ class FeaturesSection extends Component
             [
                 'icon'    => 'bi-ui-checks-grid',
                 'title'   => 'User-Friendly Dashboards',
-                'details' => 'Intuitive dashboards for manufacturers, shops, and customers, making product management a breeze.',
+                'details' => 'Intuitive dashboards for manufacturers, shops/resellers, and customers, making product management a breeze.',
             ],
             [
                 'icon'    => 'bi-clock-history',
@@ -42,7 +42,7 @@ class FeaturesSection extends Component
             [
                 'icon'    => 'bi-diagram-3-fill',
                 'title'   => 'Seamless Transactions',
-                'details' => 'Facilitate smooth transactions between manufacturers, shops, and customers, fostering trust.',
+                'details' => 'Facilitate smooth transactions between manufacturers, shops/resellers, and customers, fostering trust.',
             ],
             [
                 'icon'    => 'bi-patch-check-fill',

@@ -20,7 +20,7 @@ class Box extends Component
             ->get();
         $buyer_types = [
             ['title' => 'Customer', 'slug' => 'customer'],
-            ['title' => 'Shop', 'slug' => 'shop'],
+            ['title' => 'Shop/Reseller', 'slug' => 'shop'],
         ];
 
         $buyer_type_default = 'shop';

@@ -35,7 +35,7 @@ class RoleSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title'      => 'Shop',
+                'title'      => 'Shop/Reseller',
                 'slug'       => 'shop',
                 'type'       => 'user',
                 'created_at' => now(),

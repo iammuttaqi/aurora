@@ -19,7 +19,7 @@
                                     @if ($product_profile->profile->user->role_id == 3)
                                         <span class="ml-3 mr-2 rounded bg-blue-500 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-blue-500 dark:text-white">Manufacturer</span>
                                     @else
-                                        <span class="ml-3 mr-2 rounded bg-yellow-500 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-yellow-600 dark:text-white">Shop</span>
+                                        <span class="ml-3 mr-2 rounded bg-yellow-500 px-2.5 py-0.5 text-sm font-medium text-white dark:bg-yellow-600 dark:text-white">Shop/Reseller</span>
                                     @endif
                                 </h3>
                                 <time class="my-2 block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $product_profile->created_at->format('F d, Y - h:i A') }}</time>

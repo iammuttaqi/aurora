@@ -11,11 +11,11 @@ class FaqSection extends Component
         $faqs = [
             [
                 'title'   => 'What is the purpose of this platform?',
-                'details' => 'Our platform is designed to connect Manufacturers, Shops, and Customers to efficiently manage and trade products. It provides a secure and transparent way to track product ownership, manage warranties, and facilitate product transactions.',
+                'details' => 'Our platform is designed to connect Manufacturers, Shops/Resellers, and Customers to efficiently manage and trade products. It provides a secure and transparent way to track product ownership, manage warranties, and facilitate product transactions.',
             ],
             [
                 'title'   => 'Who can use this platform?',
-                'details' => 'Manufacturers, Shops, and Customers can use this platform. Manufacturers can list their products, Shops can buy products from Manufacturers and sell them to other Shops or Customers, and Customers can purchase products.',
+                'details' => 'Manufacturers, Shops/Resellers, and Customers can use this platform. Manufacturers can list their products, Shops/Resellers can buy products from Manufacturers and sell them to other Shops/Resellers or Customers, and Customers can purchase products.',
             ],
             [
                 'title'   => 'How does product ownership work?',
@@ -47,7 +47,7 @@ class FaqSection extends Component
             ],
             [
                 'title'   => 'Can I sell products globally on this platform?',
-                'details' => 'Yes, our platform is designed for global trade. Manufacturers and Shops can reach a broad audience and trade products internationally.',
+                'details' => 'Yes, our platform is designed for global trade. Manufacturers and Shops/Resellers can reach a broad audience and trade products internationally.',
             ],
             [
                 'title'   => 'How can I verify a product?',

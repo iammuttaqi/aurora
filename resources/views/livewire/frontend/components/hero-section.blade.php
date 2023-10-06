@@ -22,7 +22,7 @@
         <!-- End Title -->
 
         <div class="mx-auto mt-5 max-w-3xl text-center">
-            <p class="text-lg text-gray-600">Empowering Manufacturers, Shops, and Customers to Seamlessly Track Product Ownership and Warranty Information. Join Us in Creating a Transparent and Trustworthy Marketplace.</p>
+            <p class="text-lg text-gray-600">Empowering Manufacturers, Shops/Resellers, and Customers to Seamlessly Track Product Ownership and Warranty Information. Join Us in Creating a Transparent and Trustworthy Marketplace.</p>
         </div>
 
         <!-- Buttons -->

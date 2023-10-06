@@ -15,7 +15,7 @@
     </div>
 
     <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-        {{ config('app.name') }} simplifies product management for manufacturers, shops, and customers. Manufacturers register products, shops purchase and resell them, and customers buy with warranties. Ownership changes and warranty periods are tracked for transparency. Notifications keep everyone informed. It's a reliable system that connects product sellers and buyers seamlessly.
+        {{ config('app.name') }} simplifies product management for manufacturers, shops/resellers, and customers. Manufacturers register products, shops/resellers purchase and resell them, and customers buy with warranties. Ownership changes and warranty periods are tracked for transparency. Notifications keep everyone informed. It's a reliable system that connects product sellers and buyers seamlessly.
     </p>
 </div>
 

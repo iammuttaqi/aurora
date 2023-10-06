@@ -8,7 +8,7 @@
         </div>
 
         <x-button loading="sell">
-            {{ __('Sell to the Selected Shop') }}
+            {{ __('Sell to the Selected Shop/Resellers') }}
         </x-button>
     </div>
 </form>
