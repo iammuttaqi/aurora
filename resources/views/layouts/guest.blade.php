@@ -8,6 +8,20 @@
 
     <title>@stack('title', config('app.name', 'Laravel'))</title>
 
+    {{-- Meta --}}
+    <meta content="Empowering Manufacturers, Shops/Resellers, and Customers to Seamlessly Track Product Ownership and Warranty Information." name="description">
+    <meta content="Product Ownership Management" property="og:site_name">
+    <meta content="product ownership, products, product track, electronics, manufacturer" property="keywords">
+    <meta content="Muntaser Muttaqi" property="author">
+    <meta content="Product Ownership Management" property="og:title">
+    <meta content="Resume" property="og:type">
+    <meta content="{{ url()->current() }}" property="og:url">
+    <meta content="{{ Vite::asset('resources/images/seo.jpg') }}" property="og:image">
+    <meta content="Product Ownership Management" property="twitter:title">
+    <meta content="Empowering Manufacturers, Shops/Resellers, and Customers to Seamlessly Track Product Ownership and Warranty Information" property="twitter:description">
+    <meta content="{{ Vite::asset('resources/images/seo.jpg') }}" property="twitter:image">
+    <meta content="summary_large_image" property="twitter:card">
+
     {{-- Favicon --}}
     <link href="{{ Vite::asset('resources/images/apple-touch-icon.png') }}" rel="apple-touch-icon" sizes="180x180">
     <link href="{{ Vite::asset('resources/images/favicon-32x32.png') }}" rel="icon" sizes="32x32" type="image/png">
