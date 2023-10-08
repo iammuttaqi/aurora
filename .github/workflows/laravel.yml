@@ -24,6 +24,7 @@ jobs:
         run: |
           npm install
           npm run build
+          npm run prod
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.production', '.env');"
@@ -50,7 +51,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          server: ftp.faisalbhuiyan.com
-          username: aurora@faisalbhuiyan.com
-          password: Pa$$w0rd!!!
+          server: ftp.sellvers.com
+          username: aurora@sellvers.com
+          password: 688827444
           port: 21
