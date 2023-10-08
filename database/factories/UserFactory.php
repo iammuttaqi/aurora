@@ -25,10 +25,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $user_role_id = Role::where('slug', 'owner')->value('id');
-
         return [
-            'role_id'                   => $user_role_id,
+            'role_id'                   => Role::factory()->create(),
             'name'                      => $this->faker->name(),
             'email'                     => $this->faker->unique()->safeEmail(),
             'email_verified_at'         => now(),

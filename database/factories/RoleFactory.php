@@ -17,7 +17,9 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => 'Shop/Reseller',
+            'slug'  => 'shop',
+            'type'  => 'user',
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
@@ -22,6 +23,7 @@ test('registration screen cannot be rendered if support is disabled', function (
 
 test('new users can register', function () {
     $response = $this->post('/register', [
+        'role_id'               => Role::factory()->create()->id,
         'name'                  => 'Test User',
         'email'                 => 'test@example.com',
         'password'              => 'password',

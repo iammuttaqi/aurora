@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
