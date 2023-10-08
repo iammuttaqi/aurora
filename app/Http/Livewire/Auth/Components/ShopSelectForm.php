@@ -36,7 +36,8 @@ class ShopSelectForm extends Component
         $this->validate([
             'username' => ['required', 'string', Rule::exists('profiles', 'username')
                 ->where(function ($query) {
-                    $query->where('username', '!=', auth()->user()->profile->username);
+                    $query->where('username', '!=', auth()->user()->profile->username)
+                        ->where('approved', true);
                 })],
         ]);
 

@@ -75,10 +75,12 @@
 - should be full username matchable on sell - DONE
 - auth pages design change - DONE
 - call role shop as "Shop/Reseller" - DONE
+- image upload check on live server - DONE
 
-- image upload check on live server
-- remove created at date from shop, instead configure and show sold at
-- configure and show sold at on sold products page
+- remove created at date from shop, instead configure and show sold at - skip
+- configure and show sold at on sold products page - skip
+
+- seeder for real manufacturer and shops with real products
 - database notification and email notification to shops and customers on selling
 - "price" field on "product_customers" table and make it functional
 - edit product

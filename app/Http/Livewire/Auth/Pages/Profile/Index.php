@@ -239,7 +239,8 @@ class Index extends Component
             }
             $filename = 'logo/logo-' . time() . rand() . '.png';
             if (app()->isProduction()) {
-                $this->logo->storeAs('storage', $filename, 'public_html');
+                // $this->logo->storeAs('storage', $filename, 'public_html');
+                $this->logo->storeAs('storage', $filename);
             } else {
                 $this->logo->storeAs('public', $filename);
             }

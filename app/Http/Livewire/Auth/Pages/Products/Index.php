@@ -42,7 +42,7 @@ class Index extends Component
         }
         $products_count_left = ($packages_count - $sold_products_count);
 
-        return view('livewire.auth.pages.products.index', compact('products', 'products_count_left'));
+        return view('livewire.auth.pages.products.index', compact('products', 'packages_count', 'products_count_left'));
     }
 
     public function destroy($serial_number)

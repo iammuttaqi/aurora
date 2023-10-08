@@ -93,13 +93,13 @@
                 <div class="flex items-center justify-between gap-3">
                     <livewire:auth.components.product-box-link />
 
-                    <x-nav-link class="relative border-none" href="{{ route('notifications.index') }}">
+                    <x-nav-link class="relative border-none !py-0" href="{{ route('notifications.index') }}">
                         <i class="bi bi-bell text-xl"></i>
                         <span class="sr-only">Notifications</span>
                         <livewire:auth.components.notifications-count />
                     </x-nav-link>
 
-                    <x-nav-link class="relative cursor-pointer border-none" x-cloak x-on:click.prevent="dark = !dark">
+                    <x-nav-link class="relative cursor-pointer border-none !py-0" x-cloak x-on:click.prevent="dark = !dark">
                         <i class="bi bi-brightness-high text-xl" x-show="dark"></i>
                         <i class="bi bi-moon text-xl" x-show="!dark"></i>
                     </x-nav-link>
