@@ -35,6 +35,9 @@
                             {{ __('Products') }}
                         </x-nav-link>
                     @endcan
+                    <x-nav-link :active="request()->routeIs('customers.*')" href="{{ route('customers.index') }}">
+                        {{ __('Customers') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -144,7 +147,7 @@
                             <form action="{{ route('logout') }}" method="POST" x-data>
                                 @csrf
 
-                                <x-dropdown-link @click.prevent="$root.submit();" :navigate="false" href="{{ route('logout') }}">
+                                <x-dropdown-link :navigate="false" @click.prevent="$root.submit();" href="{{ route('logout') }}">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -226,7 +229,7 @@
                 <form action="{{ route('logout') }}" method="POST" x-data>
                     @csrf
 
-                    <x-responsive-nav-link @click.prevent="$root.submit();" :navigate="false" href="{{ route('logout') }}">
+                    <x-responsive-nav-link :navigate="false" @click.prevent="$root.submit();" href="{{ route('logout') }}">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
