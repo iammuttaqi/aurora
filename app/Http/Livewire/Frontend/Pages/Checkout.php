@@ -8,6 +8,7 @@ use App\Models\PaymentMethod;
 use App\Models\PaymentType;
 use App\Models\ProfilePackage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -94,10 +95,12 @@ class Checkout extends Component
             DB::commit();
             $this->reset();
             session()->forget('package_id');
-            $this->redirect(ThankYou::class, navigate: true);
+            // $this->redirect(ThankYou::class, navigate: true);
+            return Redirect::signedRoute('thank_you');
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
+            $this->redirect(Checkout::class, navigate: true);
             throw $th;
         }
     }

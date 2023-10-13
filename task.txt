@@ -103,14 +103,14 @@
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
-- product profiles functional with Package - DONE
 - product customers functional with Package
+- product profiles functional with Package - DONE
 - Buy Package - DONE
-    - checkout form
-    - thank you page
+    - checkout form - DONE
+    - thank you page - DONE
 - include payment functionality - DONE
-    - for manufacturers and shops, they will only be able to sell 100 products on free Account
-    - they should renew subscription for
+    - for manufacturers and shops, they will only be able to sell 100 products on free Account - DONE
+    - they should renew subscription for - DONE
         1000 products - 5000 taka
         5000 products - 20000 taka
         10000 products - 40000 taka

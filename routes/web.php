@@ -39,7 +39,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
     Route::get('/', Index::class)->name('index');
     Route::middleware(['auth'])->group(function () {
         Route::get('checkout', Checkout::class)->name('checkout');
-        Route::get('thank-you', ThankYou::class)->name('thank_you');
+        Route::get('thank-you', ThankYou::class)->name('thank_you')->middleware('signed');
     });
 
     Route::middleware('signed')->group(function () {
