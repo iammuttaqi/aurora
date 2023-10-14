@@ -35,9 +35,11 @@
                             {{ __('Products') }}
                         </x-nav-link>
                     @endcan
-                    <x-nav-link :active="request()->routeIs('customers.*')" href="{{ route('customers.index') }}">
-                        {{ __('Customers') }}
-                    </x-nav-link>
+                    @can('viewAny', \App\Models\Customer::class)
+                        <x-nav-link :active="request()->routeIs('customers.*')" href="{{ route('customers.index') }}">
+                            {{ __('Customers') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

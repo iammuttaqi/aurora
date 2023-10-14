@@ -78,7 +78,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
 
     // customers route for shop
-    Route::prefix('customers')->name('customers.')->group(function () {
+    Route::prefix('customers')->name('customers.')->middleware('can:viewAny,App\Models\Customer')->group(function () {
         Route::get('/', CustomerIndex::class)->name('index');
         Route::get('products/{customer_id}', Products::class)->name('products');
     });
