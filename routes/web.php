@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Auth\Pages\Customer\Index as CustomerIndex;
+use App\Http\Livewire\Auth\Pages\Customer\Products;
 use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
@@ -79,6 +80,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // customers route for shop
     Route::prefix('customers')->name('customers.')->group(function () {
         Route::get('/', CustomerIndex::class)->name('index');
+        Route::get('products/{customer_id}', Products::class)->name('products');
     });
 
     Route::prefix('notifications')->name('notifications.')->group(function () {

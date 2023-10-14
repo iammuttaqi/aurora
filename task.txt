@@ -103,7 +103,8 @@
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
-- product customers functional with Package
+- product customers only for shop
+- product customers functional with products - DONE
 - product profiles functional with Package - DONE
 - Buy Package - DONE
     - checkout form - DONE

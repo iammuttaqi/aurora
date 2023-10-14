@@ -36,6 +36,7 @@
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Gender</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">City</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Added At</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Products</th>
                                 </tr>
                             </thead>
 
@@ -49,6 +50,11 @@
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $customer->gender }}</td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $customer->city }}</td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $customer->created_at->format('Y-m-d | h:i A') }}</td>
+                                        <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+                                            <a href="{{ route('customers.products', $customer->id) }}" target="_blank" title="Products">
+                                                <i class="bi bi-bag-check-fill rounded bg-green-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-green-600"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
