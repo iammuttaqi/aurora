@@ -88,31 +88,53 @@ class ProfilePolicy
         return $profile->approved && $profile->qr_code;
     }
 
+    // public function canSell(User $user): bool
+    // {
+    //     $product_ids = session('product_ids');
+
+    //     if ($user->role_id == 3) {
+    //         $my_profile = Profile::where('user_id', $user->id)
+    //             ->with('profile_packages.package')
+    //             ->first();
+    //         $my_sold_products_count = Product::query()
+    //             ->where('profile_id', '!=', auth()->user()->profile->id)
+    //             ->whereHas('product_profiles', function ($query) {
+    //                 $query->where('profile_id', auth()->user()->profile->id);
+    //             })
+    //             ->latest()
+    //             ->count();
+    //         $package_free_product_count   = Package::where('price', 0)->value('products_count');
+    //         $package_total_products_count = $my_profile->profile_packages->sum(function ($package) {
+    //             return $package->package->products_count;
+    //         });
+
+    //         return ($my_sold_products_count + count($product_ids)) <= ($package_free_product_count + $package_total_products_count);
+    //     } elseif ($user->role_id == 4) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
+
     public function canSell(User $user): bool
     {
         $product_ids = session('product_ids');
 
-        if ($user->role_id == 3) {
-            $my_profile = Profile::where('user_id', $user->id)
-                ->with('profile_packages.package')
-                ->first();
-            $my_sold_products_count = Product::query()
-                ->where('profile_id', '!=', auth()->user()->profile->id)
-                ->whereHas('product_profiles', function ($query) {
-                    $query->where('profile_id', auth()->user()->profile->id);
-                })
-                ->latest()
-                ->count();
-            $package_free_product_count   = Package::where('price', 0)->value('products_count');
-            $package_total_products_count = $my_profile->profile_packages->sum(function ($package) {
-                return $package->package->products_count;
-            });
+        $my_profile = Profile::where('user_id', $user->id)
+            ->with('profile_packages.package')
+            ->first();
+        $my_sold_products_count = Product::query()
+            ->where('profile_id', '!=', auth()->user()->profile->id)
+            ->whereHas('product_profiles', function ($query) {
+                $query->where('profile_id', auth()->user()->profile->id);
+            })
+            ->latest()
+            ->count();
+        $package_free_product_count   = Package::where('price', 0)->value('products_count');
+        $package_total_products_count = $my_profile->profile_packages->sum(function ($package) {
+            return $package->package->products_count;
+        });
 
-            return ($my_sold_products_count + count($product_ids)) <= ($package_free_product_count + $package_total_products_count);
-        } elseif ($user->role_id == 4) {
-            return false;
-        } else {
-            return true;
-        }
+        return ($my_sold_products_count + count($product_ids)) <= ($package_free_product_count + $package_total_products_count);
     }
 }

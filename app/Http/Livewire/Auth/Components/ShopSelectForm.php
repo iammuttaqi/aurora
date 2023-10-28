@@ -48,60 +48,45 @@ class ShopSelectForm extends Component
                 ->with('user')
                 ->first();
 
-            if (Gate::denies('canSell', Profile::class)) {
-                DB::rollBack();
+            if (Gate::allows('canSell', Profile::class) && $profile && $profile->user->role_id == 4 && is_array($product_ids) && count($product_ids)) {
+                $product_shops = [];
+
+                foreach ($product_ids as $key => $product_id) {
+                    $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
+
+                    if (!$product_customer_exists) {
+                        $product_shops[$key]['product_id'] = $product_id;
+                        $product_shops[$key]['profile_id'] = $profile->id;
+                        $product_shops[$key]['created_at'] = now();
+                        $product_shops[$key]['updated_at'] = now();
+                    }
+                }
+
+                Product::whereIn('id', $product_ids)->update([
+                    'profile_id' => $profile->id,
+                ]);
+                ProductProfile::insert($product_shops);
+
+                $profile->user->notify(new BuyerProductSoldNotification(request()->user()->profile));
+                request()->user()->notify(new SellerProductSoldNotification($profile));
+
+                DB::commit();
+                $this->reset();
+                session()->forget('product_ids');
+                $this->dispatch('notificationsUpdated');
+                $this->dispatch('sessionUpdated');
                 $this->dispatch(
                     'banner-message',
-                    style: 'danger',
-                    message: 'Sorry! Your products count ended. Please Buy A Package.',
-                );
-            } elseif ($profile->user->role_id != 4) {
-                DB::rollBack();
-                $this->dispatch(
-                    'banner-message',
-                    style: 'danger',
-                    message: 'Please select a valid username of a shop/reseller.',
+                    style: 'success',
+                    message: 'Product Sold to the Selected Shop/Reseller.',
                 );
             } else {
-                if ($profile && is_array($product_ids) && count($product_ids)) {
-                    $product_shops = [];
-                    foreach ($product_ids as $key => $product_id) {
-                        $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
-
-                        if (!$product_customer_exists) {
-                            $product_shops[$key]['product_id'] = $product_id;
-                            $product_shops[$key]['profile_id'] = $profile->id;
-                            $product_shops[$key]['created_at'] = now();
-                            $product_shops[$key]['updated_at'] = now();
-                        }
-                    }
-
-                    Product::whereIn('id', $product_ids)->update([
-                        'profile_id' => $profile->id,
-                    ]);
-                    ProductProfile::insert($product_shops);
-
-                    $profile->user->notify(new BuyerProductSoldNotification(request()->user()->profile));
-                    request()->user()->notify(new SellerProductSoldNotification($profile));
-
-                    DB::commit();
-                    $this->reset();
-                    session()->forget('product_ids');
-                    $this->dispatch('notificationsUpdated');
-                    $this->dispatch('sessionUpdated');
-                    $this->dispatch(
-                        'banner-message',
-                        style: 'success',
-                        message: 'Product Sold to the Selected Shop/Reseller.',
-                    );
-                } else {
-                    DB::rollBack();
-                    $this->dispatch(
-                        'banner-message',
-                        style: 'danger',
-                        message: 'No products on the box.',
-                    );
-                }
+                DB::rollBack();
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'Access denied.',
+                );
             }
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -5,10 +5,33 @@
         <span class="text-3xl font-bold text-white">{{ config('app.name') }}</span>
     </div>
 
-    <div class="mt-8 flex justify-between">
-        <h1 class="text-2xl font-medium text-gray-900 dark:text-white">
-            Welcome to your {{ config('app.name') }}
-        </h1>
+    <div class="mt-8 flex items-start justify-between">
+        <div class="space-y-2">
+            <h1 class="text-2xl font-medium text-gray-900 dark:text-white">
+                Welcome to your Dashboard, <strong>{{ auth()->user()->name }}</strong>
+            </h1>
+            @if (auth()->user()->profile && auth()->user()->profile->username)
+                <div class="relative z-20 flex items-center" x-data="{
+                    copyText: @js(auth()->user()->profile->username),
+                    copyNotification: false,
+                    copyToClipboard() {
+                        navigator.clipboard.writeText(this.copyText);
+                        this.copyNotification = true;
+                        let that = this;
+                        setTimeout(function() {
+                            that.copyNotification = false;
+                        }, 3000);
+                    }
+                }">
+                    <button class="group flex h-8 w-auto cursor-pointer items-center justify-center rounded-md bg-blue-100 px-3 py-1 text-xs text-blue-800" x-on:click="copyToClipboard();">
+                        <span x-text="copyText"></span>
+                        <i class="bi bi-clipboard ml-1.5" x-show="!copyNotification"></i>
+                        <i class="bi bi-clipboard-check ml-1.5 text-green-500" x-cloak x-show="copyNotification"></i>
+                    </button>
+                </div>
+            @endif
+        </div>
+
         <span class="rounded-md bg-blue-100 px-3 py-1.5 text-base font-medium text-blue-800">
             You are logged in as a <strong>{{ auth()->user()->role->title }}</strong>
         </span>

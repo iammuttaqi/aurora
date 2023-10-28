@@ -79,10 +79,12 @@
 
 - remove created at date from shop, instead configure and show sold at - skip
 - configure and show sold at on sold products page - skip
+- "price" field on "product_customers" table and make it functional - skip
+
+- bug fixes on total product module - IMPORTANT
 
 - seeder for real manufacturer and shops with real products
 - database notification and email notification to shops and customers on selling
-- "price" field on "product_customers" table and make it functional
 - edit product
     - single product
     - product image
@@ -96,14 +98,13 @@
     - role
     - package status - total products, sold products, products left to sell
 - admin login and dashboard works
-- search product by serial number to verify
 - shops can see their customers
 - google analytics include
 
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
-- product customers only for shop
+- product customers only for shop - DONE
 - product customers functional with products - DONE
 - product profiles functional with Package - DONE
 - Buy Package - DONE

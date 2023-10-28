@@ -30,7 +30,7 @@
             <div class="-m-1.5 overflow-x-auto">
                 <div class="inline-block min-w-full p-1.5 align-middle">
                     <div class="overflow-hidden rounded-lg border dark:border-gray-700">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <table class="min-w-full divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
                                     <th colspan="10">
@@ -44,21 +44,24 @@
                                                         <li class="text-sm text-gray-400">In Stock: <strong class="text-gray-800 dark:text-white">{{ $products_count_left }}</strong></li>
                                                     </ul>
                                                 </div>
-                                                @can('sell', \App\Models\Product::class)
-                                                    <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-blue-400 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" wire:click="addToBox()" wire:loading.attr="disabled" wire:target="addToBox" x-cloak x-show="checks.length" x-transition>
-                                                        <i class="bi bi-bag-plus-fill text-base"></i>
-                                                        Add to Box
-                                                    </button>
-                                                @endcan
-                                            </div>
 
-                                            @can('create', \App\Models\Product::class)
                                                 <div class="inline-flex gap-3 rounded-md shadow-sm">
-                                                    <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}" wire:navigate>
-                                                        Add Product
-                                                    </a>
+                                                    @can('create', \App\Models\Product::class)
+                                                        <a class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-green-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-green-400 dark:focus:ring-offset-gray-800" href="{{ route('products.create') }}" wire:navigate>
+                                                            <i class="bi bi-plus-circle text-base"></i>
+                                                            Add Product
+                                                        </a>
+                                                    @endcan
+
+                                                    @can('sell', \App\Models\Product::class)
+                                                        <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-blue-400 dark:focus:ring-offset-gray-800" title="Add to Box" type="button" wire:click="addToBox()" wire:loading.attr="disabled" wire:target="addToBox" x-cloak x-show="checks.length" x-transition>
+                                                            <i class="bi bi-bag-plus-fill text-base"></i>
+                                                            Add to Box
+                                                        </button>
+                                                    @endcan
                                                 </div>
-                                            @endcan
+
+                                            </div>
                                         </div>
                                     </th>
                                 </tr>
@@ -66,7 +69,7 @@
                                 <tr>
                                     <th class="py-3 pl-4" scope="col">
                                         <div class="flex h-5 items-center">
-                                            <input class="rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-checkbox-all" type="checkbox" x-model="check_all">
+                                            <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-checkbox-all" type="checkbox" x-model="check_all">
                                             <label class="sr-only" for="hs-table-checkbox-all">Checkbox</label>
                                         </div>
                                     </th>
@@ -84,9 +87,11 @@
                                 @forelse ($products as $product)
                                     <tr>
                                         <td class="py-3 pl-4">
-                                            <div class="flex h-5 cursor-pointer items-center">
-                                                <input class="rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-checkbox-{{ $loop->index + 1 }}" type="checkbox" type="checkbox" value="{{ $product->id }}" x-model="checks">
-                                                <label class="sr-only" for="hs-table-checkbox-{{ $loop->index + 1 }}">Checkbox</label>
+                                            <div class="flex h-5 items-center">
+                                                @can('checkable', $product)
+                                                    <input class="cursor-pointer rounded border-gray-200 text-blue-600 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:checked:border-blue-500 dark:checked:bg-blue-500 dark:focus:ring-offset-gray-800" id="hs-table-product-{{ $loop->index + 1 }}" type="checkbox" type="checkbox" value="{{ $product->id }}" x-model="checks">
+                                                    <label class="sr-only" for="hs-table-product-{{ $loop->index + 1 }}">Checkbox</label>
+                                                @endcan
                                             </div>
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">

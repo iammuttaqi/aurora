@@ -1,14 +1,15 @@
 <section class="relative overflow-hidden bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 transition-all before:absolute before:left-1/2 before:top-0 before:-z-[1] before:h-full before:w-full before:-translate-x-1/2 before:transform before:bg-cover before:bg-top before:bg-no-repeat" id="hero">
     <div class="mx-auto max-w-[85rem] px-4 py-[10rem] sm:px-6 lg:px-8">
+
         <!-- Announcement Banner -->
-        <div class="flex justify-center">
+        {{-- <div class="flex justify-center">
             <a class="inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white p-1 pl-3 text-sm text-gray-800 transition-all hover:border-gray-300 hover:bg-gray-200" href="#">
                 Beta Release - Join to waitlist
                 <span class="inline-flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-600">
                     <i class="bi bi-chevron-right text-xs"></i>
                 </span>
             </a>
-        </div>
+        </div> --}}
         <!-- End Announcement Banner -->
 
         <!-- Title -->

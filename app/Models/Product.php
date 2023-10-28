@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Product extends Model
@@ -14,8 +15,6 @@ class Product extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
-
-    public $default_image = 'assets/no-image.png';
 
     protected function titleWrapped(): Attribute
     {
@@ -26,9 +25,11 @@ class Product extends Model
 
     protected function image(): Attribute
     {
+        $default_image = Vite::asset('resources/images/no-image.png');
+
         return Attribute::make(
             // set: fn (?string $value) => $value ?? fake()->imageUrl,
-            get: fn (?string $value) => $value ?? $this->default_image,
+            get: fn (?string $value) => $value && file_exists($value) ? $value : $default_image,
         );
     }
 

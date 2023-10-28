@@ -17,6 +17,9 @@ class Sold extends Component
             ->whereHas('product_profiles', function ($query) {
                 $query->where('profile_id', auth()->user()->profile->id);
             })
+            ->orWhereHas('product_customers', function ($query) {
+                $query->where('profile_id', auth()->user()->profile->id);
+            })
             ->latest()
             ->paginate(100);
 
