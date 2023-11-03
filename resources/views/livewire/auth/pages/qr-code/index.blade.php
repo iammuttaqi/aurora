@@ -22,6 +22,9 @@
                     <x-button class="m-3" loading="download">
                         {{ __('Download') }}
                     </x-button>
+                    <a class="m-3 underline" href="{{ URL::signedRoute('verify_identity', $profile->username) }}" target="_blank">
+                        {{ __('See Timeline') }}
+                    </a>
                 </form>
                 <div class="flex justify-center">
                     <div>{!! $profile->qr_code !!}</div>

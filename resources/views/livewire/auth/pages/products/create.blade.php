@@ -36,37 +36,37 @@
 
                     <div class="space-y-1">
                         <x-label :value="$this->label('form.title')" for="title" />
-                        <x-input :required="$this->required('form.title')" :placeholder="$this->label('form.title')" autofocus class="block w-full" id="title" name="title" type="text" wire:model="form.title" />
+                        <x-input :placeholder="$this->label('form.title')" :required="$this->required('form.title')" autofocus class="block w-full" id="title" name="title" type="text" wire:model="form.title" />
                         <x-input-error for="form.title" />
                     </div>
 
                     <div class="space-y-1">
                         <x-label :value="$this->label('form.price')" for="price" />
-                        <x-input :required="$this->required('form.price')" :placeholder="$this->label('form.price')" class="block w-full" id="price" name="price" type="text" wire:model="form.price" />
+                        <x-input :placeholder="$this->label('form.price')" :required="$this->required('form.price')" class="block w-full" id="price" name="price" type="text" wire:model="form.price" />
                         <x-input-error for="form.price" />
                     </div>
 
                     <div class="space-y-1">
                         <x-label :value="$this->label('form.product_category_id')" for="product_category_id" />
-                        <x-select :value="old('form.product_category_id')" :options="$product_categories" class="block w-full" default="Select {{ $this->label('form.product_category_id') }}..." id="product_category_id" key="id" name="product_category_id" required value_key="title" wire:model="form.product_category_id"></x-select>
+                        <x-select :options="$product_categories" :value="old('form.product_category_id')" class="block w-full" default="Select {{ $this->label('form.product_category_id') }}..." id="product_category_id" key="id" name="product_category_id" required value_key="title" wire:model="form.product_category_id"></x-select>
                         <x-input-error for="form.product_category_id" />
                     </div>
 
                     <div class="col-span-full space-y-1">
                         <x-label :value="$this->label('form.description')" for="description" />
-                        <x-textarea :required="$this->required('form.description')" :placeholder="$this->label('form.description')" class="block w-full" id="description" name="description" rows="5" type="text" wire:model="form.description" />
+                        <x-textarea :placeholder="$this->label('form.description')" :required="$this->required('form.description')" class="block w-full" id="description" name="description" rows="5" type="text" wire:model="form.description" />
                         <x-input-error for="form.description" />
                     </div>
 
                     <div class="space-y-1">
                         <x-label :value="$this->label('form.warranty_period')" for="warranty_period" />
-                        <x-input :required="$this->required('form.warranty_period')" :placeholder="$this->label('form.warranty_period')" class="block w-full" id="warranty_period" name="warranty_period" type="number" wire:model="form.warranty_period" />
+                        <x-input :placeholder="$this->label('form.warranty_period')" :required="$this->required('form.warranty_period')" class="block w-full" id="warranty_period" name="warranty_period" type="number" wire:model="form.warranty_period" />
                         <x-input-error for="form.warranty_period" />
                     </div>
 
                     <div class="space-y-1">
                         <x-label :value="$this->label('form.warranty_period_unit')" for="warranty_period_unit" />
-                        <x-select :value="old('form.warranty_period_unit')" :options="$warranty_period_units" class="block w-full" default="Select {{ $this->label('form.warranty_period_unit') }}..." id="warranty_period_unit" key="slug" name="warranty_period_unit" required value_key="title" wire:model="form.warranty_period_unit"></x-select>
+                        <x-select :options="$warranty_period_units" :value="old('form.warranty_period_unit')" class="block w-full" default="Select {{ $this->label('form.warranty_period_unit') }}..." id="warranty_period_unit" key="slug" name="warranty_period_unit" required value_key="title" wire:model="form.warranty_period_unit"></x-select>
                         <x-input-error for="form.warranty_period_unit" />
                     </div>
 
@@ -77,7 +77,7 @@
                                 <i class="bi bi-dash-circle-fill mr-2 text-lg text-purple-500 dark:text-purple-400"></i>
                                 Decrease
                             </button>
-                            <x-input :required="$this->required('product_count')" :placeholder="$this->label('product_count')" class="block w-full rounded-none" id="product_count" name="product_count" type="number" x-bind:max="product_count_max" x-bind:min="product_count_min" x-model="product_count" />
+                            <x-input :placeholder="$this->label('product_count')" :required="$this->required('product_count')" class="block w-full rounded-none" id="product_count" name="product_count" type="number" x-bind:max="product_count_max" x-bind:min="product_count_min" x-model="product_count" />
                             <button class="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-200 px-3 text-sm text-black dark:border-gray-600 dark:bg-gray-600 dark:text-white" type="button" x-on:click="product_count < product_count_max ? product_count++ : null">
                                 <i class="bi bi-plus-circle-fill mr-2 text-lg text-purple-500 dark:text-purple-400"></i>
                                 Increase
@@ -88,7 +88,7 @@
 
                     <div class="col-span-full block space-x-2">
                         <x-button loading="store, form.image">{{ __('Save') }}</x-button>
-                        <span class="text-sm text-yellow-500" wire:loading wire:target="store">Please wait. This action may take a few minutes.</span>
+                        <span class="text-sm text-yellow-500" wire:loading wire:target="store">Please wait. This action may take a while.</span>
                     </div>
                 </form>
 

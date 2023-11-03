@@ -53,7 +53,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
-                                                        <img class="h-10 w-10 object-cover" src="{{ $partner->logo }}">
+                                                        <img class="h-10 w-10 object-contain" src="{{ $partner->logo }}">
                                                     </td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $partner->name }}</td>
                                                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ $partner->user->role->title }}</td>
