@@ -139,5 +139,43 @@
                 </div>
             </div>
         </div>
+
+        <div>
+            <div class="fixed left-0 top-0 z-[99] flex h-screen w-screen items-center justify-center" x-cloak x-show="multiDuplicateModalOpen">
+                <div class="absolute inset-0 h-full w-full bg-black bg-opacity-40" x-on:click="multiDuplicateModalOpen = false" x-show="multiDuplicateModalOpen" x-transition:enter-end="opacity-100" x-transition:enter-start="opacity-0" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0" x-transition:leave-start="opacity-100" x-transition:leave="ease-in duration-300"></div>
+                <div class="relative w-full sm:max-w-lg sm:rounded-lg" x-show="multiDuplicateModalOpen" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter="ease-out duration-300" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200" x-trap.inert.noscroll="multiDuplicateModalOpen">
+                    <form class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:shadow-slate-700/[.7]" wire:submit.prevent="duplicateMultiple">
+                        <div class="flex items-center justify-between border-b px-4 py-3 dark:border-gray-700">
+                            <h3 class="font-bold text-gray-800 dark:text-white">
+                                How many duplicates you want for this product?
+                            </h3>
+                            <button class="hs-dropdown-toggle inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md text-sm text-gray-500 transition-all hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#hs-basic-modal" type="button" x-on:click="multiDuplicateModalOpen = false">
+                                <i class="bi bi-x-lg text-lg"></i>
+                            </button>
+                        </div>
+                        <div class="overflow-y-auto p-4">
+                            <p class="mt-1 text-gray-800 dark:text-gray-400">
+                            <div class="flex rounded-md shadow-sm">
+                                <button class="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-l-md border border-transparent bg-purple-500 px-4 py-0 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-purple-500" type="button" x-on:click="multiDuplicateCount > 1 ? multiDuplicateCount-- : null">
+                                    <i class="bi bi-dash-circle text-lg"></i>
+                                    Decrease
+                                </button>
+                                <input class="block w-full border-y border-purple-500 px-4 py-3 text-sm shadow-sm dark:border-purple-500 dark:bg-slate-900 dark:text-gray-400" max="50" min="1" type="number" x-model="multiDuplicateCount">
+                                <button class="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-r-md border border-transparent bg-purple-500 px-4 py-0 text-sm font-semibold text-white transition-all hover:bg-purple-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-purple-500" type="button" x-on:click="multiDuplicateCount++">
+                                    <i class="bi bi-plus-circle text-lg"></i>
+                                    Increase
+                                </button>
+                            </div>
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-end gap-x-2 border-t px-4 py-3 dark:border-gray-700">
+                            <button class="inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" href="#" type="submit">
+                                Duplicate
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

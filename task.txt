@@ -81,6 +81,7 @@
 - remove created at date from shop, instead configure and show sold at - skip
 - configure and show sold at on sold products page - skip
 - "price" field on "product_customers" table and make it functional - skip
+- different email notification for manufacturer and shop - skip
 
 - seeder for real manufacturer and shops with real products
 - database notification and email notification to shops and customers on selling
@@ -89,9 +90,7 @@
     - product image
     - product with same name
     - batch edit
-- Trade License Number in Profile
 - reminder every 7 day to fill profile, even after registration
-- different email notification for manufacturer and shop
 - admin editors page
 - dashboard page design
     - role
