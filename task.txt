@@ -1,18 +1,7 @@
-(Abu Sayed)
-- new register page
-- new login page
-- logo 
-- homepage
 - Guide page:
     - steps to get started should be mentioned in this page.
     ie: Create Account -> Verify Email -> Upload Your Profile -> Approved By Aurora
 - suggest QR code scanner app
-
-
-
-(Mahfuz):
-- Categories CRUD for admin
-- Cities CRUD for admin
 
 
 
@@ -77,31 +66,7 @@
 - call role shop as "Shop/Reseller" - DONE
 - image upload check on live server - DONE
 - bug fixes on total product module - DONE
-
-- remove created at date from shop, instead configure and show sold at - skip
-- configure and show sold at on sold products page - skip
-- "price" field on "product_customers" table and make it functional - skip
-- different email notification for manufacturer and shop - skip
-
-- seeder for real manufacturer and shops with real products
-- database notification and email notification to shops and customers on selling
-- edit product
-    - single product
-    - product image
-    - product with same name
-    - batch edit
-- reminder every 7 day to fill profile, even after registration
-- admin editors page
-- dashboard page design
-    - role
-    - package status - total products, sold products, products left to sell
-- admin login and dashboard works
-- shops can see their customers
-- google analytics include
-
--------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------
-
+- edit product - DONE
 - product customers only for shop - DONE
 - product customers functional with products - DONE
 - product profiles functional with Package - DONE
@@ -114,3 +79,21 @@
         1000 products - 5000 taka
         5000 products - 20000 taka
         10000 products - 40000 taka
+
+- remove created at date from shop, instead configure and show sold at - skip
+- configure and show sold at on sold products page - skip
+- "price" field on "product_customers" table and make it functional - skip
+- different email notification for manufacturer and shop - skip
+
+- Categories CRUD for admin
+- Cities CRUD for admin
+- admin editors page
+- seeder for real manufacturer and shops with real products
+- database notification and email notification to shops and customers on selling
+- reminder every 7 day to fill profile, even after registration
+- dashboard page design
+    - role
+    - package status - total products, sold products, products left to sell
+- admin login and dashboard works
+- shops can see their customers
+- google analytics include
