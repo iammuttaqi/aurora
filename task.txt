@@ -79,14 +79,11 @@
         1000 products - 5000 taka
         5000 products - 20000 taka
         10000 products - 40000 taka
+- Categories CRUD for admin - DONE
+- Cities CRUD for admin - DONE
+- shops can see their customers - DONE
 
-- remove created at date from shop, instead configure and show sold at - skip
-- configure and show sold at on sold products page - skip
-- "price" field on "product_customers" table and make it functional - skip
-- different email notification for manufacturer and shop - skip
 
-- Categories CRUD for admin
-- Cities CRUD for admin
 - admin editors page
 - seeder for real manufacturer and shops with real products
 - database notification and email notification to shops and customers on selling
@@ -95,5 +92,11 @@
     - role
     - package status - total products, sold products, products left to sell
 - admin login and dashboard works
-- shops can see their customers
 - google analytics include
+
+
+
+- remove created at date from shop, instead configure and show sold at - skip
+- configure and show sold at on sold products page - skip
+- "price" field on "product_customers" table and make it functional - skip
+- different email notification for manufacturer and shop - skip

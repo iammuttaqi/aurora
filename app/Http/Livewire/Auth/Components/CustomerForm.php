@@ -91,44 +91,42 @@ class CustomerForm extends Component
         try {
             $product_ids = session('product_ids');
 
-            if (Gate::denies('canSell', Profile::class)) {
-                if (is_array($product_ids) && count($product_ids)) {
-                    $customer = Customer::create($this->form);
+            if (is_array($product_ids) && count($product_ids)) {
+                $customer = Customer::create($this->form);
 
-                    $product_customers = [];
-                    foreach ($product_ids as $key => $product_id) {
-                        $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
+                $product_customers = [];
+                foreach ($product_ids as $key => $product_id) {
+                    $product_customer_exists = ProductCustomer::where('product_id', $product_id)->exists();
 
-                        if (!$product_customer_exists) {
-                            $product_customers[$key]['product_id']  = $product_id;
-                            $product_customers[$key]['customer_id'] = $customer->id;
-                            $product_customers[$key]['created_at']  = now();
-                            $product_customers[$key]['updated_at']  = now();
-                        }
+                    if (!$product_customer_exists) {
+                        $product_customers[$key]['product_id']  = $product_id;
+                        $product_customers[$key]['customer_id'] = $customer->id;
+                        $product_customers[$key]['created_at']  = now();
+                        $product_customers[$key]['updated_at']  = now();
                     }
-
-                    ProductCustomer::insert($product_customers);
-
-                    request()->user()->notify(new ShopProductSoldNotification($customer));
-
-                    DB::commit();
-                    $this->reset();
-                    session()->forget('product_ids');
-                    $this->dispatch('sessionUpdated');
-                    $this->dispatch('notificationsUpdated');
-                    $this->dispatch(
-                        'banner-message',
-                        style: 'success',
-                        message: 'Products Sold to the Selected Customer.',
-                    );
-                } else {
-                    DB::rollBack();
-                    $this->dispatch(
-                        'banner-message',
-                        style: 'danger',
-                        message: 'No products on the box.',
-                    );
                 }
+
+                ProductCustomer::insert($product_customers);
+
+                request()->user()->notify(new ShopProductSoldNotification($customer));
+
+                DB::commit();
+                $this->reset();
+                session()->forget('product_ids');
+                $this->dispatch('sessionUpdated');
+                $this->dispatch('notificationsUpdated');
+                $this->dispatch(
+                    'banner-message',
+                    style: 'success',
+                    message: 'Products Sold to the Selected Customer.',
+                );
+            } else {
+                DB::rollBack();
+                $this->dispatch(
+                    'banner-message',
+                    style: 'danger',
+                    message: 'No products on the box.',
+                );
             }
         } catch (\Throwable $th) {
             DB::rollBack();

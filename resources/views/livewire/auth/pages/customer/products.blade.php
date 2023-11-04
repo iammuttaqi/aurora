@@ -29,6 +29,7 @@
                                 </tr>
 
                                 <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Action</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Product</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Price</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium uppercase text-gray-500" scope="col">Image</th>
@@ -41,6 +42,15 @@
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                 @forelse ($products as $product)
                                     <tr>
+                                        <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">
+                                            <a href="{{ route('products.show', $product->serial_number) }}" target="_blank" title="View"><i class="bi bi-eye-fill rounded bg-green-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-green-600"></i></a>
+                                            @if ($product->qr_code)
+                                                <a href="{{ route('products.qr_code', $product->serial_number) }}" target="_blank" title="QR Code"><i class="bi bi-qr-code rounded bg-blue-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-blue-600"></i></a>
+                                            @endif
+                                            <a href="{{ URL::signedRoute('verify_identity_product', $product->serial_number) }}" target="_blank" title="Timeline">
+                                                <i class="bi bi-calendar-week-fill rounded bg-cyan-500 px-2.5 py-2 text-lg text-white transition-all hover:bg-cyan-600"></i>
+                                            </a>
+                                        </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-200">{{ $product->title }}</td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">Tk {{ number_format($product->price, 2) }}</td>
                                         <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
