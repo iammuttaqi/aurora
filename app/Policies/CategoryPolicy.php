@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Category;
+use App\Models\Profile;
 use App\Models\User;
 
 class CategoryPolicy
@@ -44,7 +45,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        //
+        return !Profile::whereJsonContains('category_ids', (string) $category->id)->count();
     }
 
     /**

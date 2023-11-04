@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Livewire\Auth\Pages\Categories\Index as CategoriesIndex;
+use App\Http\Livewire\Auth\Pages\Cities\Index as CitiesIndex;
 use App\Http\Livewire\Auth\Pages\Customer\Index as CustomerIndex;
 use App\Http\Livewire\Auth\Pages\Customer\Products;
 use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
+use App\Http\Livewire\Auth\Pages\ProductCategories\Index as ProductCategoriesIndex;
 use App\Http\Livewire\Auth\Pages\Products\Box as ProductsBox;
 use App\Http\Livewire\Auth\Pages\Products\Create;
 use App\Http\Livewire\Auth\Pages\Products\Edit;
@@ -62,6 +65,18 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/', PartnersIndex::class)->name('index')->lazy();
         Route::get('{username}', ProfileIndex::class)->name('show');
         Route::get('qr-code/{username}', QrCodeIndex::class)->name('qr_code');
+    });
+
+    Route::prefix('categories')->middleware('can:viewCategories,App\Models\User')->name('categories.')->group(function () {
+        Route::get('/', CategoriesIndex::class)->name('index');
+    });
+
+    Route::prefix('product-categories')->middleware('can:viewProductCategories,App\Models\User')->name('product_categories.')->group(function () {
+        Route::get('/', ProductCategoriesIndex::class)->name('index');
+    });
+
+    Route::prefix('cities')->middleware('can:viewCities,App\Models\User')->name('cities.')->group(function () {
+        Route::get('/', CitiesIndex::class)->name('index')->lazy();
     });
 
     Route::get('profile', ProfileIndex::class)->name('profile')->can('viewAny', ModelsProfile::class);

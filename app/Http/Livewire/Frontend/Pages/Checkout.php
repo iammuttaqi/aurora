@@ -95,6 +95,7 @@ class Checkout extends Component
             DB::commit();
             $this->reset();
             session()->forget('package_id');
+
             // $this->redirect(ThankYou::class, navigate: true);
             return Redirect::signedRoute('thank_you');
         } catch (\Throwable $th) {

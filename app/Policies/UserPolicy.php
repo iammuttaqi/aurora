@@ -67,4 +67,19 @@ class UserPolicy
     {
         return in_array($user->role->slug, Role::slugsInArray('admin'));
     }
+
+    public function viewCategories(User $user): bool
+    {
+        return in_array($user->role->slug, Role::slugsInArray('admin'));
+    }
+
+    public function viewProductCategories(User $user): bool
+    {
+        return in_array($user->role->slug, Role::slugsInArray('admin'));
+    }
+
+    public function viewCities(User $user): bool
+    {
+        return in_array($user->role->slug, Role::slugsInArray('admin'));
+    }
 }

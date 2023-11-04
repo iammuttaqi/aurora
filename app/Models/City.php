@@ -14,6 +14,11 @@ class City extends Model
         'country_id',
     ];
 
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);

@@ -30,6 +30,21 @@
                             {{ __('Partners') }}
                         </x-nav-link>
                     @endcan
+                    @can('viewCategories', auth()->user())
+                        <x-nav-link :active="request()->routeIs('categories.*')" href="{{ route('categories.index') }}">
+                            {{ __('Categories') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewProductCategories', auth()->user())
+                        <x-nav-link :active="request()->routeIs('product_categories.*')" href="{{ route('product_categories.index') }}">
+                            {{ __('Product Categories') }}
+                        </x-nav-link>
+                    @endcan
+                    @can('viewCities', auth()->user())
+                        <x-nav-link :active="request()->routeIs('cities.*')" href="{{ route('cities.index') }}">
+                            {{ __('Cities') }}
+                        </x-nav-link>
+                    @endcan
                     @can('viewAny', \App\Models\Product::class)
                         <x-nav-link :active="request()->routeIs('products.*')" href="{{ route('products.index') }}">
                             {{ __('Products') }}
@@ -192,6 +207,18 @@
             @can('viewPartners', auth()->user())
                 <x-responsive-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
                     {{ __('Partners') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('viewCategories', auth()->user())
+                <x-responsive-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
+                    {{ __('Categories') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('viewCities', auth()->user())
+                <x-responsive-nav-link :active="request()->routeIs('partners.*')" href="{{ route('partners.index') }}">
+                    {{ __('Cities') }}
                 </x-responsive-nav-link>
             @endcan
 

@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Auth\Pages\Products;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
-use App\Models\ProductProfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;

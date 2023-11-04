@@ -44,7 +44,7 @@ class ProductCategoryPolicy
      */
     public function delete(User $user, ProductCategory $productCategory): bool
     {
-        //
+        return !$productCategory->products_count;
     }
 
     /**

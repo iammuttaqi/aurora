@@ -44,7 +44,7 @@ class CityPolicy
      */
     public function delete(User $user, City $city): bool
     {
-        //
+        return !$city->profiles_count;
     }
 
     /**
