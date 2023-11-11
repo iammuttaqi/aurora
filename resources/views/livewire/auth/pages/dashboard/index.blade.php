@@ -16,9 +16,9 @@
                         <span class="text-3xl font-bold text-white">{{ config('app.name') }}</span>
                     </div>
 
-                    <div class="mt-8 flex items-start justify-between">
+                    <div class="mt-8 flex flex-col items-start justify-between gap-4 md:flex-row md:gap-0">
                         <div class="space-y-8">
-                            <h1 class="text-2xl font-medium text-gray-900 dark:text-white">
+                            <h1 class="text-lg font-medium text-gray-900 dark:text-white sm:text-2xl">
                                 Welcome to your Dashboard, <strong>{{ auth()->user()->name }}</strong>
                             </h1>
                             @if (auth()->user()->profile && auth()->user()->profile->username)
@@ -51,7 +51,7 @@
 
                 <div class="border-b border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 lg:p-8">
                     <div class="mx-auto">
-                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
                             @foreach ($items as $item)
                                 <div class="flex flex-col rounded-xl border bg-white shadow-sm dark:border-gray-800 dark:bg-slate-900">
                                     <div class="p-4 md:p-5">
