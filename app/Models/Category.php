@@ -18,7 +18,7 @@ class Category extends Model
     protected function profilesCount(): Attribute
     {
         return Attribute::make(
-            get: fn () => Profile::whereJsonContains('category_ids', (string) $this->id)->count(),
+            get: fn () => Profile::where('category_ids', 'LIKE', '%' . $this->id . '%')->count(),
         );
     }
 

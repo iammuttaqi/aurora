@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <div aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 grid h-[calc(100%-1rem)] max-h-full w-full place-items-center overflow-y-auto overflow-x-hidden p-4 backdrop-brightness-50 md:inset-0" tabindex="-1" x-show="modal" x-transition>
+    <div aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 grid h-[calc(100%-1rem)] max-h-full w-full place-items-center overflow-y-auto overflow-x-hidden p-4 backdrop-brightness-50 md:inset-0" tabindex="-1" x-cloak x-show="modal" x-transition>
         <div class="relative max-h-full w-full max-w-md" x-on:click.outside="modal = false">
             <!-- Modal content -->
             <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
@@ -92,5 +92,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

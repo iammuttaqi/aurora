@@ -45,7 +45,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        return !Profile::whereJsonContains('category_ids', (string) $category->id)->count();
+        return !Profile::where('category_ids', 'LIKE', '%' . $category->id . '%')->count();
     }
 
     /**

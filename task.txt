@@ -82,8 +82,10 @@
 - Categories CRUD for admin - DONE
 - Cities CRUD for admin - DONE
 - shops can see their customers - DONE
+- product package test - DONE
 
 
+- configure an email
 - admin editors page
 - seeder for real manufacturer and shops with real products
 - database notification and email notification to shops and customers on selling
@@ -92,7 +94,6 @@
     - role
     - package status - total products, sold products, products left to sell
 - admin login and dashboard works
-- google analytics include
 
 
 
