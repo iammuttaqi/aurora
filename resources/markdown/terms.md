@@ -48,7 +48,7 @@ By accessing or using the Platform, you agree to be bound by these Terms. If you
 
 ## Contact Us
 
--   If you have any questions about these Terms, please contact us at admin@aurora.com.
+-   If you have any questions about these Terms, please contact us at aurora@sellvers.com.
 
 By using the Platform, you agree to these Terms and Conditions. If you do not agree with any part of these Terms, you should discontinue use of the Platform.
 

@@ -60,6 +60,6 @@ Your privacy is important to us. This Privacy Policy outlines how we collect, us
 
 ## Contact Us
 
--   If you have questions or concerns about this Privacy Policy, please contact us at admin@aurora.com.
+-   If you have questions or concerns about this Privacy Policy, please contact us at aurora@sellvers.com.
 
 By using our platform, you agree to the terms outlined in this Privacy Policy.
