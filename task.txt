@@ -87,17 +87,17 @@
 
 
 
-- admin editors page
-- seeder for real manufacturer and shops with real products
-- database notification and email notification to shops and customers on selling
-- reminder every 7 day to fill profile, even after registration
 - dashboard page design
     - role
     - package status - total products, sold products, products left to sell
 - admin login and dashboard works
+- seeder for real manufacturer and shops with real products
 
 
 
+- admin editors page - skip
+- database notification and email notification to shops and customers on selling - skip
+- reminder every 7 day to fill profile, even after registration - skip
 - remove created at date from shop, instead configure and show sold at - skip
 - configure and show sold at on sold products page - skip
 - "price" field on "product_customers" table and make it functional - skip

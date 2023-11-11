@@ -4,6 +4,7 @@ use App\Http\Livewire\Auth\Pages\Categories\Index as CategoriesIndex;
 use App\Http\Livewire\Auth\Pages\Cities\Index as CitiesIndex;
 use App\Http\Livewire\Auth\Pages\Customer\Index as CustomerIndex;
 use App\Http\Livewire\Auth\Pages\Customer\Products;
+use App\Http\Livewire\Auth\Pages\Dashboard\Index as DashboardIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Index as NotificationsIndex;
 use App\Http\Livewire\Auth\Pages\Notifications\Show as NotificationsShow;
 use App\Http\Livewire\Auth\Pages\Partners\Index as PartnersIndex;
@@ -57,9 +58,7 @@ Route::middleware(SetLayoutMiddleware::class)->group(function () {
 // ------------------------------------------------------------------------------------------------------------------ //
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', DashboardIndex::class)->name('dashboard');
 
     Route::prefix('partners')->middleware('can:viewPartners,App\Models\User')->name('partners.')->group(function () {
         Route::get('/', PartnersIndex::class)->name('index')->lazy();
