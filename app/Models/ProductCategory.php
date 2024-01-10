@@ -10,6 +10,8 @@ class ProductCategory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -18,7 +20,7 @@ class ProductCategory extends Model
     protected function slug(): Attribute
     {
         return Attribute::make(
-            set: fn () => $this->generateUniqueSlug(),
+            set: fn() => $this->generateUniqueSlug(),
         );
     }
 

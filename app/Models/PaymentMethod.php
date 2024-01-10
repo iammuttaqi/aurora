@@ -9,6 +9,8 @@ class PaymentMethod extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function payment_type()
     {
         return $this->belongsTo(PaymentType::class);

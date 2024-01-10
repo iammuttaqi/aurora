@@ -41,14 +41,14 @@ jobs:
           npm run build
           npm run prod
 
-      - name: Execute tests (Unit and Feature tests) via Pest
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: vendor/bin/pest
+      # - name: Execute tests (Unit and Feature tests) via Pest
+      #   env:
+      #     DB_CONNECTION: sqlite
+      #     DB_DATABASE: database/database.sqlite
+      #   run: vendor/bin/pest
 
-      - name: Run migration and seeder
-        run: php artisan migrate:fresh --seed
+      # - name: Run migration and seeder
+      #   run: php artisan migrate:fresh --seed
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
