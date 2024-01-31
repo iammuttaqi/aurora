@@ -29,6 +29,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    @filamentStyles
     @stack('styles')
 </head>
 
@@ -48,7 +49,8 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        {{-- <main > --}}
+        <main class="container mx-auto py-4">
             {{ $slot }}
         </main>
     </div>
@@ -56,6 +58,8 @@
     @stack('modals')
 
     @stack('scripts')
+
+    @filamentScripts
 </body>
 
 </html>

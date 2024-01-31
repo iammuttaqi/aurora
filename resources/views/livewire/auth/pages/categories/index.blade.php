@@ -1,12 +1,6 @@
 @push('title', 'Categories')
 
-<x-slot name="header">
-    <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-        {{ __('Categories') }}
-    </h2>
-</x-slot>
-
-<div class="py-12" x-data="{
+<div x-data="{
     modal: @entangle('modal'),
     modalCreate() {
         $wire.create();
@@ -15,57 +9,52 @@
         $wire.edit(id);
     },
 }">
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-                    <caption class="bg-white p-5 text-left text-lg font-semibold text-gray-900 dark:bg-gray-800 dark:text-white">
-                        <button class="rounded-lg bg-blue-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" x-on:click="modalCreate">Add Category</button>
-                    </caption>
+    <div>
+        <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+            <caption class="bg-white p-5 text-left text-lg font-semibold text-gray-900 dark:bg-gray-800 dark:text-white">
+                <button class="rounded-lg bg-blue-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" x-on:click="modalCreate">Add Category</button>
+            </caption>
 
-                    <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th class="px-6 py-3" scope="col">
-                                Category Title
-                            </th>
-                            <th class="px-6 py-3" scope="col">
-                                Slug
-                            </th>
-                            <th class="px-6 py-3" scope="col">
-                                Number Of Partners
-                            </th>
-                            <th class="px-6 py-3" scope="col">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($categories as $category)
-                            <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-900">
-                                <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white" scope="row">
-                                    {{ $category->title }}
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $category->slug }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $category->profiles_count }}
-                                </td>
-                                <td class="flex gap-2 px-6 py-4">
-                                    <button class="font-medium text-blue-600 hover:underline dark:text-blue-500" type="button" x-on:click="modalEdit('{{ $category->id }}')">Edit</button>
-                                    @can('delete', $category)
-                                        <button class="font-medium text-red-600 hover:underline dark:text-red-500" type="button" x-on:click.prevent="if(confirm('Are You Sure?')) $wire.destroy('{{ $category->id }}');">Delete</button>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                {{ $categories->links('components.pagination') }}
-            </div>
-
-        </div>
+            <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th class="px-6 py-3" scope="col">
+                        Category Title
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Slug
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Number Of Partners
+                    </th>
+                    <th class="px-6 py-3" scope="col">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
+                    <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-900">
+                        <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white" scope="row">
+                            {{ $category->title }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $category->slug }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $category->profiles_count }}
+                        </td>
+                        <td class="flex gap-2 px-6 py-4">
+                            <button class="font-medium text-blue-600 hover:underline dark:text-blue-500" type="button" x-on:click="modalEdit('{{ $category->id }}')">Edit</button>
+                            @can('delete', $category)
+                                <button class="font-medium text-red-600 hover:underline dark:text-red-500" type="button" x-on:click.prevent="if(confirm('Are You Sure?')) $wire.destroy('{{ $category->id }}');">Delete</button>
+                            @endcan
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{ $categories->links('components.pagination') }}
     </div>
 
     <div aria-hidden="true" class="fixed left-0 right-0 top-0 z-50 grid h-[calc(100%-1rem)] max-h-full w-full place-items-center overflow-y-auto overflow-x-hidden p-4 backdrop-brightness-50 md:inset-0" tabindex="-1" x-cloak x-show="modal" x-transition>

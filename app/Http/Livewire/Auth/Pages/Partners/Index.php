@@ -3,103 +3,82 @@
 namespace App\Http\Livewire\Auth\Pages\Partners;
 
 use App\Models\Profile;
-use App\Models\Role;
-use App\Notifications\User\ProfileApproveNotification;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use Livewire\WithPagination;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use URL;
 
-class Index extends Component
+class Index extends Component implements HasForms, HasTable
 {
-    use AuthorizesRequests, WithPagination;
+    use InteractsWithForms;
+    use InteractsWithTable;
 
-    public $search = null;
-
-    protected $queryString = [
-        'search' => ['except' => ''],
-    ];
-
-    public function render()
+    public function table(Table $table): Table
     {
-        $partners = Profile::query()
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('username', 'like', '%' . $this->search . '%')
-            ->has('user')
-            ->with('user.role')
-            ->latest()
-            ->paginate(100);
-
-        return view('livewire.auth.pages.partners.index', compact('partners'));
+        return $table
+            ->query(Profile::query())
+            ->columns([
+                ImageColumn::make('logo'),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('user.role.title'),
+                TextColumn::make('address'),
+            ])
+            ->filters([
+                SelectFilter::make('Role')->relationship('user.role', 'title', function ($query) {
+                    $query->where('type', 'user');
+                }),
+            ])
+            ->actions([
+                Action::make('check-identity')
+                    ->url(fn(Profile $profile): string => URL::signedRoute('verify_identity', $profile->username))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-shield-exclamation')
+                    ->iconSize('lg')
+                    ->color('success')
+                    ->label(false)
+                    ->tooltip('Check Identity'),
+                Action::make('qr-code')
+                    ->url(fn(Profile $profile): string => route('partners.qr_code', $profile->username))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-qr-code')
+                    ->iconSize('lg')
+                    ->color('info')
+                    ->label(false)
+                    ->tooltip('QR Code'),
+                Action::make('edit')
+                    ->url(fn(Profile $profile): string => route('partners.show', $profile->username))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-pencil-square')
+                    ->iconSize('lg')
+                    ->color('warning')
+                    ->label(false)
+                    ->tooltip('Edit'),
+            ])
+            ->bulkActions([
+                // ...
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
-    public function updating()
+    public function render(): View
     {
-        $this->resetPage();
-    }
+        // $partners = Profile::query()
+        //     ->where('name', 'like', '%' . $this->search . '%')
+        //     ->orWhere('username', 'like', '%' . $this->search . '%')
+        //     ->has('user')
+        //     ->with('user.role')
+        //     ->latest()
+        //     ->paginate(100);
 
-    public function approve($partner_id)
-    {
-        DB::beginTransaction();
-
-        try {
-            $profile = Profile::where('id', $partner_id)
-                ->whereNotNull('username')
-                ->where('approved', 0)
-                ->where('qr_code', null)
-                ->with('user')
-                ->whereHas('user.role', function ($query) {
-                    return $query->whereIn('slug', Role::slugsInArray('user'));
-                })
-                ->first();
-
-            $this->authorize('approvable', $profile);
-
-            $qr_code = $this->generateQrCode($profile);
-
-            if ($profile && $qr_code) {
-                $profile->update([
-                    'qr_code'  => $qr_code,
-                    'approved' => 1,
-                ]);
-            }
-
-            $profile->user->notify(new ProfileApproveNotification($profile));
-
-            DB::commit();
-            $this->dispatch('notificationsUpdated');
-            $this->dispatch(
-                'banner-message',
-                style: 'success',
-                message: 'Partner Approved and QR Code Assigned.',
-            );
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            logger(__METHOD__, [$th]);
-            $this->dispatch(
-                'banner-message',
-                style: 'danger',
-                message: 'Failed.',
-            );
-            throw $th;
-        }
-    }
-
-    private function generateQrCode($profile)
-    {
-        try {
-            if ($profile->username) {
-                $url = URL::signedRoute('verify_identity', $profile->username);
-
-                return QrCode::size(500)->generate($url);
-            }
-        } catch (\Throwable $th) {
-            logger(__METHOD__, [$th]);
-
-            return null;
-            throw $th;
-        }
+        return view('livewire.auth.pages.partners.index');
     }
 }
