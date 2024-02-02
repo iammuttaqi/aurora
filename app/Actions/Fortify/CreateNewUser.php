@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Profile;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,7 @@ class CreateNewUser implements CreatesNewUsers
             [],
             [
                 'role_id' => 'Role',
-            ]
+            ],
         )->validate();
 
         DB::beginTransaction();
@@ -46,8 +47,13 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]);
 
-            DB::commit();
+            $profile = $user->profile()->create([
+                'name'     => $user->name,
+                'email_1'  => $user->email,
+                'username' => null,
+            ]);
 
+            DB::commit();
             return $user;
         } catch (\Throwable $th) {
             DB::rollBack();
