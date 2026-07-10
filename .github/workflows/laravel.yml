@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v7.0.0
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.production', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       # - name: Install Dependencies
       #   run: composer install
       - name: Update Dependencies
