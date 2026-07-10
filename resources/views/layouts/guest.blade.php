@@ -42,7 +42,7 @@
     <header class="sticky top-0 z-50 flex w-full flex-wrap border-b border-white/[.5] bg-white py-3 text-sm shadow sm:flex-nowrap sm:justify-start sm:py-0" x-data="{ open: false }">
         <nav aria-label="Global" class="relative mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
-                <a aria-label="Brand" class="flex-none text-xl font-semibold text-white" href="{{ route('index') }}" wire:navigate.hover>
+                <a .hover aria-label="Brand" class="flex-none text-xl font-semibold text-white" href="{{ route('index') }}">
                     <x-application-mark class="block h-9 w-auto" />
                 </a>
                 <div class="sm:hidden">
@@ -102,8 +102,8 @@
                 <div class="flex items-center gap-x-3">
                     <div class="ml-4 space-x-4 text-sm">
                         <span class="inline-flex gap-x-2 text-gray-600 hover:text-gray-800">&copy; {{ date('Y') }} {{ config('app.name') }}</span>
-                        <a class="inline-flex gap-x-2 text-gray-600 transition-all hover:text-gray-800 hover:underline" href="{{ route('terms.show') }}" wire:navigate.hover>Terms And Conditions</a>
-                        <a class="inline-flex gap-x-2 text-gray-600 transition-all hover:text-gray-800 hover:underline" href="{{ route('policy.show') }}" wire:navigate.hover>Privacy Policy</a>
+                        <a .hover class="inline-flex gap-x-2 text-gray-600 transition-all hover:text-gray-800 hover:underline" href="{{ route('terms.show') }}">Terms And Conditions</a>
+                        <a .hover class="inline-flex gap-x-2 text-gray-600 transition-all hover:text-gray-800 hover:underline" href="{{ route('policy.show') }}">Privacy Policy</a>
                     </div>
                 </div>
 

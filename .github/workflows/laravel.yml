@@ -50,10 +50,10 @@ jobs:
       # - name: Run migration and seeder
       #   run: php artisan migrate:fresh --seed
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.2
-        with:
-          server: ftp.sellvers.com
-          username: aurora@sellvers.com
-          password: 688827444
-          port: 21
+      # - name: 📂 Sync files
+      #   uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      #   with:
+      #     server: ftp.sellvers.com
+      #     username: aurora@sellvers.com
+      #     password: 688827444
+      #     port: 21

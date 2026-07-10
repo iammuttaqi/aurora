@@ -3,16 +3,11 @@
 namespace App\Http\Livewire\Auth\Pages\Partners;
 
 use App\Models\Profile;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -57,13 +52,13 @@ class Index extends Component implements HasForms, HasTable
                     ->modalSubmitActionLabel('Approve')
                     ->requiresConfirmation()
                     ->action(function (Profile $profile) {
-                        dd($profile);
+                        // dd($profile);
                     })
                     ->visible(function (Profile $profile) {
-                        return Gate::allows('approvalbe', $profile);
+                        return Gate::allows('approvable', $profile);
                     }),
                 Action::make('check-identity')
-                    ->url(fn(Profile $profile): string => URL::signedRoute('verify_identity', $profile->username))
+                    ->url(fn (Profile $profile): string => URL::signedRoute('verify_identity', $profile->username))
                     ->openUrlInNewTab()
                     ->icon('heroicon-o-shield-exclamation')
                     ->iconSize('lg')
@@ -71,7 +66,7 @@ class Index extends Component implements HasForms, HasTable
                     ->label(false)
                     ->tooltip('Check Identity'),
                 Action::make('qr-code')
-                    ->url(fn(Profile $profile): string => route('partners.qr_code', $profile->username))
+                    ->url(fn (Profile $profile): string => route('partners.qr_code', $profile->username))
                     ->openUrlInNewTab()
                     ->icon('heroicon-o-qr-code')
                     ->iconSize('lg')
@@ -79,7 +74,7 @@ class Index extends Component implements HasForms, HasTable
                     ->label(false)
                     ->tooltip('QR Code'),
                 Action::make('edit')
-                    ->url(fn(Profile $profile): string => route('partners.show', $profile->username))
+                    ->url(fn (Profile $profile): string => route('partners.show', $profile->username))
                     ->openUrlInNewTab()
                     ->icon('heroicon-o-pencil-square')
                     ->iconSize('lg')

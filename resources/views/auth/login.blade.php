@@ -44,7 +44,7 @@
 
             <div class="flex items-center justify-end">
                 @if (Route::has('password.request'))
-                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href="{{ route('password.request') }}" wire:navigate.hover>
+                    <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" href="{{ route('password.request') }}" .hover>
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -68,7 +68,7 @@
                     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Login</h1>
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Don't have an account yet?
-                        <a class="font-medium text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('register') }}" wire:navigate.hover>
+                        <a .hover class="font-medium text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('register') }}">
                             Register here
                         </a>
                     </p>
@@ -101,14 +101,14 @@
 
                             @if (Route::has('password.request'))
                                 <div class="space-y-1">
-                                    <a class="text-sm text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('password.request') }}" wire:navigate.hover>
+                                    <a .hover class="text-sm text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('password.request') }}">
                                         {{ __('Forgot your password?') }}
                                     </a>
                                 </div>
                             @endif
 
                             <div class="space-y-1">
-                                <x-button x-bind:disabled="processing" x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-cloak>
+                                <x-button x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-bind:disabled="processing" x-cloak>
                                     <span aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-inherit" role="status" x-show="processing"></span>
                                     {{ __('Login') }}
                                 </x-button>

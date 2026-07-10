@@ -5,12 +5,15 @@ namespace App\Http\Livewire\Auth\Pages\Partners;
 use App\Models\Profile;
 use App\Models\Role;
 use App\Notifications\User\ProfileApproveNotification;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Livewire\WithPagination;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Index extends Component
 {
@@ -93,7 +96,9 @@ class Index extends Component
             if ($profile->username) {
                 $url = URL::signedRoute('verify_identity', $profile->username);
 
-                return QrCode::size(500)->generate($url);
+                $writer = new Writer(new ImageRenderer(new RendererStyle(500), new SvgImageBackEnd));
+
+                return $writer->writeString($url);
             }
         } catch (\Throwable $th) {
             logger(__METHOD__, [$th]);

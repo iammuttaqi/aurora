@@ -43,7 +43,7 @@
                     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Forgot password?</h1>
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Remember your password?
-                        <a class="font-medium text-blue-600 decoration-2 hover:underline" href="{{ route('login') }}" wire:navigate.hover>
+                        <a .hover class="font-medium text-blue-600 decoration-2 hover:underline" href="{{ route('login') }}">
                             Sign in here
                         </a>
                     </p>
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="space-y-1">
-                                <x-button x-bind:disabled="processing" x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-cloak>
+                                <x-button x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-bind:disabled="processing" x-cloak>
                                     <span aria-label="loading" class="inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-inherit" role="status" x-show="processing"></span>
                                     {{ __('Email Password Reset Link') }}
                                 </x-button>

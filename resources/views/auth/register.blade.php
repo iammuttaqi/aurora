@@ -8,7 +8,7 @@
                     <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Register</h1>
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Already have an account?
-                        <a class="font-medium text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('login') }}" wire:navigate.hover>
+                        <a .hover class="font-medium text-blue-600 decoration-2 transition-all hover:underline" href="{{ route('login') }}">
                             Login here
                         </a>
                     </p>
@@ -73,8 +73,8 @@
 
                                             <div class="ml-2">
                                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                    'terms_of_service' => '<a wire:navigate.hover target="_blank" href="' . route('terms.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800">' . __('Terms of Service') . '</a>',
-                                                    'privacy_policy' => '<a wire:navigate.hover target="_blank" href="' . route('policy.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800">' . __('Privacy Policy') . '</a>',
+                                                    'terms_of_service' => '<a .hover target="_blank" href="' . route('terms.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800">' . __('Terms of Service') . '</a>',
+                                                    'privacy_policy' => '<a .hover target="_blank" href="' . route('policy.show') . '"class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800">' . __('Privacy Policy') . '</a>',
                                                 ]) !!}
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
                             @endif
 
                             <div class="space-y-1">
-                                <x-button x-bind:disabled="processing" x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-cloak>
+                                <x-button x-bind:class="{ 'dark:bg-gray-400 dark:hover:bg-gray-400': processing }" x-bind:disabled="processing" x-cloak>
                                     <span aria-label="loading" class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white dark:text-inherit" role="status" x-show="processing"></span>
                                     {{ __('Register') }}
                                 </x-button>

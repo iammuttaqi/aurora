@@ -10,7 +10,7 @@
             <!-- End Col -->
 
             <div class="text-center md:flex md:items-center md:justify-end md:text-left">
-                <a class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 align-middle text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white" href="{{ route('register') }}" wire:navigate.hover>
+                <a .hover class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 align-middle text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white" href="{{ route('register') }}">
                     Sign up free
                 </a>
             </div>

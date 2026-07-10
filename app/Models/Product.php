@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Product extends Model
 {
@@ -70,7 +73,9 @@ class Product extends Model
         try {
             $url = URL::signedRoute('verify_identity_product', $this->serial_number);
 
-            return QrCode::size(500)->generate($url);
+            $writer = new Writer(new ImageRenderer(new RendererStyle(500), new SvgImageBackEnd));
+
+            return $writer->writeString($url);
         } catch (\Throwable $th) {
             logger(__METHOD__, [$th]);
 

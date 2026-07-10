@@ -5,9 +5,12 @@ namespace Database\Seeders;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Profile;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\URL;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProductSeeder extends Seeder
 {
@@ -23,7 +26,8 @@ class ProductSeeder extends Seeder
             foreach (range(1, 3) as $key => $range) {
                 $serial_number = fake()->unique()->numerify('SN-########');
                 $url           = URL::signedRoute('verify_identity_product', $serial_number);
-                $qr_code       = QrCode::size(500)->generate($url);
+                $writer        = new Writer(new ImageRenderer(new RendererStyle(500), new SvgImageBackEnd));
+                $qr_code       = $writer->writeString($url);
 
                 $products[] = [
                     'profile_id'           => $profile->id,

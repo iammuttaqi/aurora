@@ -7,9 +7,12 @@ use App\Models\City;
 use App\Models\EmployeeRange;
 use App\Models\Profile;
 use App\Models\User;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\URL;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProfileSeeder extends Seeder
 {
@@ -33,7 +36,8 @@ class ProfileSeeder extends Seeder
             $approved = fake()->boolean();
             if ($approved) {
                 $url     = URL::signedRoute('verify_identity', $username);
-                $qr_code = QrCode::size(500)->generate($url);
+                $writer  = new Writer(new ImageRenderer(new RendererStyle(500), new SvgImageBackEnd));
+                $qr_code = $writer->writeString($url);
             }
 
             $profiles[] = [
