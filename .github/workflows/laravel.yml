@@ -1,4 +1,4 @@
-name: 🚀 Deploy website on push to https://aurora.faisalbhuiyan.com/
+name: Test
 
 on:
   push:
