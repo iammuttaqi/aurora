@@ -153,6 +153,7 @@ class Index extends Component
             message: 'Products added to the box.',
         );
 
-        return $this->redirect(route('products.box'), navigate: true);
+        // return $this->redirect(route('products.box'), navigate: true);
+        return $this->redirect(route('products.box'));
     }
 }

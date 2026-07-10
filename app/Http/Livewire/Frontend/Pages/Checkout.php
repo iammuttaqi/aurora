@@ -101,7 +101,8 @@ class Checkout extends Component
         } catch (\Throwable $th) {
             DB::rollBack();
             logger(__METHOD__, [$th]);
-            $this->redirect(Checkout::class, navigate: true);
+            // $this->redirect(Checkout::class, navigate: true);
+            $this->redirect(Checkout::class);
             throw $th;
         }
     }

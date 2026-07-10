@@ -132,7 +132,8 @@ class Create extends Component
                     style: 'success',
                     message: 'Product created.',
                 );
-                $this->redirect(Index::class, navigate: true);
+                // $this->redirect(Index::class, navigate: true);
+                $this->redirect(Index::class);
             } else {
                 abort(404);
             }

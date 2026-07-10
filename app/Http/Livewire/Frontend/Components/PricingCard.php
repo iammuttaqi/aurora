@@ -23,6 +23,7 @@ class PricingCard extends Component
     {
         session()->put('package_id', $package_id);
 
-        $this->redirect(Checkout::class, navigate: true);
+        // $this->redirect(Checkout::class, navigate: true);
+        $this->redirect(Checkout::class);
     }
 }
