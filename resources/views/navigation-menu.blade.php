@@ -20,7 +20,7 @@
                             {{ __('Profile') }}
                         </x-nav-link>
                     @endcan
-                    @can('qrCode', auth()->user()->profile)
+                    @can('qrCode', auth()->user()?->profile)
                         <x-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
                             {{ __('QR Code') }}
                         </x-nav-link>
@@ -130,12 +130,12 @@
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex rounded-full border-2 border-transparent text-sm transition focus:border-gray-300 focus:outline-none">
-                                    <img alt="{{ auth()->user()->profile->name ?? auth()->user()->name }}" class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" />
+                                    <img alt="{{ auth()->user()?->profile?->name ?? auth()->user()?->name }}" class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()?->profile_photo_url }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
                                     <button class="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:bg-gray-50 focus:outline-none active:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:bg-gray-700 dark:active:bg-gray-700" type="button">
-                                        {{ auth()->user()->profile->name ?? auth()->user()->name }}
+                                        {{ auth()->user()?->profile?->name ?? auth()->user()?->name }}
                                         <i class="bi bi-chevron-down ml-2 text-sm"></i>
                                     </button>
                                 </span>
@@ -198,7 +198,7 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
             @endcan
-            @can('qrCode', auth()->user()->profile)
+            @can('qrCode', auth()->user()?->profile)
                 <x-responsive-nav-link :active="request()->routeIs('qr_code')" href="{{ route('qr_code') }}">
                     {{ __('QR Code') }}
                 </x-responsive-nav-link>

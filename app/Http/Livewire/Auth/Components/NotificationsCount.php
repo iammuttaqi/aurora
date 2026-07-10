@@ -22,6 +22,6 @@ class NotificationsCount extends Component
 
     public function updateNotificationsCount()
     {
-        $this->notifications_count = auth()->user()->unreadNotifications->count();
+        $this->notifications_count = auth()->user()?->unreadNotifications->count() ?? 0;
     }
 }

@@ -37,7 +37,30 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        @livewire('navigation-menu')
+        @auth
+            @livewire('navigation-menu')
+        @else
+            <nav class="sticky top-0 z-10 border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex h-16 items-center justify-between">
+                        <a href="{{ url('/') }}" class="flex shrink-0 items-center">
+                            <x-application-mark class="block h-9 w-auto" />
+                        </a>
+
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 transition hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                                {{ __('Log in') }}
+                            </a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white">
+                                    {{ __('Register') }}
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        @endauth
 
         <!-- Page Heading -->
         @if (isset($header))

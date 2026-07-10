@@ -83,9 +83,9 @@ class ProfilePolicy
         return in_array($user->role->slug, Role::slugsInArray('admin')) && !$profile->approved && !$profile->qr_code && !$has_empty_values;
     }
 
-    public function qrCode(User $user, Profile $profile): bool
+    public function qrCode(User $user, ?Profile $profile): bool
     {
-        return $profile->approved && $profile->qr_code;
+        return $profile && $profile->approved && $profile->qr_code;
     }
 
     // public function canSell(User $user): bool
